@@ -4,7 +4,7 @@ import { useRouter } from "next/router";
 
 export default function useLocale() {
   const { locale } = useRouter();
-  return locale;
+  return locale
 }
 
 // export function useLocale() {
