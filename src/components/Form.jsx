@@ -8,7 +8,7 @@ import Section from "@/atoms/Section";
 import H2 from "@/atoms/H2";
 import LayoutSplit from "@/atoms/LayoutSplit";
 import useGsap from "@/utils/useGsap";
-import useLocale from "@/utils/useLocale";
+import { useAppContext } from "@/utils/appContext";
 // import Button from "@/atoms/Button";
 
 gsap.registerPlugin(ScrollTrigger);
@@ -87,7 +87,7 @@ const sendButtonTitle = {
 }
 
 export default function Form({ title }) {
-  const locale = useLocale();
+  let { locale } = useAppContext();
   let [success, setSuccess] = useState(false);
   // const { locale } = useAppContext();
   let darkMode = false;

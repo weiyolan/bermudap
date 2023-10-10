@@ -5,13 +5,13 @@ import Number from "./Number";
 import { useEffect } from "react";
 import { gsap } from "gsap/dist/gsap";
 import useGsap from "@/utils/useGsap";
-import useLocale from "@/utils/useLocale";
+import { useAppContext } from "@/utils/appContext";
 
 export default function Numbers({ title, facts }) {
   // const locale = currentLocale();
 
   const ctx = useGsap()
-  const locale = useLocale();
+  let { locale } = useAppContext();
 
   // useEffect(() => {
   //   ctx.add(() => {

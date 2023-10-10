@@ -1,6 +1,6 @@
 import Link from "next/link";
 import Layout from "@/atoms/Section";
-import useLocale from "@/utils/useLocale";
+import { useAppContext } from "@/utils/appContext";
 
 const signature = {
   en: ["2023 Bermuda Events, Inc. All rights reserved."],
@@ -11,7 +11,8 @@ const signature = {
 export default function Footer({ style, className, lists, title }) {
   let mobile = false;
   let breakPointSmall = 640;
-  let locale = useLocale()
+  let { locale } = useAppContext();
+
 
   // let footerRef = useRef(null)
 
@@ -147,7 +148,8 @@ function Links({ title, list, mobile }) {
 }
 
 function List({ list, mobile }) {
-  const locale = useLocale();
+  let { locale } = useAppContext();
+
   return (
     <ul className="flex flex-wrap justify-center gap-x-2 font-bel sm:flex-col sm:flex-nowrap ">
       {list?.map((item, i) => (

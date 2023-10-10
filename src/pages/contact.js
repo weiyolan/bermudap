@@ -1,9 +1,8 @@
 import Head from "next/head";
 import Image from "next/image";
 
-import Navigation from "@/components/Navigation";
-import useLocale from "@/utils/useLocale";
-import Footer from "@/components/Footer";
+import Navigation from '@/components/Navigation'
+import Footer from '@/components/Footer'
 // import Footer from "@/components/Footer";
 // import UpButton from "@/components/UpButton";
 
@@ -15,13 +14,14 @@ import {
   getContactDetails,
   getNav,
   getFooter,
-} from "@/sanity/sanity-utils";
-import UpButton from "@/components/UpButton";
-import BackgroundLogo from "@/atoms/BackgroundLogo";
-import ContactDetails from "@/components/ContactDetails";
-import TrustedBy from "@/components/TrustedBy";
-import Form from "@/components/Form";
-import Numbers from "@/components/Numbers";
+} from '@/sanity/sanity-utils'
+import UpButton from '@/components/UpButton'
+import BackgroundLogo from '@/atoms/BackgroundLogo'
+import ContactDetails from '@/components/ContactDetails'
+import TrustedBy from '@/components/TrustedBy'
+import Form from '@/components/Form'
+import Numbers from '@/components/Numbers'
+import {useAppContext} from '@/utils/appContext'
 
 export default function Home({
   links,
@@ -51,13 +51,11 @@ export default function Home({
   vat,
   phone,
 }) {
-  let locale = useLocale();
+  let {locale} = useAppContext()
   return (
     <>
       <Head>
-        <title>
-          Bermuda-Events | The most personal event experience you can get
-        </title>
+        <title>Bermuda-Events | The most personal event experience you can get</title>
         <meta
           name="description"
           content="Dynamic & Meaningful Experiences For Your Colleagues
@@ -73,15 +71,13 @@ export default function Home({
       <main>
         <BackgroundLogo />
         <ContactDetails
-          {...{ companyName, address1, address2, country, email, vat, phone }}
+          {...{companyName, address1, address2, country, email, vat, phone}}
           title={detailsTitle?.[locale]}
           text={detailsText?.[locale]}
           alt={alt}
           imgUrl={imgUrl}
         />
-        {enabled && (
-          <TrustedBy title={trustedTitle?.[locale]} partners={partners} />
-        )}
+        {enabled && <TrustedBy title={trustedTitle?.[locale]} partners={partners} />}
         <Form title={formTitle?.[locale]} />
         <Numbers title={numberTitle?.[locale]} facts={[fact1, fact2, fact3]} />
       </main>
@@ -90,7 +86,7 @@ export default function Home({
       </footer>
       <UpButton />
     </>
-  );
+  )
 }
 
 export async function getStaticProps() {

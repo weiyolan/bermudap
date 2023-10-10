@@ -1,8 +1,9 @@
 "use client";
+import { useAppContext } from "@/utils/appContext";
 import Link from "next/link";
 // import { useAppContext } from "@utils/appContext";
 // import { usePageContext } from "@/utils/pageContext";
-import useLocale from "@/utils/useLocale";
+// import useLocale from "@/utils/useLocale";
 // import { currentLocale } from 'next-i18n-router';
 // import { useCurrentLocale } from 'next-i18n-router/client';
 // import i18nConfig from '@/i18nConfig';
@@ -26,13 +27,12 @@ let mailTitle = { en: "Send an Email", fr: "Envoyer un courriel", nl: "Stuur een
 export default function ContactB({ className, phone, email }) {
   // const { email, phone } = await getContactDetails();
 
-  // const { locale } = useAppContext()
+  const { locale } = useAppContext()
   // const { darkMode } = usePageContext()
   let darkMode = false;
   // const locale = currentLocale();
   // const locale = useCurrentLocale(i18nConfig);
 
-  const locale = useLocale();
 
   return (
     <div

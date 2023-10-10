@@ -5,10 +5,10 @@ import { Observer } from "gsap/dist/Observer";
 import Line from "@/atoms/Line";
 import { usePathname } from "next/navigation";
 // import Logo from "../atoms/Logo";
-import useLocale from "@/utils/useLocale";
 import Button from "@/atoms/Button";
 import LogoText from "@/atoms/LogoText";
 import LogoAnim from "@/atoms/LogoAnim";
+import { useAppContext } from "@/utils/appContext";
 
 
 
@@ -17,7 +17,7 @@ gsap.registerPlugin(Observer);
 
 
 export default function Navigation({ links, cta }) {
-  const locale = useLocale();
+  let { locale } = useAppContext();
   // let { darkMode } = usePageContext()
   let [hiding, setHiding] = useState(false); //removed bar onLoad and then animate in.
   let [big, setBig] = useState(true);

@@ -1,11 +1,11 @@
 // import { useLocale } from "@/utils/appContext";
-import useLocale from "@/utils/useLocale";
+import { useAppContext } from "@/utils/appContext";
 import { usePageContext } from "@/utils/pageContext";
 import { gsap } from "gsap/dist/gsap";
 import React, { useEffect, useRef } from "react";
 
 export default function NavToggle({ open, className }) {
-  const locale = currentLocale();
+  let { locale } = useAppContext();
   const { darkMode } = usePageContext();
   return (
     <button

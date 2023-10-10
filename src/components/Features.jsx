@@ -1,12 +1,12 @@
 import H2 from "@/atoms/H2";
 import Section from "@/atoms/Section";
 // import Logo from "../atoms/Logo";
-import useLocale from "@/utils/useLocale";
 import { gsap } from 'gsap/dist/gsap';
 import { useEffect } from 'react';
 import useGsap from '@/utils/useGsap';
 import { ScrollTrigger } from 'gsap/dist/ScrollTrigger';
 import Feature from "./Feature";
+import { useAppContext } from "@/utils/appContext";
 
 // import useLayoutEffect from "@utils/useIsomorphicLayoutEffect"
 
@@ -22,7 +22,7 @@ let colors = [
 ];
 
 export default function Features({ title, values }) {
-  let locale = useLocale()
+  let { locale } = useAppContext();
 
   let ctx = useGsap()
 

@@ -10,9 +10,6 @@ import useGsap from '@/utils/useGsap';
 import LogoAnimMain from "@/atoms/LogoAnimMain";
 
 export default function Hero({ alt, imgUrl }) {
-
-
-
   let [hovering, setHovering] = useState(false);
   let [clicking, setClicking] = useState(false);
   let [active, setActive] = useState(false);

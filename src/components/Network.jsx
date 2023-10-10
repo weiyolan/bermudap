@@ -3,18 +3,18 @@ import Section from "@/atoms/Section";
 // import picture1 from "../../public/memberDefault1.jpg";
 // import picture2 from "../../public/memberDefault2.jpg";
 import Image from "next/image";
-import useLocale from "@/utils/useLocale";
 import { gsap } from "gsap/dist/gsap";
 import { useEffect, useRef, useState } from "react";
 import useGsap from "@/utils/useGsap";
 import { ScrollTrigger } from 'gsap/dist/ScrollTrigger';
 import FadeDiv from "@/atoms/FadeDiv";
+import { useAppContext } from "@/utils/appContext";
 gsap.registerPlugin(ScrollTrigger);
 // let content = {};
 
 export default function Network({ title, members }) {
   let ctx = useGsap()
-  const locale = useLocale();
+  let { locale } = useAppContext();
 
   useEffect(() => {
     ctx.add(() => {

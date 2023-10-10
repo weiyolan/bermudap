@@ -4,19 +4,19 @@ import LayoutSplit from "@/atoms/LayoutSplit";
 import Section from "@/atoms/Section";
 import Image from "next/image";
 // import picture from "../../public/eventAbout.jpg";
-import useLocale from "@/utils/useLocale";
 import useGsap from "@/utils/useGsap";
 // import { currentLocale } from "next-i18n-router";
 
 import { gsap } from 'gsap/dist/gsap';
 import { ScrollTrigger } from 'gsap/dist/ScrollTrigger';
 import { useEffect } from "react";
+import { useAppContext } from "@/utils/appContext";
 gsap.registerPlugin(ScrollTrigger);
 
 export default function AboutSection({ alt, imgUrl, text, title, button }) {
   let ctx = useGsap()
 
-  let locale = useLocale()
+  let { locale } = useAppContext();
 
   useEffect(() => {
     ctx.add(() => {
