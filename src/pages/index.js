@@ -24,6 +24,7 @@ import CTA from '@/components/CTA'
 import AboutSection from '@/components/AboutSection'
 import Network from '@/components/Network'
 import {useAppContext} from '@/utils/appContext'
+import {Lenis as ReactLenis} from '@studio-freight/react-lenis'
 
 export default function Home({
   links,
@@ -63,27 +64,29 @@ export default function Home({
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <header>
-        <Navigation links={links} cta={cta?.[locale]} />
-      </header>
-      <main>
-        <BackgroundLogo />
-        <Hero alt={heroAlt?.[locale]} imgUrl={heroImage} />
-        <Features title={valueTitle?.[locale]} values={[val1, val2, val3]} />
-        <CTA text={CTAText?.[locale]} />
-        <AboutSection
-          alt={aboutAlt?.[locale]}
-          imgUrl={aboutImage}
-          title={aboutTitle?.[locale]}
-          text={aboutText?.[locale]}
-          button={aboutButton}
-        />
-        <Network title={networkTitle} members={members} />
-      </main>
-      <footer>
-        <Footer title={title?.[locale]} lists={[list1, list2, list3, list4]} />
-      </footer>
-      <UpButton />
+      <ReactLenis root options={{wheelMultiplier: 0.9, print: false}}>
+        <header>
+          <Navigation links={links} cta={cta?.[locale]} />
+        </header>
+        <main>
+          <BackgroundLogo />
+          <Hero alt={heroAlt?.[locale]} imgUrl={heroImage} />
+          <Features title={valueTitle?.[locale]} values={[val1, val2, val3]} />
+          <CTA text={CTAText?.[locale]} />
+          <AboutSection
+            alt={aboutAlt?.[locale]}
+            imgUrl={aboutImage}
+            title={aboutTitle?.[locale]}
+            text={aboutText?.[locale]}
+            button={aboutButton}
+          />
+          <Network title={networkTitle} members={members} />
+        </main>
+        <footer>
+          <Footer title={title?.[locale]} lists={[list1, list2, list3, list4]} />
+        </footer>
+        <UpButton />
+      </ReactLenis>
     </>
   )
 }

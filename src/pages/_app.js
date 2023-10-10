@@ -1,4 +1,6 @@
 import "../styles/globals.css";
+import '../styles/lenis.css'
+import '../styles/scrollbar.css'
 import React, { useState, useEffect } from "react";
 import { useRouter } from "next/router";
 import Head from "next/head";
