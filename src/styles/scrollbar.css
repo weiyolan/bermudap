@@ -7,7 +7,7 @@
   /* margin:2; */
   /* height: 8px; */
   /* background: url(../public/images/background2.svg); */
-  background-color: #fff5ea;
+  /* background-color: #fff5ea; */
   /* right: 5px; */
 }
 ::-webkit-scrollbar-button {
@@ -31,7 +31,8 @@
 }
 /* THUMB */
 ::-webkit-scrollbar-thumb {
-  background-color: #383838;
+  background-color: #BD9159;
+    /* background-color: #383838; */
   border-radius: 5rem;
 }
 ::-webkit-scrollbar-thumb:hover {

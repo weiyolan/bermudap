@@ -9,8 +9,8 @@ export default function useGsap(context, options) {
   // }, [context]);
 
   useEffect(() => {
-    return ctx.current.revert();
-  }, [context]);
+    return ctx.current.revert()
+  }, [context])
 
   return ctx.current;
 }

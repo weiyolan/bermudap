@@ -41,7 +41,7 @@ export default function TrustedBy({ title, partners }) {
         duration: 1,
         scrollTrigger: {
           trigger: '.trustedAnimation',
-          start: 'top 70%',
+          start: 'top 80%',
           // markers: true,
           // toggleActions: 'play none none reverse',
         }
@@ -98,15 +98,19 @@ export default function TrustedBy({ title, partners }) {
         >
           <H2 className="trustedAnimation opacity-1 title mx-auto max-w-[70%]" text={title} />
           <div className="artist-container flex flex-wrap justify-center gap-12 sm:flex-nowrap sm:gap-6 lg:gap-12">
-            {partners.map((logo, i) => (
-              <TrustedLogo
+            {partners.map((logo, i) => {
+              // console.log(logo.meta);
+              return (<TrustedLogo
                 key={i}
                 link={logo.link}
                 name={logo.name}
                 imgUrl={logo.imgUrl}
+                // width={logo.meta.width}
+                // height={logo.meta.height}
                 ar={logo.meta.aspectRatio}
-              />
-            ))}
+              />)
+            }
+            )}
             {/* {trustedBy.artists.map((logo, i) => { return <Logo dataDirection={getDirection(i)} dataSpeed={`${getSpeed(i)}`} type='artist' logo={logo} key={i} to={logo.link} /> })} */}
           </div>
         </div>

@@ -1,6 +1,7 @@
 import Link from "next/link";
 import Layout from "@/atoms/Section";
 import { useAppContext } from "@/utils/appContext";
+import EmailForm from "./EmailForm";
 
 const signature = {
   en: ["2023 Bermuda Events, Inc. All rights reserved."],
@@ -10,9 +11,8 @@ const signature = {
 
 export default function Footer({ style, className, lists, title }) {
   let mobile = false;
-  let breakPointSmall = 640;
+  // let breakPointSmall = 640;
   let { locale } = useAppContext();
-
 
   // let footerRef = useRef(null)
 
@@ -56,6 +56,7 @@ export default function Footer({ style, className, lists, title }) {
           <div className="flex w-2/5 flex-col  gap-2 sm:items-start items-center">
             <SubTitle darkMode={true} noMargin small className="pt-2" center mainTitle={title}
             />
+            <EmailForm />
           </div>
           <div className="mx-auto flex w-3/5 max-w-6xl flex-col items-center justify-between sm:flex-row sm:items-start">
             {/* {console.log(lists)} */}
@@ -110,20 +111,17 @@ function SubTitle({ mainTitle, subTitle, left, right, style, small, className, c
   return (
     <div
       style={style}
-      className={`${style === undefined ? "relative" : ""} w-full ${className}`}
-    >
+      className={`${style === undefined ? "relative" : ""} w-full ${className}`}>
       <h2
         className={`whitespace-pre-wrap font-bel font-medium  
         uppercase md:whitespace-nowrap
         ${small ? "text-lg" : "mb-2 text-2xl mobm:text-2xl sm:mb-2 sm:text-3xl"
-          }  ${child ? child + "-child" : ""}`}
-      >
+          }  ${child ? child + "-child" : ""}`}>
         {mainTitle}
       </h2>
       <div
         className={`font-pop whitespace-pre-wrap ${left || right ? "text-justify" : ""
-          } ${child ? child + "-child" : ""}`}
-      >
+          } ${child ? child + "-child" : ""}`} >
         {subTitle}
       </div>
     </div>
@@ -131,6 +129,7 @@ function SubTitle({ mainTitle, subTitle, left, right, style, small, className, c
 }
 
 function Links({ title, list, mobile }) {
+  let { locale } = useAppContext();
   return (
     // <div className={`${position === 'center' ? 'text-center ' : position === 'left' ? 'text-left ' : 'text-right '}  align-start px-0`}>
     <div className={`text-center sm:text-left `}>
@@ -142,32 +141,32 @@ function Links({ title, list, mobile }) {
         mainTitle={title}
         darkMode={true}
       />
-      <List mobile={mobile} list={list} />
-    </div>
-  );
-}
 
-function List({ list, mobile }) {
-  let { locale } = useAppContext();
+      <ul className="flex flex-wrap justify-center gap-x-2 font-bel sm:flex-col sm:flex-nowrap ">
+        {list?.map((item, i) => (
+          <li key={i} className={`whitespace-nowrap text-sm font-extralight sm:text-sm w-fit`}>
+            {item.url !== "none"
+              ? <Link
+                className="border border-transparent duration-200 focus-within:scale-110 focus-within:border-b-white hover:border-b-white focus:outline-none  "
+                href={typeof item.url === 'string' ? item?.url : (item?.url?.[locale])}
+                title={typeof item.url === 'string' ? `${item.text?.[locale]}` : `Download ${item.text?.[locale]}`}
+                target={item.ext ? "_blank" : undefined}
+                rel={item.ext ? "noopener noreferrer" : undefined}>
+                {item.text?.[locale]} {mobile && i < list.length - 1 ? " |" : ""}
+              </Link>
+              : <p
+                // title="Copy to clipboard" 
+                // onClick={() => {
+                //   navigator.clipboard.writeText(item.url?.slice(6));
+                //   alert("Copied the text: " + item.url?.slice(6));
+                // }}
+                className="border border-transparent cursor-default duration-200 focus-within:scale-110 focus-within:border-b-white hover:border-b-white focus:outline-none">
+                {item.text?.[locale]} {mobile && i < list.length - 1 ? " |" : ""}
+              </p>}
+          </li>
+        ))}
+      </ul>
 
-  return (
-    <ul className="flex flex-wrap justify-center gap-x-2 font-bel sm:flex-col sm:flex-nowrap ">
-      {list?.map((item, i) => (
-        <li
-          key={i}
-          className={` whitespace-nowrap text-sm font-extralight sm:text-sm `}
-        >
-          <Link
-            className="border border-transparent duration-200 focus-within:scale-110 focus-within:border-b-white hover:border-b-white focus:outline-none  "
-            href={typeof item.url === 'string' ? item?.url : (item?.url?.[locale])}
-            title={typeof item.url === 'string' ? `${item.text?.[locale]}` : `Download ${item.text?.[locale]}`}
-            target={item.ext ? "_blank" : undefined}
-            rel={item.ext ? "noopener noreferrer" : undefined}
-          >
-            {item.text?.[locale]} {mobile && i < list.length - 1 ? " |" : ""}
-          </Link>
-        </li>
-      ))}
-    </ul>
+    </div >
   );
 }

@@ -51,11 +51,11 @@ export default function TrustedLogo({
         onMouseUp={() => setClicking(false)}
         onFocus={() => setActive(true)}
         onBlur={() => setActive(false)}
-        tabIndex="0"
+        // tabIndex="0"
         data-speed={dataSpeed}
         data-direction={dataDirection}
         style={{
-          width: ar > 2.5 ? "120px" : ar > 1 ? "100px" : "80px",
+          width: "auto",
           height: "auto",
         }}
         width={ar > 2.5 ? 120 : ar > 1 ? 100 : 80}

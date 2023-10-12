@@ -9,6 +9,7 @@ import H2 from "@/atoms/H2";
 import LayoutSplit from "@/atoms/LayoutSplit";
 import useGsap from "@/utils/useGsap";
 import { useAppContext } from "@/utils/appContext";
+import Button from "@/atoms/Button";
 // import Button from "@/atoms/Button";
 
 gsap.registerPlugin(ScrollTrigger);
@@ -86,6 +87,12 @@ const sendButtonTitle = {
   nl: "Verzenden",
 }
 
+const successMessage = {
+  en: "Thank you for your message! We'll be in touch with you soon.",
+  fr: "Merci de nous avoir contacté! Nous revenons rapidement vers vous.",
+  nl: "Bedankt voor uw bericht! Wees gerust, we komen er snel op terug.",
+}
+
 export default function Form({ title }) {
   let { locale } = useAppContext();
   let [success, setSuccess] = useState(false);
@@ -103,35 +110,11 @@ export default function Form({ title }) {
 
   // let ctx = useRef();
 
-  // useEffect(() => {
-  //   ctx.current = gsap.context(() => {
-  //     gsap.from(".formAnimation", {
-  //       translateX: -50,
-  //       translateY: 80,
-  //       opacity: 0,
-  //       ease: "back",
-  //       duration: 0.5,
-  //       stagger: 0.1,
-  //       scrollTrigger: {
-  //         trigger: ".form-container",
-  //         start: `top bottom`,
-  //         // start: `top ${width < 648 ? '85%' : '60%'}`,
-  //         end: "top 50%",
-  //         // toggleActions:'restart none none reverse',
-  //         scrub: 1,
-  //         markers: false,
-  //       },
-  //     });
-  //   });
-  //   return () => ctx.current.revert();
-  // }, [ctx]);
-
 
   let ctx = useGsap()
 
   useEffect(() => {
-    ctx.add(() => {
-
+    document.getElementsByClassName('formAnimationTitle') !== undefined && ctx.add(() => {
       gsap.from(['.formAnimation'], {
         y: 30,
         autoAlpha: 0,
@@ -140,7 +123,7 @@ export default function Form({ title }) {
         ease: 'expo.out',
         duration: 0.8,
         scrollTrigger: {
-          trigger: '.formAnimation',
+          trigger: '.formAnimationTitle',
           start: 'top 70%',
           // invalidateOnRefresh: true,
           // markers: true,
@@ -152,16 +135,14 @@ export default function Form({ title }) {
 
   function encode(data) {
     return Object.keys(data)
-      .map(
-        (key) => encodeURIComponent(key) + "=" + encodeURIComponent(data[key]),
-      )
+      .map((key) => encodeURIComponent(key) + "=" + encodeURIComponent(data[key]))
       .join("&");
   }
 
   async function handleSubmit(e) {
     e.preventDefault();
 
-    const upload = fetch("/favicon.ico", {
+    const upload = fetch("/", {
       method: "POST",
       headers: { "Content-Type": "application/x-www-form-urlencoded" },
       body: encode({
@@ -183,13 +164,13 @@ export default function Form({ title }) {
         setHoney("");
         setMessage("");
       })
-      .catch((error) => alert(error));
+    // .catch((error) => alert(error));
 
     toast.promise(
       upload,
       {
-        loading: "Loading..",
-        success: "Email submitted",
+        loading: "Loading...",
+        success: successMessage[locale],
         error: (err) => {
           return `There was an error registering your request:\n${err.toString()}`;
         },
@@ -198,8 +179,11 @@ export default function Form({ title }) {
         style: {
           minWidth: "250px",
           borderRadius: "10px",
-          background: "#333",
-          color: "#FFFAEA",
+          background: "#FFF5EA",
+          color: "#333",
+        },
+        success: {
+          duration: 6000,
         },
       },
     );
@@ -207,7 +191,7 @@ export default function Form({ title }) {
 
   return (
     <Section id='form' className={'scroll-mt-24'}>
-      <H2 text={title} className={'formAnimation'} />
+      <H2 text={title} className={'formAnimation formAnimationTitle'} />
       <form
         onSubmit={handleSubmit}
         name="ContactForm"
@@ -228,12 +212,15 @@ export default function Form({ title }) {
           </label>
         </p>
 
-        <LayoutSplit right className={'min-h-[300px]'} >
+        <LayoutSplit right className={''} >
+
+          {/* ==============MESSAGE============== */}
           <div
-            data-lenis-prevent
+
             className="formAnimation inline-flex flex-col w-full h-full "
           >
             <label
+
               className=" cursor-pointer whitespace-nowrap font-semibold inline-flex max-w-fit mb-2 ml-1"
               htmlFor="message"
             >{messageTitle[locale]}</label>
@@ -242,10 +229,11 @@ export default function Form({ title }) {
               data-lenis-prevent
               className={`block bg-brown/50  font-raj font-medium
                 autofill:bg-brown/50 valid:scale-[0.99] 
-              outline-none -outline-offset-2 focus:outline-none focus:animate-outlinePulse
+              outline-none -outline-offset-2 focus:outline-none overflow-y-scroll focus:animate-outlinePulse
               border-none border-transparent overscroll-contain 
               placeholder:text-black/50 hover:border-black/40
-              focus:-outline-offset-2 focus:outline-black/20 p-2 w-full h-full rounded-md`}
+              focus:-outline-offset-2 focus:outline-black/20 p-2 w-full rounded-md
+              h-72`}
               id="message"
               type="text"
               name="message"
@@ -362,14 +350,10 @@ export default function Form({ title }) {
 
             {/* BUTTON */}
             <div className="formAnimation w-full flex items-end justify-end  col-start-3 row-start-4 min-[500px]:col-start-3 min-[500px]:row-start-1 relative ">
-              <button
+              {/* <button
                 key="submit"
                 type={success ? "reset" : "submit"}
-                onClick={() => {
-                  if (success) {
-                    setSuccess(false);
-                  }
-                }}
+                onClick={(e) => { if (success) { e.preventDefault(); setSuccess(false) } }}
                 className={`inline-flex shadow-sm left-0 bottom-0 text-white
           border-2 border-solid rounded-md min-w-[80px] lg:min-w-[100px] px-2 justify-center xs:px-4 py-2
          font-semibold whitespace-nowrap
@@ -382,15 +366,14 @@ export default function Form({ title }) {
                 ) : (
                   `${sendButtonTitle[locale]}`
                 )}
-              </button>
-              {/* <Button myKey="submit" type={success ? "reset" : "submit"} 
-              // onClick={() => { if (success) { setSuccess(false); } }}
-              // text={success ? (<BsCheckLg className={`h-[1rem] w-[1rem] `} />) : (`${sendButtonTitle[locale]}`)}
-              // className={`min-w-[80px] lg:min-w-[100px] xs:px-4 text-center py-2 uppercase text-white min-[400px]:w-50% min-[430px]:w-fit h-fit outline-none `} />*/}
+              </button> */}
+              <Button myKey="submit" type={success ? "reset" : "submit"}
+                onClick={(e) => { if (success) { e.preventDefault(); setSuccess(false); } }}
+                text={success ? (<BsCheckLg className={`text-base h-[1rem] w-[1rem] `} />) : (`${sendButtonTitle[locale]}`)}
+                className={`min-w-[80px] px-2 lg:min-w-[100px] xs:px-4 text-center py-2 uppercase text-white min-[400px]:w-50% min-[430px]:w-fit h-fit outline-none `} />
             </div>
           </div>
 
-          {/* MESSAGE */}
 
         </LayoutSplit>
       </form>

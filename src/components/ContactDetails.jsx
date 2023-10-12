@@ -68,7 +68,7 @@ export default function ContactDetails({ title, text, alt, imgUrl, companyName, 
         priority absolute={false} fill image={contactDetails.image.image.asset} alt={contactDetails.image.alt[locale]} /> */}
 
         <div className="h-96 w-full my-auto overflow-hidden rounded-xl shadow-lg relative contactAnimation">
-          <Image src={imgUrl} alt={alt} fill sizes="45vw" className="object-cover" />
+          <Image priority src={imgUrl} alt={alt} fill sizes="45vw" className="object-cover" />
         </div>
         <div
           id="contactSection"

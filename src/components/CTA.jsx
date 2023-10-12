@@ -28,7 +28,7 @@ export default function CTA({ text }) {
       gsap.to([".ctaLines"], {
         duration: 1,
         id: 'lineWidth',
-        width: hovering ? "100vw" : 0,
+        width: hovering ? "99vw" : 0,
         // ease: "none",
         ease: "expo.out",
         // borderColor:hovering ? "#667D61FF" : "#667D6100",
@@ -66,8 +66,8 @@ export default function CTA({ text }) {
       onMouseUp={() => setClicking(false)}
       onFocus={() => setActive(true)}
       onBlur={() => setActive(false)}
-      tabIndex="0"
-      className={"flex flex-col items-center gap-10 h-fit py-1"}
+      // tabIndex="0"
+      className={"flex flex-col items-center gap-10 h-fit py-1  "}
     >
       <Line className={"ctaLines w-0 bg-gradient-to-r h-1 from-browndark via-brown to-green"} />
       <Button className={`text-2xl`} text={text} to={"/contact#form"} />

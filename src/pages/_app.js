@@ -39,11 +39,9 @@ export default function App({ Component, pageProps }) {
     <>
       {/* <Script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.5/gsap.min.js"/> */}
       <Head>
-        <meta
-          name="viewport"
-          content="width=device-width, initial-scale=1, minimum-scale=1"
-        />
+        <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1" />
         <meta msapplication-tilecolor="#da532c" />
+        <link rel="icon" href="/favicon.ico" />
         <meta theme-color="#ffffff" />
       </Head>
       {/* ${poppins.variable} */}
@@ -55,5 +53,5 @@ export default function App({ Component, pageProps }) {
         <Toaster />
       </AppWrapper>
     </>
-  );
+  )
 }

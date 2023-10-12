@@ -20,7 +20,6 @@ export default function AboutSection({ alt, imgUrl, text, title, button }) {
 
   useEffect(() => {
     ctx.add(() => {
-
       gsap.from(['.aboutAnimation'], {
         y: 30,
         autoAlpha: 0,

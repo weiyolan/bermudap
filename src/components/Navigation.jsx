@@ -202,13 +202,15 @@ export default function Navigation({ links, cta }) {
             ext={button.ext}
           />
         ))}
-        <Button
-          text={cta}
-          to="contact/#form"
-          className={
-            "relative rounded-md bg-white fill-brown  px-4 py-2 font-bold text-brown shadow-sm hover:shadow-md"
-          }
-        />
+        <li className="list-none">
+          <Button
+            text={cta}
+            to="contact/#form"
+            className={
+              "relative rounded-md bg-white fill-brown  px-4 py-2 font-bold text-brown shadow-sm hover:shadow-md"
+            }
+          />
+        </li>
       </div>
     </div>
     // {/* // </FadeDiv> */ }
@@ -262,10 +264,10 @@ function MyButton({ text, to, className, ext }) {
     // onClick={() => handleClick(to)}
     // title={`Go to the ${text} page`}
     >
-      <div className={`mx-auto w-fit ${className && className}`}>
+      <li className={`mx-auto list-none w-fit ${className && className}`}>
         {text}
         <Line className={`mx-auto navLine${text.slice(0, 3,)} w-0 border-transparent`} />
-      </div>
+      </li>
     </Link>
   );
 }

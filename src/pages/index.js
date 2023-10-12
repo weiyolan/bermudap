@@ -1,30 +1,21 @@
-import Head from 'next/head'
-import Image from 'next/image'
+import Head from "next/head"
+import Image from "next/image"
 
-import Navigation from '@/components/Navigation'
-import Footer from '@/components/Footer'
+import Navigation from "@/components/Navigation"
+import Footer from "@/components/Footer"
 // import Footer from "@/components/Footer";
 // import UpButton from "@/components/UpButton";
 
-import {
-  getFooter,
-  getNav,
-  getAboutContent,
-  getCTA,
-  getHero,
-  getMembers,
-  getNetwork,
-  getValues,
-} from '@/sanity/sanity-utils'
-import UpButton from '@/components/UpButton'
-import BackgroundLogo from '@/atoms/BackgroundLogo'
-import Hero from '@/components/Hero'
-import Features from '@/components/Features'
-import CTA from '@/components/CTA'
-import AboutSection from '@/components/AboutSection'
-import Network from '@/components/Network'
-import {useAppContext} from '@/utils/appContext'
-import {Lenis as ReactLenis} from '@studio-freight/react-lenis'
+import {getFooter, getNav, getAboutContent, getCTA, getHero, getMembers, getNetwork, getValues} from "@/sanity/sanity-utils"
+import UpButton from "@/components/UpButton"
+import BackgroundLogo from "@/atoms/BackgroundLogo"
+import Hero from "@/components/Hero"
+import Features from "@/components/Features"
+import CTA from "@/components/CTA"
+import AboutSection from "@/components/AboutSection"
+import Network from "@/components/Network"
+import {useAppContext} from "@/utils/appContext"
+import {Lenis as ReactLenis} from "@studio-freight/react-lenis"
 
 export default function Home({
   links,
@@ -60,9 +51,6 @@ export default function Home({
           content="Dynamic & Meaningful Experiences For Your Colleagues
           and Family."
         />
-
-        <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <link rel="icon" href="/favicon.ico" />
       </Head>
       <ReactLenis root options={{wheelMultiplier: 0.9, print: false}}>
         <header>
@@ -73,13 +61,7 @@ export default function Home({
           <Hero alt={heroAlt?.[locale]} imgUrl={heroImage} />
           <Features title={valueTitle?.[locale]} values={[val1, val2, val3]} />
           <CTA text={CTAText?.[locale]} />
-          <AboutSection
-            alt={aboutAlt?.[locale]}
-            imgUrl={aboutImage}
-            title={aboutTitle?.[locale]}
-            text={aboutText?.[locale]}
-            button={aboutButton}
-          />
+          <AboutSection alt={aboutAlt?.[locale]} imgUrl={aboutImage} title={aboutTitle?.[locale]} text={aboutText?.[locale]} button={aboutButton} />
           <Network title={networkTitle} members={members} />
         </main>
         <footer>
@@ -96,13 +78,7 @@ export async function getStaticProps() {
   const {title, list1, list2, list3, list4} = await getFooter()
   const members = await getMembers()
   const {title: networkTitle} = await getNetwork()
-  const {
-    imgUrl: aboutImage,
-    alt: aboutAlt,
-    button: aboutButton,
-    text: aboutText,
-    title: aboutTitle,
-  } = await getAboutContent()
+  const {imgUrl: aboutImage, alt: aboutAlt, button: aboutButton, text: aboutText, title: aboutTitle} = await getAboutContent()
   const {imgUrl: heroImage, alt: heroAlt} = await getHero()
   const {title: CTAText} = await getCTA()
   const {title: valueTitle, val1, val2, val3} = await getValues()

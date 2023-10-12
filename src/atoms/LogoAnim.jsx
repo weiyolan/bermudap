@@ -76,24 +76,22 @@ export default function LogoAnim({ className, hovering: parentHovering, clicking
       xmlns="http://www.w3.org/2000/svg"
     >
 
-
-
       <path
         ref={myBladRef0}
         d="M92.2069 68.8989C82.7674 52.5439 83.6606 33.0491 92.8836 18L136.623 93.7596C118.983 94.2265 101.653 85.2539 92.2069 68.8989Z"
-        transformOrigin={'14% 0%'}
+        transformorigin={'14% 0%'}
         className={`${color ? "fill-brown" : "fill-white"}`}
       />
       <path
         ref={myBladRef1}
         d="M64.4164 119.358C54.9769 135.72 37.6475 144.686 20 144.225L63.7398 68.459C72.9627 83.5081 73.8627 103.003 64.4164 119.358Z"
-        transformOrigin={'0% 100%'}
+        transformorigin={'0% 100%'}
         className={`${color ? "fill-brownlight" : "fill-white"}`}
       />
       <path
         ref={myBladRef2}
         d="M122.027 118.208C140.92 118.208 157.35 128.73 165.767 144.239H78.2877C86.7122 128.73 103.142 118.208 122.027 118.208Z"
-        transformOrigin={'100% 100%'}
+        transformorigin={'100% 100%'}
         className={`${color ? "fill-browndark" : "fill-white"}`}
       />
     </svg>
