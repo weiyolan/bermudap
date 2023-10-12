@@ -103,8 +103,8 @@ export default function ContactB({ className, phone, email }) {
 function Button({ children }) {
   return (
     <div
-      className={`rounded-full bg-green p-1.5 border-2 border-transparent focus:outline-none cursor-pointer fill-white
-        duration-200 shadow-xl group-focus-within:border-browndark hover:border-browndark hover:animate-borderPulse  group-hover:scale-[1.15] group-focus-within:scale-110 group-focus-within:animate-borderPulse  group-active:shadow-sm  group-active:scale-[0.95]`}
+      className={`rounded-full bg-green p-1.5 border-2 border-transparent focus-within:outline-2 cursor-pointer fill-white
+        duration-200 shadow-xl group-focus-within:outline-browndark  hover:animate-borderPulse  group-hover:scale-[1.15] group-focus-within:scale-110 group-focus-within:animate-borderPulse  group-active:shadow-sm  group-active:scale-[0.95]`}
     >
       {children}
     </div>

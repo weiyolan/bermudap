@@ -195,6 +195,7 @@ export default function Form({ title }) {
       <form
         onSubmit={handleSubmit}
         name="ContactForm"
+        id="ContactForm"
         method="POST"
         data-netlify="true"
         netlify-honeypot="bot-field"
@@ -266,6 +267,7 @@ export default function Form({ title }) {
               placeholder:text-black/50 hover:border-black/40
               focus:-outline-offset-2 focus:outline-black/20 p-2 w-full `}
                   id="name"
+                  autoComplete="name"
                   type="text"
                   placeholder={namePlaceholder[locale]}
                   value={name}
@@ -283,6 +285,7 @@ export default function Form({ title }) {
                 <input
                   required
                   name="lastname"
+                  autoComplete="family-name"
                   className={`block bg-brown/50  font-raj font-medium
               rounded-md  autofill:bg-brown/50 valid:scale-[0.99] 
               outline-none -outline-offset-2 focus:outline-none focus:animate-outlinePulse
@@ -308,6 +311,7 @@ export default function Form({ title }) {
               <input
                 required
                 name="email"
+                autoComplete="email"
                 className={`block bg-brown/50 font-raj font-medium
               rounded-md  autofill:bg-brown/50 valid:scale-[0.99]  
               outline-none -outline-offset-2 focus:outline-none focus:animate-outlinePulse
@@ -367,7 +371,7 @@ export default function Form({ title }) {
                   `${sendButtonTitle[locale]}`
                 )}
               </button> */}
-              <Button tabIndex={0} myKey="submit" type={success ? "reset" : "submit"}
+              <Button tabIndex={0} myKey="submit" type={success ? "reset" : "submit"} form="ContactForm"
                 onClick={(e) => { if (success) { e.preventDefault(); setSuccess(false); } }}
                 text={success ? (<BsCheckLg className={`h-[1.5rem] w-[1.5rem] mx-auto`} />) : (`${sendButtonTitle[locale]}`)}
                 className={`min-w-[80px] px-2 lg:min-w-[100px]  xs:px-4 text-center py-2 uppercase text-white min-[400px]:w-50% min-[430px]:w-fit h-fit outline-none `} />
