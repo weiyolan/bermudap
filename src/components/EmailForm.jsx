@@ -41,10 +41,11 @@ const sendButtonTitle = {
   fr: "Envoyer",
   nl: "Stuur",
 }
+
 const successMessage = {
-  en: "Thank you for your message! We'll be in touch with you soon.",
-  fr: "Merci de nous avoir contacté! Nous revenons rapidement vers vous.",
-  nl: "Bedankt voor uw bericht! Wees gerust, we komen er snel op terug.",
+  en: "Thank you! We'll reach out to you with some great news soon.",
+  fr: "Merci! Nous revenons rapidement vers vous avec du super news.",
+  nl: "Bedankt! We houden je snel op de hoogte met super nieuws.",
 }
 export default function EmailForm() {
   let { locale } = useAppContext();

@@ -367,10 +367,10 @@ export default function Form({ title }) {
                   `${sendButtonTitle[locale]}`
                 )}
               </button> */}
-              <Button myKey="submit" type={success ? "reset" : "submit"}
+              <Button tabIndex={0} myKey="submit" type={success ? "reset" : "submit"}
                 onClick={(e) => { if (success) { e.preventDefault(); setSuccess(false); } }}
-                text={success ? (<BsCheckLg className={`text-base h-[1rem] w-[1rem] `} />) : (`${sendButtonTitle[locale]}`)}
-                className={`min-w-[80px] px-2 lg:min-w-[100px] xs:px-4 text-center py-2 uppercase text-white min-[400px]:w-50% min-[430px]:w-fit h-fit outline-none `} />
+                text={success ? (<BsCheckLg className={`h-[1.5rem] w-[1.5rem] mx-auto`} />) : (`${sendButtonTitle[locale]}`)}
+                className={`min-w-[80px] px-2 lg:min-w-[100px]  xs:px-4 text-center py-2 uppercase text-white min-[400px]:w-50% min-[430px]:w-fit h-fit outline-none `} />
             </div>
           </div>
 

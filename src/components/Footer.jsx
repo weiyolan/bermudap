@@ -47,7 +47,7 @@ export default function Footer({ style, className, lists, title }) {
   // }, [dimensions])
 
   return (
-    <div className={`relative mt-4 bg-brown md:mt-10`}>
+    <div className={`relative mt-4 bg-brown md:mt-10 pb-1`}>
       <Layout
         className={`relative mx-auto w-full  max-w-7xl px-4 pb-1 pt-2 font-bel text-white  lg:px-16 xl:px-24 ${className}`}
         style={{ ...style }}
@@ -132,7 +132,7 @@ function Links({ title, list, mobile }) {
   let { locale } = useAppContext();
   return (
     // <div className={`${position === 'center' ? 'text-center ' : position === 'left' ? 'text-left ' : 'text-right '}  align-start px-0`}>
-    <div className={`text-center sm:text-left `}>
+    <div className={`text-center sm:text-left  pb-6`}>
       <SubTitle
         small
         noMargin

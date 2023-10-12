@@ -56,15 +56,12 @@ export default function Home({
   return (
     <>
       <Head>
-        <title>Bermuda-Events | The most personal event experience you can get</title>
+        <title>Bermuda Events | Your event starts with great partners.</title>
         <meta
           name="description"
           content="Dynamic & Meaningful Experiences For Your Colleagues
           and Family."
         />
-
-        <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <link rel="icon" href="/favicon.ico" />
       </Head>
       <ReactLenis root options={{wheelMultiplier: 0.9, print: false}}>
         <header>

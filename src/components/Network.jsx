@@ -34,8 +34,8 @@ export default function Network({ title, members }) {
       let activeIndex = visibleItem.indexOf(true)
       let inFrontIndex = activeIndex === visibleItem.length - 1 ? 0 : activeIndex + 1
       let behindIndex = activeIndex === 0 ? visibleItem.length - 1 : activeIndex - 1
-      console.log(behindIndex)
-      console.log(activeIndex)
+      // console.log(behindIndex)
+      // console.log(activeIndex)
       ctx.add(() => {
         gsap.to(`.mainPicture-${activeIndex}`, {
           autoAlpha: 1,

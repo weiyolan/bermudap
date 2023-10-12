@@ -4,7 +4,7 @@ import { twMerge } from "tailwind-merge";
 import { useEffect, useRef, useState } from "react";
 import { gsap } from "gsap/dist/gsap";
 
-export default function Button({ text, to, className, myKey, ...props }) {
+export default function Button({ text, to, className, myKey, tabIndex, ...props }) {
   let [hovering, setHovering] = useState(false);
   let [clicking, setClicking] = useState(false);
   const buttonRef = useRef();
@@ -33,7 +33,7 @@ export default function Button({ text, to, className, myKey, ...props }) {
       }}
       onMouseDown={() => setClicking(true)}
       onMouseUp={() => setClicking(false)}
-      tabIndex={-1}
+      tabIndex={tabIndex === undefined ? -1 : tabIndex}
       className={twMerge(
         `group relative max-w-fit cursor-pointer rounded-md bg-green fill-white px-4 py-2 font-bel text-white shadow-lg transition-shadow duration-200`, className
       )}
