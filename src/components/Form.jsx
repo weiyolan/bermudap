@@ -164,7 +164,7 @@ export default function Form({ title }) {
         setHoney("");
         setMessage("");
       })
-    // .catch((error) => alert(error));
+      .catch((error) => alert(error));
 
     toast.promise(
       upload,
@@ -212,16 +212,10 @@ export default function Form({ title }) {
             />
           </label>
         </p>
-
         <LayoutSplit right className={''} >
-
           {/* ==============MESSAGE============== */}
-          <div
-
-            className="formAnimation inline-flex flex-col w-full h-full "
-          >
+          <div className="formAnimation inline-flex flex-col w-full h-full ">
             <label
-
               className=" cursor-pointer whitespace-nowrap font-semibold inline-flex max-w-fit mb-2 ml-1"
               htmlFor="message"
             >{messageTitle[locale]}</label>
@@ -372,13 +366,11 @@ export default function Form({ title }) {
                 )}
               </button> */}
               <Button tabIndex={0} myKey="submit" type={success ? "reset" : "submit"} form="ContactForm"
-                onClick={(e) => { if (success) { e.preventDefault(); setSuccess(false); } }}
+                handleClick={(e) => { if (success) { e.preventDefault(); setSuccess(false); } }}
                 text={success ? (<BsCheckLg className={`h-[1.5rem] w-[1.5rem] mx-auto`} />) : (`${sendButtonTitle[locale]}`)}
                 className={`min-w-[80px] px-2 lg:min-w-[100px]  xs:px-4 text-center py-2 uppercase text-white min-[400px]:w-50% min-[430px]:w-fit h-fit outline-none `} />
             </div>
           </div>
-
-
         </LayoutSplit>
       </form>
     </Section>

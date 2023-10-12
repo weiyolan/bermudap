@@ -191,16 +191,6 @@ export default function Network({ title, members }) {
   // overwrite: true,
   // autoAlpha: 0,
         })
-        .to(`.mainPicture-${nextIndex}`, {
-          x: 0,
-          xPercent: () => direction === 'next' ? 70 : -170,
-          scale: 1,
-          autoAlpha: 1,
-          ease: 'expo.out',
-          // ease:'power4.out',
-          duration: 0.7,
-          // overwrite: true,
-        }, 0.1)
         .to(`.mainPicture-${behindIndex}`,
           {
             x: () => direction === 'next' ? `-=${xAmount}` : 0,
@@ -211,7 +201,17 @@ export default function Network({ title, members }) {
             // ease:'power4.out',
             duration: 0.7,
             // overwrite: true,
-          }, '<')
+          }, '>+=0.1')
+        .to(`.mainPicture-${currentIndex}`, {
+          x: 0,
+          xPercent: () => direction === 'next' ? -170 : 70,
+          scale: 1,
+          autoAlpha: 1,
+          ease: 'expo.out',
+          // ease:'power4.out',
+          duration: 0.7,
+        // overwrite: true,
+        }, '<')
         .to(`.mainPicture-${inFrontIndex}`, {
           x: () => direction === 'prev' ? `+=${xAmount}` : 0,
           xPercent: () => direction === 'prev' ? 70 : -50,
@@ -222,9 +222,9 @@ export default function Network({ title, members }) {
           duration: 0.7,
           // overwrite: true,
         }, '<')
-        .to(`.mainPicture-${currentIndex}`, {
+        .to(`.mainPicture-${nextIndex}`, {
           x: 0,
-          xPercent: () => direction === 'next' ? -170 : 70,
+          xPercent: () => direction === 'next' ? 70 : -170,
           scale: 1,
           autoAlpha: 1,
           ease: 'expo.out',

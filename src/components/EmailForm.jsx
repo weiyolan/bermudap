@@ -79,7 +79,7 @@ export default function EmailForm() {
         setEmail("");
         setHoney("");
       })
-    // .catch((error) => alert(error));
+      .catch((error) => alert(error));
 
     toast.promise(
       upload,
@@ -87,7 +87,9 @@ export default function EmailForm() {
         loading: "Loading..",
         success: successMessage[locale],
         error: (err) => {
-          return `There was an error registering your request:\n${err.toString()}`;
+          console.log('teeeest')
+            // return `There was an error registering your request:\n${err.toString()}`
+            `There was an error registering your request:\nAIAIAIAI`
         },
       },
       {
