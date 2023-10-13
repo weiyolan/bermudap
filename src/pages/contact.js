@@ -24,7 +24,7 @@ import Numbers from '@/components/Numbers'
 import {useAppContext} from '@/utils/appContext'
 import {Lenis as ReactLenis} from '@studio-freight/react-lenis'
 
-export default function Home({
+export default function Contact({
   links,
   cta,
   title,
