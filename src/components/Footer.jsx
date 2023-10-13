@@ -56,7 +56,7 @@ export default function Footer({ style, className, lists, title }) {
           <div className="flex w-2/5 flex-col  gap-2 sm:items-start items-center">
             <SubTitle darkMode={true} noMargin small className="pt-2" center mainTitle={title}
             />
-            <EmailForm />
+            {/* <EmailForm /> */}
           </div>
           <div className="mx-auto flex w-3/5 max-w-6xl flex-col items-center justify-between sm:flex-row sm:items-start">
             {/* {console.log(lists)} */}
