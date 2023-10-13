@@ -93,9 +93,15 @@ export default function LogoAnimMain({ className, hovering: parentHovering, clic
         <path id={'vectorLeft'} d="M182 2.32758C139 77.5 55.9998 92.5 20.4999 77.5C-6.97186 65.8922 -6.49998 2.32758 41 2.32758C88.5 2.32758 86.9998 75 71.9998 141C49.6135 239.5 113.116 328.5 155.5 379C197.884 429.5 231.5 553.5 231.5 706.5" stroke="#FF0000" strokeWidth="4" />
       </svg>
       {/* 0 auto rotation */}
-      <svg className={'absolute invisible w-[52vw] '} style={{ left: '20%', top: '50%' }} viewBox="0 0 700 693" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <path id="vectorBottom" d="M447 2C630 2 757.5 108.5 669 197C580.5 285.5 462.5 222 526.5 175.5C590.5 129 664 298 555.5 343.5C428.952 396.569 134.11 190.876 43 435.5C6.5 533.5 4 642 2.5 692.5" stroke="#FF0000" strokeWidth="4" />
+
+      {/* <svg className={'absolute invisible w-[52vw] '} style={{ left: '20%', top: '50%' }} viewBox="0 0 700 693" fill="none" xmlns="http://www.w3.org/2000/svg"> */}
+      {/* <path id="vectorBottom" d="M447 2C630 2 757.5 108.5 669 197C580.5 285.5 462.5 222 526.5 175.5C590.5 129 664 298 555.5 343.5C428.952 396.569 134.11 190.876 43 435.5C6.5 533.5 4 642 2.5 692.5" stroke="#FF0000" strokeWidth="4" /> */}
+      {/* </svg> */}
+      <svg className={'absolute invisible w-[52vw] '} style={{ left: '20%', top: '50%' }} width="787" height="862" viewBox="0 0 787 862" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path id="vectorBottom" d="M423.5 1C877.536 -3.16547 881.621 255.077 567 548C349.5 750.5 109 832.5 0.5 861" stroke="black" />
       </svg>
+
+
       <svg className={'absolute  invisible w-[36vw] h-auto'} style={{ left: '50%', top: '17%' }} width="591" height="946" viewBox="0 0 591 946" fill="none" xmlns="http://www.w3.org/2000/svg">
         <path id="vectorTop" d="M24 153.5C-41.6995 53.1426 49.9999 -6.50003 188.5 2.99999C327 12.5 396 86.9998 426.5 132C457 177 468 252 419 261C370 270 332.64 237.891 348.5 191.5C389.816 70.6497 667.393 160.158 558.5 393.5C464 596 431.5 779 436 905.5" stroke="#FF0000" strokeWidth="4" />
       </svg>

@@ -113,22 +113,6 @@ export default function Form({ title }) {
 
   let ctx = useGsap()
 
-  let [hovering, setHovering] = useState(false);
-  let [clicking, setClicking] = useState(false);
-  const buttonRef = useRef();
-
-  useEffect(() => {
-    buttonRef?.current !== undefined &&
-      ctx.add(() => {
-        gsap.to(buttonRef.current, {
-          duration: 0.5,
-          scale: hovering ? (clicking ? 0.95 : 1.05) : 1,
-          transformOrigin: "50% 50%",
-          ease: "elastic.out(1, 0.5)",
-        });
-      });
-  }, [hovering, clicking]);
-
   useEffect(() => {
     document.getElementsByClassName('formAnimationTitle') !== undefined && ctx.add(() => {
       gsap.from(['.formAnimation'], {
@@ -158,7 +142,7 @@ export default function Form({ title }) {
   async function handleSubmit(e) {
     e.preventDefault();
 
-    const upload = fetch("/", {
+    const upload = fetch("/en", {
       method: "POST",
       headers: { "Content-Type": "application/x-www-form-urlencoded" },
       body: encode({
@@ -385,66 +369,57 @@ export default function Form({ title }) {
                 )}
               </button> */}
 
-              <button key="submit" tabIndex={0} type={success ? "reset" : "submit"} form="ContactForm"
-                className={twMerge(`group relative max-w-fit cursor-pointer rounded-md bg-green fill-white px-4 py-2 font-bel text-white shadow-lg transition-shadow duration-200`, `min-w-[80px] px-2 lg:min-w-[100px]  xs:px-4 text-center py-2 uppercase text-white min-[400px]:w-50% min-[430px]:w-fit h-fit outline-none `)}
-                ref={buttonRef}
-                onMouseEnter={() => setHovering(true)}
-                onMouseLeave={() => {
-                  setHovering(false);
-                  setClicking(false);
-                }}
-                onClick={(e) => { if (success) { e.preventDefault(); setSuccess(false); } }}
-                onMouseDown={() => setClicking(true)}
-                onMouseUp={() => setClicking(false)}
-              >
+              <MyButton tabIndex={0} type={success ? "reset" : "submit"} form="ContactForm"
+                handleClick={(e) => { if (success) { e.preventDefault(); setSuccess(false); } }}
+                className={`min-w-[80px] px-2 lg:min-w-[100px]  xs:px-4 text-center py-2 uppercase text-white min-[400px]:w-50% min-[430px]:w-fit h-fit outline-none `}>
                 {success ? (<BsCheckLg className={`h-[1.5rem] w-[1.5rem] mx-auto`} />) : (`${sendButtonTitle[locale]}`)}
-              </button>
+              </MyButton>
 
             </div>
           </div>
         </LayoutSplit>
       </form>
-    </Section >
+    </Section>
   );
 }
 
 
-// function MyButton({ handleClick, className, children, ...props }) {
-//   let [hovering, setHovering] = useState(false);
-//   let [clicking, setClicking] = useState(false);
-//   const buttonRef = useRef();
-//   let ctx = useGsap();
+function MyButton({ handleClick, className, children, ...props }) {
+  let [hovering, setHovering] = useState(false);
+  let [clicking, setClicking] = useState(false);
+  const buttonRef = useRef();
+  let ctx = useGsap();
 
-//   useEffect(() => {
-//     buttonRef?.current !== undefined &&
-//       ctx.add(() => {
-//         gsap.to(buttonRef.current, {
-//           duration: 0.5,
-//           scale: hovering ? (clicking ? 0.95 : 1.05) : 1,
-//           transformOrigin: "50% 50%",
-//           ease: "elastic.out(1, 0.5)",
-//         });
-//       });
-//   }, [hovering, clicking]);
+  useEffect(() => {
+    buttonRef?.current !== undefined &&
+      ctx.add(() => {
+        gsap.to(buttonRef.current, {
+          duration: 0.5,
+          scale: hovering ? (clicking ? 0.95 : 1.05) : 1,
+          transformOrigin: "50% 50%",
+          ease: "elastic.out(1, 0.5)",
+        });
+      });
+  }, [hovering, clicking]);
 
-//   return (
-//     <button
-//       ref={buttonRef}
-//       onMouseEnter={() => setHovering(true)}
-//       onMouseLeave={() => {
-//         setHovering(false);
-//         setClicking(false);
-//       }}
-//       key="submit"
-//       onClick={handleClick}
-//       onMouseDown={() => setClicking(true)}
-//       onMouseUp={() => setClicking(false)}
-//       className={twMerge(`group relative max-w-fit cursor-pointer rounded-md bg-green fill-white px-4 py-2 font-bel text-white shadow-lg transition-shadow duration-200`, className)}
-//       {...props}
-//     >
-//       {children}
-//     </button>
-//   );
-// }
+  return (
+    <button
+      ref={buttonRef}
+      onMouseEnter={() => setHovering(true)}
+      onMouseLeave={() => {
+        setHovering(false);
+        setClicking(false);
+      }}
+      key="submit"
+      onClick={handleClick}
+      onMouseDown={() => setClicking(true)}
+      onMouseUp={() => setClicking(false)}
+      className={twMerge(`group relative max-w-fit cursor-pointer rounded-md bg-green fill-white px-4 py-2 font-bel text-white shadow-lg transition-shadow duration-200`, className)}
+      {...props}
+    >
+      {children}
+    </button>
+  );
+}
 
 
