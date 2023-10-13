@@ -307,32 +307,7 @@ export default function Network({ title, members }) {
             visible={visibleItem[i]}
           />
         ))}
-        {members?.map((member, i) => (
-          <Member
-            index={members.length + i}
-            name={member.name}
-            key={member.name + members.length + i}
-            alt={member.alt[locale]}
-            func={member.func[locale]}
-            // func={(members.length + i)}
-            text={member.text[locale]}
-            url={member.img}
-            className={`mainPicture-${(members.length + i)} opacity-0 invisible  `}
-          />
-        ))}
-        {members?.map((member, i) => (
-          <Member
-            index={members.length * 2 + i}
-            name={member.name}
-            key={member.name + members.length * 2 + i}
-            alt={member.alt[locale]}
-            func={member.func[locale]}
-            // func={(members.length * 2 + i)}
-            text={member.text[locale]}
-            url={member.img}
-            className={`mainPicture-${(members.length * 2 + i)} opacity-0 invisible  `}
-          />
-        ))}
+
 
         <MyButton className='' handleClick={nextVisibility} />
       </div>

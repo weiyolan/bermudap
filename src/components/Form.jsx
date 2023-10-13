@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { BsCheckLg } from "react-icons/bs";
 import { toast } from "react-hot-toast";
 
@@ -9,7 +9,7 @@ import H2 from "@/atoms/H2";
 import LayoutSplit from "@/atoms/LayoutSplit";
 import useGsap from "@/utils/useGsap";
 import { useAppContext } from "@/utils/appContext";
-import Button from "@/atoms/Button";
+import { twMerge } from "tailwind-merge";
 // import Button from "@/atoms/Button";
 
 gsap.registerPlugin(ScrollTrigger);
@@ -212,6 +212,7 @@ export default function Form({ title }) {
             />
           </label>
         </p>
+
         <LayoutSplit right className={''} >
           {/* ==============MESSAGE============== */}
           <div className="formAnimation inline-flex flex-col w-full h-full ">
@@ -223,12 +224,12 @@ export default function Form({ title }) {
               required
               data-lenis-prevent
               className={`block bg-brown/50  font-raj font-medium
-                autofill:bg-brown/50 valid:scale-[0.99] 
+                autofill:bg-brown/50 valid:scale-[0.99] rounded-md
               outline-none -outline-offset-2 focus:outline-none overflow-y-scroll focus:animate-outlinePulse
               border-none border-transparent overscroll-contain 
               placeholder:text-black/50 hover:border-black/40
-              focus:-outline-offset-2 focus:outline-black/20 p-2 w-full rounded-md
-              h-72`}
+              focus:-outline-offset-2 focus:outline-black/20 p-2 w-full h-72
+              `}
               id="message"
               type="text"
               name="message"
@@ -350,7 +351,9 @@ export default function Form({ title }) {
             <div className="formAnimation w-full flex items-end justify-end  col-start-3 row-start-4 min-[500px]:col-start-3 min-[500px]:row-start-1 relative ">
               {/* <button
                 key="submit"
+                tabIndex={0}
                 type={success ? "reset" : "submit"}
+                // form="ContactForm"
                 onClick={(e) => { if (success) { e.preventDefault(); setSuccess(false) } }}
                 className={`inline-flex shadow-sm left-0 bottom-0 text-white
           border-2 border-solid rounded-md min-w-[80px] lg:min-w-[100px] px-2 justify-center xs:px-4 py-2
@@ -365,10 +368,13 @@ export default function Form({ title }) {
                   `${sendButtonTitle[locale]}`
                 )}
               </button> */}
-              <Button tabIndex={0} myKey="submit" type={success ? "reset" : "submit"} form="ContactForm"
+
+              <MyButton tabIndex={0} type={success ? "reset" : "submit"} form="ContactForm"
                 handleClick={(e) => { if (success) { e.preventDefault(); setSuccess(false); } }}
-                text={success ? (<BsCheckLg className={`h-[1.5rem] w-[1.5rem] mx-auto`} />) : (`${sendButtonTitle[locale]}`)}
-                className={`min-w-[80px] px-2 lg:min-w-[100px]  xs:px-4 text-center py-2 uppercase text-white min-[400px]:w-50% min-[430px]:w-fit h-fit outline-none `} />
+                className={`min-w-[80px] px-2 lg:min-w-[100px]  xs:px-4 text-center py-2 uppercase text-white min-[400px]:w-50% min-[430px]:w-fit h-fit outline-none `}>
+                {success ? (<BsCheckLg className={`h-[1.5rem] w-[1.5rem] mx-auto`} />) : (`${sendButtonTitle[locale]}`)}
+              </MyButton>
+
             </div>
           </div>
         </LayoutSplit>
@@ -376,3 +382,44 @@ export default function Form({ title }) {
     </Section>
   );
 }
+
+
+function MyButton({ handleClick, className, children, ...props }) {
+  let [hovering, setHovering] = useState(false);
+  let [clicking, setClicking] = useState(false);
+  const buttonRef = useRef();
+  let ctx = useGsap();
+
+  useEffect(() => {
+    buttonRef?.current !== undefined &&
+      ctx.add(() => {
+        gsap.to(buttonRef.current, {
+          duration: 0.5,
+          scale: hovering ? (clicking ? 0.95 : 1.05) : 1,
+          transformOrigin: "50% 50%",
+          ease: "elastic.out(1, 0.5)",
+        });
+      });
+  }, [hovering, clicking]);
+
+  return (
+    <button
+      ref={buttonRef}
+      onMouseEnter={() => setHovering(true)}
+      onMouseLeave={() => {
+        setHovering(false);
+        setClicking(false);
+      }}
+      key="submit"
+      onClick={handleClick}
+      onMouseDown={() => setClicking(true)}
+      onMouseUp={() => setClicking(false)}
+      className={twMerge(`group relative max-w-fit cursor-pointer rounded-md bg-green fill-white px-4 py-2 font-bel text-white shadow-lg transition-shadow duration-200`, className)}
+      {...props}
+    >
+      {children}
+    </button>
+  );
+}
+
+
