@@ -65,7 +65,7 @@ export default function EmailForm() {
   async function handleSubmit(e) {
     e.preventDefault();
 
-    const upload = fetch("/", {
+    const upload = fetch("/en", {
       method: "POST",
       headers: { "Content-Type": "application/x-www-form-urlencoded" },
       body: encode({
