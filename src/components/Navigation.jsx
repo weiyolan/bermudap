@@ -141,7 +141,7 @@ export default function Navigation({ links, cta }) {
       });
       gsap.to(".navList", {
         gap: big ? 40 : 30,
-        fontSize: big ? "1.15rem" : "1rem",
+        fontSize: big ? "1.125rem" : "1rem",
         duration: 0.2,
         // ease: "elastic.out(1, 0.5)",
         ease: "ease.out",
@@ -171,8 +171,8 @@ export default function Navigation({ links, cta }) {
   return (
     // <FadeDiv className='w-full relative'>
     // <FadeDiv style={{ transform: "translate3d(0, 0, 0)" }} className={`fixed w-full top-0 justify-center flex navBar  `} type={'leftRight'} amount={30}>
-    <div
-      className={`navBar navBar shadow-lg fixed top-0 z-10 px-8 flex w-full justify-between text-base uppercase bg-brown p-4 `}
+    <div id='navigationBar' key='navigationBar'
+      className={`navBar shadow-lg fixed top-0 z-[100] px-4 py-2 flex w-full justify-between uppercase text-lg bg-brown `}
     >
       <Link href="/"
         ref={myRef}
@@ -191,7 +191,7 @@ export default function Navigation({ links, cta }) {
         <LogoText className={"relative navLogoText w-36"} />
       </Link>
 
-      <div
+      <ul
         className={`navList relative inline-flex  items-center gap-[40px]  `}
       >
         {links.map((button, i) => (
@@ -211,7 +211,7 @@ export default function Navigation({ links, cta }) {
             }
           />
         </li>
-      </div>
+      </ul>
     </div>
     // {/* // </FadeDiv> */ }
   );

@@ -1,4 +1,5 @@
 import { usePageContext } from "@/utils/pageContext";
+import { twMerge } from "tailwind-merge";
 
 export default function AccentTitle({ text, className, style }) {
   // let {darkMode} =usePageContext();
@@ -7,9 +8,7 @@ export default function AccentTitle({ text, className, style }) {
   return (
     <h3
       style={style}
-      className={`font-bel inline-flex font-semibold text-black text-base lg:text-lg mb-4 mt-2 ${
-        className && className
-      }`}
+      className={twMerge(`font-bel inline-flex font-semibold text-black text-base lg:text-lg mb-4 mt-2`, className)}
     >
       {text}
     </h3>

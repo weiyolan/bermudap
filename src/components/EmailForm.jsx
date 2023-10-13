@@ -114,7 +114,7 @@ export default function EmailForm() {
       method="POST"
       data-netlify="true"
       netlify-honeypot="bot-field"
-      className="form-container font-bel flex relative gap-4 items-end w-full text-browndark placeholder:text-browndark text-sm"
+      className="form-container font-bel flex flex-col mb-2 md:mb-0 md:flex-row relative gap-1 md:gap-4 md:items-end w-full text-browndark placeholder:text-browndark text-sm"
     >
       <input type="hidden" name="form-name" value="ContactForm" />
       <p className="hidden">
@@ -129,21 +129,21 @@ export default function EmailForm() {
       </p>
 
       {/* EMAIL */}
-      <div className="mailFormAnimation inline-block relative min-[400px]:pr-4 min-[500px]:pr-0">
         <label
-          className="cursor-pointer whitespace-nowrap text-white font-extralight text-base inline-flex max-w-fit mb-2 ml-1"
+        className=" cursor-pointer whitespace-nowrap text-white  font-extralight text-base inline-flex max-w-fit mb-2 mx-auto"
           htmlFor="email2" >
           {emailTitle[locale]}
         </label>
+      <div className="relative flex gap-2 justify-center">
         <input
           required
           name="email2"
-          className={`block bg-white2 font-raj font-medium
+          className={` block bg-white2 font-raj font-medium
               rounded-md  autofill:bg-white2 valid:scale-[0.99]  
               outline-none -outline-offset-2 focus:outline-none focus:animate-outlinePulse
               border-none border-transparent invalid:text-red-700
               placeholder:text-black/50 hover:border-black/40
-              focus:-outline-offset-2 focus:outline-black/20 p-2 w-full `}
+              focus:-outline-offset-2 focus:outline-black/20 p-2 w-fit md:w-full `}
           id="email2"
           type="email"
           placeholder={emailPlaceholder[locale]}
@@ -152,11 +152,11 @@ export default function EmailForm() {
             setEmail(e.target.value);
           }}
         />
-      </div>
       <Button myKey="submit" type={success ? "reset" : "submit"} form="EmailForm"
         onClick={(e) => { if (success) { e.preventDefault(); setSuccess(false); } }}
         text={success ? (<BsCheckLg className={`text-base h-[1rem] w-[1rem] `} />) : (`${sendButtonTitle[locale]}`)}
-        className={`min-w-[80px] px-2 lg:min-w-[100px] xs:px-4 text-center py-2 uppercase bg-white2 font-semibold text-sm  text-browndark min-[400px]:w-50% min-[430px]:w-fit h-fit outline-none `} />
+          className={`min-w-[80px] px-2 lg:min-w-[100px] xs:px-4 text-center py-2 uppercase bg-white2 font-semibold text-sm text-browndark min-[400px]:w-50% min-[430px]:w-fit h-fit outline-none `} />
+      </div>
     </form>
   );
 }

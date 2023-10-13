@@ -15,7 +15,10 @@ import CTA from "@/components/CTA"
 import AboutSection from "@/components/AboutSection"
 import Network from "@/components/Network"
 import {useAppContext} from "@/utils/appContext"
-import {Lenis as ReactLenis} from "@studio-freight/react-lenis"
+import {ReactLenis} from "@studio-freight/react-lenis"
+import {gsap} from "gsap/dist/gsap"
+import {useEffect, useRef} from "react"
+import NavigationMobile from "@/components/NavigationMobile"
 
 export default function Home({
   links,
@@ -40,7 +43,20 @@ export default function Home({
   val2,
   val3,
 }) {
-  let {locale} = useAppContext()
+  let {locale, width} = useAppContext()
+  const lenisRef = useRef()
+
+  useEffect(() => {
+    function update(time) {
+      lenisRef.current?.raf(time * 1000)
+    }
+
+    gsap.ticker.add(update)
+
+    return () => {
+      gsap.ticker.remove(update)
+    }
+  })
 
   return (
     <>
@@ -52,10 +68,8 @@ export default function Home({
           and Family."
         />
       </Head>
-      <ReactLenis root options={{wheelMultiplier: 0.9, print: false}}>
-        <header>
-          <Navigation links={links} cta={cta?.[locale]} />
-        </header>
+      <ReactLenis ref={lenisRef} autoRaf={false} root options={{wheelMultiplier: 0.9, print: false}}>
+        <header>{width < 768 ? <NavigationMobile links={links} cta={cta?.[locale]} /> : <Navigation links={links} cta={cta?.[locale]} />}</header>
         <main>
           <BackgroundLogo />
           <Hero alt={heroAlt?.[locale]} imgUrl={heroImage} />

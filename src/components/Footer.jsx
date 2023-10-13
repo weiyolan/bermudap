@@ -52,13 +52,13 @@ export default function Footer({ style, className, lists, title }) {
         className={`relative mx-auto w-full  max-w-7xl px-4 pb-1 pt-2 font-bel text-white  lg:px-16 xl:px-24 ${className}`}
         style={{ ...style }}
       >
-        <div className="flex w-full justify-between pb-2">
-          <div className="flex w-2/5 flex-col  gap-2 sm:items-start items-center">
+        <div className="flex w-full flex-col md:flex-row md:justify-between pb-2">
+          <div className="flex md:w-2/5 flex-col gap-2 sm:items-start items-center text-center md:text-left">
             <SubTitle darkMode={true} noMargin small className="pt-2" center mainTitle={title}
             />
             <EmailForm />
           </div>
-          <div className="mx-auto flex w-3/5 max-w-6xl flex-col items-center justify-between sm:flex-row sm:items-start">
+          <div className="mx-auto flex md:w-3/5 max-w-6xl flex-col items-center justify-between sm:flex-row sm:items-start">
             {/* {console.log(lists)} */}
             {lists?.map((list, i) => {
               return (

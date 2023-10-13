@@ -8,6 +8,7 @@ import useGsap from '@/utils/useGsap';
 // import LogoTextAnim from "@/atoms/LogoTextAnim";
 // import LogoAnim from "@/atoms/LogoAnim";
 import LogoAnimMain from "@/atoms/LogoAnimMain";
+// import { useLenis } from "@studio-freight/react-lenis";
 
 export default function Hero({ alt, imgUrl }) {
   let [hovering, setHovering] = useState(false);
@@ -65,7 +66,7 @@ export default function Hero({ alt, imgUrl }) {
       <div ref={myRef}>
         <LogoAnimMain color className={`w-36 h-36`} />
       </div>
-      <LogoText color className={`relative mt-2 w-1/4 cursor-pointer`} textClassName={'bermudaLogoTextLetter opacity-0 '} />
+      <LogoText color className={`relative mt-2 w-4/5 md:w-1/4 cursor-pointer`} textClassName={'bermudaLogoTextLetter opacity-0 '} />
     </div>
   );
 }

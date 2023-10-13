@@ -126,14 +126,12 @@ export default function UpButton() {
           gsap.to(window, { scrollTo: 0, ease: "ease.out" });
         })
       }
-      className="upButton active::drop-shadow-sm fixed bottom-1/4 right-0 flex h-12 w-12 translate-x-full cursor-pointer items-center justify-center drop-shadow-lg transition-shadow"
+      className="upButton active::drop-shadow-sm fixed bottom-[15%] md:bottom-1/4 right-0 flex w-10 h-10 md:h-12 md:w-12 translate-x-full cursor-pointer items-center justify-center drop-shadow-lg transition-shadow"
     >
       <div className="absolute h-full w-full rounded-full bg-green" />
       <svg
         alt="The Bermuda Events Triangular Company Logo"
         className={`relative h-fit w-3/5 -translate-y-0.5 `}
-        width="115"
-        height="102"
         viewBox="0 0 115 102"
         fill="none"
         xmlns="http://www.w3.org/2000/svg"

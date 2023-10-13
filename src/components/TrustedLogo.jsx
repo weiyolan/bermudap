@@ -3,6 +3,7 @@ import { useEffect, useRef, useState } from "react";
 import useGsap from "@/utils/useGsap";
 import Link from "next/link";
 import Image from "next/image";
+import { useAppContext } from "@/utils/appContext";
 
 export default function TrustedLogo({
   dataSpeed,
@@ -17,6 +18,8 @@ export default function TrustedLogo({
   let [active, setActive] = useState(false);
   const myRef = useRef();
   let ctx = useGsap();
+  const { mobile } = useAppContext();
+  let coeff = mobile ? 0.6 : 1;
 
   useEffect(() => {
     myRef?.current !== undefined &&
@@ -58,9 +61,9 @@ export default function TrustedLogo({
           width: "auto",
           height: "auto",
         }}
-        width={ar > 2.5 ? 120 : ar > 1 ? 100 : 80}
+        width={(ar > 2.5 ? 120 : ar > 1 ? 100 : 80) * coeff}
         alt={`${name}'s Logo`}
-        height={ar > 2.5 ? 120 * ar : ar > 1 ? 100 * ar : 80 * ar}
+        height={(ar > 2.5 ? 120 * ar : ar > 1 ? 100 * ar : 80 * ar) * coeff}
         src={imgUrl}
       />
     </Link>

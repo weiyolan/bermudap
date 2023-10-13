@@ -228,7 +228,7 @@ export default function Form({ title }) {
               outline-none -outline-offset-2 focus:outline-none overflow-y-scroll focus:animate-outlinePulse
               border-none border-transparent overscroll-contain 
               placeholder:text-black/50 hover:border-black/40
-              focus:-outline-offset-2 focus:outline-black/20 p-2 w-full h-72
+              focus:-outline-offset-2 focus:outline-black/20 p-2 w-full h-48 md:h-72
               `}
               id="message"
               type="text"

@@ -30,7 +30,7 @@ export function AppWrapper({ children, className }) {
         mobileHeight: mobileHeight,
         // locale: 'en',:
         locale: locale,
-        // mobile:width<768,
+        mobile: width < 768,
         // breakPointSmall: breakPointSmall,
         // noBlur: true,
         // scrolled: scrolled,
@@ -41,7 +41,7 @@ export function AppWrapper({ children, className }) {
     >
       <div className={`${className}`}>{children}</div>
     </AppContext.Provider>
-  );
+  )
 }
 
 export function useAppContext() {

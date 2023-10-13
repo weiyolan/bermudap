@@ -19,10 +19,9 @@ gsap.registerPlugin(Observer, ScrollTrigger);
 
 export default function Network({ title, members }) {
   let ctx = useGsap()
-  let { locale } = useAppContext();
+  let { locale, mobile, width } = useAppContext();
   let [animating, setAnimating] = useState(false)
   let [visibleItem, setVisibleItem] = useState(initiateVisibility())
-
 
   useEffect(() => {
     return () => ctx.revert();
@@ -31,7 +30,7 @@ export default function Network({ title, members }) {
 
   useEffect(() => {
     // FIRST LOAD
-    if (visibleItem !== null) {
+    if (width > 768 && visibleItem !== null) {
       let activeIndex = visibleItem.indexOf(true)
       let inFrontIndex = activeIndex === visibleItem.length - 1 ? 0 : activeIndex + 1
       let behindIndex = activeIndex === 0 ? visibleItem.length - 1 : activeIndex - 1
@@ -58,22 +57,22 @@ export default function Network({ title, members }) {
     }
   }, [])
 
-  useEffect(() => {
-    let observer = Observer.create({
-      target: window,         // can be any element (selector text is fine)
-      ignore: ".project-pictures, .project-grid, .imageFill",
-      type: "touch, scroll, pointer",    // comma-delimited list of what to listen for ("wheel,touch,scroll,pointer")
-      preventDefault: false,
-      onRight: () => {
-        prevVisibility()
-      },
-      onLeft: () => {
-        nextVisibility()
-      },
-      lockAxis: true,
-    })
-    return () => { observer.disable() }
-  }, [visibleItem, animating])
+  // useEffect(() => {
+  //   let observer = Observer.create({
+  //     target: window,         // can be any element (selector text is fine)
+  //     ignore: ".project-pictures, .project-grid, .imageFill",
+  //     type: "touch, scroll, pointer",    // comma-delimited list of what to listen for ("wheel,touch,scroll,pointer")
+  //     preventDefault: false,
+  //     onRight: () => {
+  //       prevVisibility()
+  //     },
+  //     onLeft: () => {
+  //       nextVisibility()
+  //     },
+  //     lockAxis: true,
+  //   })
+  //   return () => { observer.disable() }
+  // }, [visibleItem, animating])
 
   function initiateVisibility() {
     let visibility = new Array(members.length).fill(false)
@@ -289,11 +288,11 @@ export default function Network({ title, members }) {
   // }, [])
 
   return (
-    <Section id='network' className='h-[25rem]'>
+    <Section id='network' className={`${members.length > 3 ? 'h-[25rem]' : 'h-fit md:h-[20rem]'}`}>
       <H2 className="text-center networkAnimation" text={title[locale]} />
       {/* <FadeDiv type="leftRight" className='max-w-full' amount={10} > */}
-      <div className={`project-picture-container relative flex justify-between w-full h-[17rem] flex-1 select-none  `}>
-        {members.length > 3 && <MyButton left className='' handleClick={prevVisibility} />}
+      <div className={`project-picture-container relative flex flex-wrap md:flex-nowrap gap-2 md:gap-0 w-full md:h-[17rem] flex-1 select-none  `}>
+        {!mobile && members.length > 3 && <MyButton left className='' handleClick={prevVisibility} />}
         {members?.map((member, i) => (
           <Member
             index={i}
@@ -304,13 +303,14 @@ export default function Network({ title, members }) {
             func={member.func[locale]}
             text={member.text[locale]}
             url={member.img}
-            className={`mainPicture-${i} opacity-0 invisible `}
+            className={`mainPicture-${i} md:opacity-0 md:invisible `}
             visible={visibleItem[i]}
           />
         ))}
 
-        {members.length > 3 && < MyButton className='' handleClick={nextVisibility} />
-        }      </div>
+        {!mobile && members.length > 3 && < MyButton className='' handleClick={nextVisibility} />
+        }
+      </div>
       {members.length > 3 && <PictureIndicator handleVisibility={handleVisibility} visibleItem={visibleItem} />}
 
     </Section>

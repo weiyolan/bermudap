@@ -1,18 +1,24 @@
 import { usePageContext } from "@/utils/pageContext";
 import Link from "next/link";
-import { useRouter } from "next/router";
+import { usePathname } from "next/navigation";
 import React, { useEffect, useRef, useState } from "react";
 import { gsap } from "gsap/dist/gsap";
-import Line from "./Line";
 import { Observer } from "gsap/dist/Observer";
 // import FadeDiv from "../atoms/FadeDiv";
 import NavToggle from "./NavToggle";
-import LanguageToggle from "./LanguageToggle";
+import Button from "@/atoms/Button";
+import Line from "@/atoms/Line";
+import LanguageToggle from "@/atoms/LanguageToggle";
+import { useAppContext } from "@/utils/appContext";
+import Logo from "@/atoms/Logo";
+import LogoText from "@/atoms/LogoText";
 
 gsap.registerPlugin(Observer);
 
-export default function NavigationMobile() {
-  let { darkMode } = usePageContext();
+export default function NavigationMobile({ links, cta }) {
+  let { locale } = useAppContext();
+  // let { darkMode } = usePageContext();
+  // let { darkMode } = usePageContext();
   let [hiding, setHiding] = useState(true); //removed bar onLoad and then animate in.
   const ctx = useRef(gsap.context(() => { }));
 
@@ -83,42 +89,74 @@ export default function NavigationMobile() {
         xPercent: () => (hiding ? 100 : 0),
         duration: 1,
         ease: "expo.out",
-        delay: () => (hiding ? 0.15 : 0),
+        backgroundColor: () => (hiding ? "#BD915966" : "#BD9159FF"),
+        borderBottomLeftRadius: () => (hiding ? 30 : 0),
+        delay: () => (hiding ? 0.20 : 0),
       });
     });
   }, [hiding]);
 
   return (
-    <div className={`navBar fixed w-full h-0 top-0 `}>
+    <div id='navigationBar' key='navigationBar'
+      className={`uppercase navBar fixed w-full h-0 top-0 z-[100] text-white font-bel`}>
       <div
-        className={`navBackground ${darkMode ? "bg-[#FFEAD6c]/1" : "bg-[#FFEAD6]/20"
-          } backdrop-blur-sm rounded-bl-3xl w-screen h-screen top-0 translate-x-full -translate-y-full absolute `}
+        className={`navBackground bg-[#BD915966] 
+          backdrop-blur-sm rounded-bl-[30px] w-screen h-screen top-0 translate-x-[calc(100%-50px)] -translate-y-[calc(100%-50px)] absolute `}
       />
-      <div
+
+
+      <ul
         className={`navButtons flex flex-col w-[screen] h-[calc(100vh-50px)] relative items-end gap-5 mt-[50px] px-6 sm:px-4 py-2  `}
       >
-        <Button text="Home" to="/" />
-        <Button text="Gallery" to="/gallery" />
-        <Button text="Contact" to="/contact" />
-        <div
-          className={`relative w-fit h-fit  text-3xl md:text-xl lg:text-2xl  text-center font-lora font-medium ${darkMode ? "text-primary" : "text-darkPrimary font-semibold "
-            } `}
+        {links.map((button, i) => (
+          <MyButton
+            key={i}
+            text={button.text?.[locale]}
+            to={button.url}
+            ext={button.ext}
+          />
+        ))}
+        <li className="list-none">
+          <Button
+            text={cta}
+            to="contact/#form"
+            className={
+              "relative navButton rounded-md bg-white fill-brown  px-4 py-2 font-bold text-brown text-xl   shadow-sm hover:shadow-md"
+            }
+          />
+        </li>
+
+        <li
+          className={`relative w-fit h-fit  text-3xl md:text-xl lg:text-2xl  text-center `}
         >
           <LanguageToggle />
-        </div>
-      </div>
+        </li>
+        <li>
+          <Link href="/"
+            tabIndex='0'
+            className="navButton absolute left-0 bottom-0 navLogoLink m-4 w-4/5  gap-4 flex h-fit">
+            <Logo className={"fill-white relative navLogo w-12 h-fit mr-0"} />
+            <LogoText className={"relative navLogoText w-36"} />
+
+          </Link>
+        </li>
+      </ul>
+
+
+
       <NavToggle className={`navToggle `} open={!hiding} />
     </div>
   );
 }
 
-function Button({ text, to }) {
-  let { darkMode } = usePageContext();
-  // darkMode=false;
-  const { pathname } = useRouter();
+function MyButton({ text, to }) {
+  // let { darkMode } = usePageContext();
+  let darkMode = true
+  const pathname = usePathname();
   let [hover, setHover] = useState(false);
   let [selected, setSelected] = useState(false);
   const ctx = useRef(gsap.context(() => { }));
+  const myRef = useRef();
 
   useEffect(() => {
     // setLoaded(true)
@@ -132,32 +170,30 @@ function Button({ text, to }) {
   }, [pathname]);
 
   useEffect(() => {
-    ctx.current.add(() => {
-      gsap.to(`.navButton${text}`, {
+    myRef.current !== undefined && ctx.current.add(() => {
+      gsap.to(`.navButton${text.slice(0, 3,)}`, {
         scale: hover ? 1.1 : 1,
         duration: 0.2,
       });
-      gsap.to(`.navLine${text}`, {
+      gsap.to(`.navLine${text.slice(0, 3,)}`, {
         width: hover || selected ? "100%" : 0,
         borderColor:
           hover || selected
-            ? darkMode
-              ? "#FFF5EA"
-              : "#000000"
-            : "transparent",
+            ? "#FFF5EA"
+            : "#FFF5EA00",
         duration: 0.2,
       });
     });
   }, [hover, selected]);
 
   return (
-    <Link
+    <li className="navButton navButton${text.slice(0, 3,)} relative opacity-0 visible text-xl   text-center"><Link
       onMouseEnter={() => setHover(true)}
       onMouseLeave={() => {
         setHover(false);
       }}
-      className={`navButton navButton${text}  relative opacity-0 visible text-3xl md:text-xl lg:text-2xl  text-center font-lora font-medium ${darkMode ? "text-primary" : "text-darkPrimary font-semibold "
-        } `}
+      ref={myRef}
+
       href={`${to}`}
     // onClick={() => handleClick(to)}
     // title={`Go to the ${text} page`}
@@ -165,10 +201,10 @@ function Button({ text, to }) {
       <div className={`w-fit ml-auto`}>
         {text}
         <Line
-          className={`mx-auto navLine${text} ${darkMode ? "border-primary" : "border-darkPrimary"
+          className={`mx-auto navLine${text.slice(0, 3,)} ${darkMode ? "border-primary" : "border-darkPrimary"
             } w-0`}
         />
       </div>
-    </Link>
+    </Link></li>
   );
 }

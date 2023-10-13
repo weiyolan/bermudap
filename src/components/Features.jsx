@@ -54,7 +54,7 @@ export default function Features({ title, values }) {
     <Section id={'features'}>
       <div className="">
         <H2 className={`text-center featureCard`} text={title} />
-        <div className=" flex justify-center gap-8 px-8 pt-6">
+        <div className="flex flex-col md:flex-row md:justify-center gap-8 md:px-8 pt-6">
           {values.map((val, i) => (
             <Feature
               title={val.title?.[locale]}

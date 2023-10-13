@@ -37,10 +37,10 @@ export default function AboutSection({ alt, imgUrl, text, title, button }) {
   }, [])
 
   return (
-    <Section id={"about"} className="scroll-m-24">
+    <Section id={"about"} className="scroll-mt-12 md:scroll-mt-24">
       <H2 text={title} className={'text-left aboutAnimation'} />
       <LayoutSplit right className={""}>
-        <div className="h-96  w-full rounded-xl select-none overflow-hidden relative shadow-lg aboutAnimation">
+        <div className="h-56 md:h-96 w-full rounded-xl select-none overflow-hidden relative shadow-lg aboutAnimation">
           <Image alt={alt} className="object-cover" src={imgUrl} fill sizes='50vw' />
         </div>
         <div className="flex h-full w-fit flex-col justify-center gap-4 sm:gap-8">

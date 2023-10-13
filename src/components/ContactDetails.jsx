@@ -40,7 +40,7 @@ export default function ContactDetails({ title, text, alt, imgUrl, companyName, 
         ease: 'expo.out',
         duration: 1,
         scrollTrigger: {
-          trigger: '.contactAnimation',
+          trigger: '.contactAnimationTitle',
           start: 'top 70%',
           // markers: true,
           // toggleActions: 'play none none reverse',
@@ -63,18 +63,18 @@ export default function ContactDetails({ title, text, alt, imgUrl, companyName, 
   // console.log(contactDetails.image)
   return (
     <Section>
-      <LayoutSplit right className={`mt-36 items-center`}>
+      <LayoutSplit right className={`md:mt-36 items-center flex-col-reverse`}>
         {/* <SanityImage move style={{ objectPosition: 'top' }} containerClass='w-[46vw] -mt-6 xs:mt-0 xs:w-2/5 min-h-[40vh] xs:min-h-0 xs:h-56 bottom-0 xs:top-14 right-0 xs:right-4 sm:top-0 sm:right-0 sm:relative sm:h-full sm:w-full contact-image0 opacity-0'
         priority absolute={false} fill image={contactDetails.image.image.asset} alt={contactDetails.image.alt[locale]} /> */}
 
-        <div className="h-96 w-full my-auto overflow-hidden rounded-xl shadow-lg relative contactAnimation">
+        <div className="h-48 md:h-96 w-full my-auto overflow-hidden rounded-xl shadow-lg relative contactAnimation">
           <Image priority src={imgUrl} alt={alt} fill sizes="45vw" className="object-cover" />
         </div>
         <div
           id="contactSection"
           className="contact-parent relative flex w-full flex-col md:py-6 lg:py-12"
         >
-          <H2 text={title} left className={'contactAnimation'} />
+          <H2 text={title} left className={'contactAnimation contactAnimationTitle'} />
           {/* <H2 child='contact' mainTitle={contactDetails.title[locale]} SubTitle='' left /> */}
           <p className="contactAnimation text-justify font-raj text-sm font-medium first-letter:font-bel first-letter:text-3xl mobm:text-base max-w-prose sm:w-auto">
             {/* {contactDetails.text[locale]} */}
@@ -82,8 +82,7 @@ export default function ContactDetails({ title, text, alt, imgUrl, companyName, 
           </p>
 
           <div className="font-pop mt-4 flex flex-col gap-6 xs:flex-row">
-            <div className="flex-1 flex-col">
-
+            <div className="flex-1 flex-col ">
               <AccentTitle
                 text="Address"
                 className={"contactAnimation mb-0 mt-0"}

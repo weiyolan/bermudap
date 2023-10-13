@@ -51,7 +51,7 @@ export default function Numbers({ title, facts }) {
   return (
     <Section id='facts' className={""}>
       <H2 text={title} className={"text-center factAnimation"}></H2>
-      <div className="flex w-full gap-10 px-5">
+      <div className="flex flex-col md:flex-row w-full gap-5 px-2 md:gap-10 md:px-5">
         {facts?.map((fact, i) => {
           return (
             <Number className={`factAnimation`} key={i} n={fact?.number} unit={fact?.unit} link={fact?.url} title={fact?.title?.[locale]} text={fact?.text?.[locale]}

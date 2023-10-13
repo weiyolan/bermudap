@@ -6,7 +6,8 @@ import React, { useEffect, useRef } from "react";
 
 export default function NavToggle({ open, className }) {
   let { locale } = useAppContext();
-  const { darkMode } = usePageContext();
+  // const { darkMode } = usePageContext();
+  let darkMode = true;
   return (
     <button
       title={`${locale === "en" ? "Menu toggle" : "Ouvrir et fermer le menu"}`}

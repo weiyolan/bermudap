@@ -1,10 +1,11 @@
 import React from "react";
+import { twMerge } from "tailwind-merge";
 
 export default function LayoutSplit({ children, right, center, className }) {
   // console.log(children)
   return (
     <div
-      className={`flex w-full flex-col gap-12 sm:gap-4 md:flex-row md:gap-8 lg:gap-12 xl:gap-24  ${ className && className  }`} >
+      className={twMerge(`flex w-full flex-col gap-12 sm:gap-4 md:flex-row md:gap-8 lg:gap-12 xl:gap-24`, className)} >
       {/* <section className='grid grid-cols-3 w-full '> */}
       <div
         className={` ${ right ? "w-full lg:w-3/5" : center ? "w-full" : "w-full lg:w-2/5" }`}

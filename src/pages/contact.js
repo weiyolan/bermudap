@@ -23,6 +23,7 @@ import Form from '@/components/Form'
 import Numbers from '@/components/Numbers'
 import {useAppContext} from '@/utils/appContext'
 import {Lenis as ReactLenis} from '@studio-freight/react-lenis'
+import NavigationMobile from "@/components/NavigationMobile"
 
 export default function Contact({
   links,
@@ -52,7 +53,7 @@ export default function Contact({
   vat,
   phone,
 }) {
-  let {locale} = useAppContext()
+  let {locale, width} = useAppContext()
   return (
     <>
       <Head>
@@ -64,9 +65,7 @@ export default function Contact({
         />
       </Head>
       <ReactLenis root options={{wheelMultiplier: 0.9, print: false}}>
-        <header>
-          <Navigation links={links} cta={cta?.[locale]} />
-        </header>
+        <header>{width < 768 ? <NavigationMobile links={links} cta={cta?.[locale]} /> : <Navigation links={links} cta={cta?.[locale]} />}</header>
         <main>
           <BackgroundLogo />
           <ContactDetails

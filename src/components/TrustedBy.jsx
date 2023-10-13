@@ -97,7 +97,7 @@ export default function TrustedBy({ title, partners }) {
           className="trusted-by trusted-by-div relative w-full text-center"
         >
           <H2 className="trustedAnimation opacity-1 title mx-auto max-w-[70%]" text={title} />
-          <div className="artist-container flex flex-wrap justify-center gap-12 sm:flex-nowrap sm:gap-6 lg:gap-12">
+          <div className="artist-container flex flex-wrap justify-center gap-8 md:gap-12 sm:flex-nowrap sm:gap-6 lg:gap-12">
             {partners.map((logo, i) => {
               // console.log(logo.meta);
               return (<TrustedLogo

@@ -2,6 +2,7 @@ import { gsap } from 'gsap/dist/gsap';
 import { useEffect, useRef, useState } from 'react';
 import useGsap from '@/utils/useGsap';
 import { ScrollTrigger } from 'gsap/dist/ScrollTrigger';
+import { useAppContext } from '@/utils/appContext';
 gsap.registerPlugin(ScrollTrigger);
 
 export default function Feature({ className, title, subTitle, text, myKey }) {
@@ -14,11 +15,12 @@ export default function Feature({ className, title, subTitle, text, myKey }) {
   const myRef = useRef();
   const myLogoContainer = useRef();
   let ctx = useGsap();
+  const { mobile } = useAppContext();
 
   useEffect(() => {
     myTitleRef?.current !== undefined &&
       ctx.add(() => {
-        let tl1 = gsap.timeline()
+        let tl1 = gsap.timeline({})
           .to([myTitleRef.current], {
             duration: 0.5,
             scale: hovering ? (clicking ? 0.95 : 1.05) : 1,
@@ -28,8 +30,10 @@ export default function Feature({ className, title, subTitle, text, myKey }) {
           }, 0)
           .to([myLogoContainer.current], {
             duration: 0.5,
-            scale: active ? 0.25 : clicking ? 0.95 : 1,
-            yPercent: active ? -45 : 0,
+            scale: active ? mobile ? 0.3 : 0.25 : clicking ? 0.95 : 1,
+            // opacity: () => mobile && active ? 0 : 1,
+            yPercent: () => active ? mobile ? -80 : -45 : 0,
+            xPercent: () => mobile ? active ? 75 : 0 : 0,
             // width:active?'20%':'100%',
             transformOrigin: '50% 50%',
             // ease: 'elastic.out(1, 0.5)',
@@ -60,7 +64,7 @@ export default function Feature({ className, title, subTitle, text, myKey }) {
         // backgroundColor
         // })
       });
-  }, [hovering, clicking, active]);
+  }, [hovering, clicking, active, mobile]);
 
   return (
     <div
@@ -77,20 +81,20 @@ export default function Feature({ className, title, subTitle, text, myKey }) {
       onBlur={() => setActive(false)}
       tabIndex='0'
       onKeyDown={(e) => { e.key === 'Enter' && setActive(!active) }}
-      className={`relative featureCard font-raj font-medium flex flex-1  flex-col shadow-black/10 backdrop-blur-sm border shadow-md focus-within:backdrop-blur-md hover:backdrop-blur-md border-[#6E422100] items-center rounded-xl pt-4 pb-2 cursor-pointer gap-4 ${className}`}>
+      className={`relative featureCard font-raj font-medium flex flex-1 flex-col shadow-black/10 backdrop-blur-sm border shadow-md focus-within:backdrop-blur-md hover:backdrop-blur-md border-[#6E422100] items-center rounded-xl pt-4 pb-2 cursor-pointer gap-4 ${className}`}>
       <div className="relative">
         <p className="text-center relative text-xs font-semibold uppercase ">
           Get Lost In
         </p>
         <h3 ref={myTitleRef} className="relative font-bel text-3xl  ">{title}</h3>
       </div>
-      <div className={'w-fit relative'} ref={myLogoContainer} >
-        {myKey === 0 ? <Creativity hovering={hovering} active={active} clicking={clicking} className={`w-[90%] mx-auto cursor-pointer  `} /> : null}
+      <div className={'w-36 py-2 md:w-48 relative'} ref={myLogoContainer} >
+        {myKey === 0 ? <Creativity hovering={hovering} active={active} clicking={clicking} className={`w-[90%]  mx-auto cursor-pointer  `} /> : null}
         {myKey === 1 ? <Detail hovering={hovering} active={active} clicking={clicking} className={`w-[90%] mx-auto cursor-pointer  `} /> : null}
         {myKey === 2 ? <Personality hovering={hovering} active={active} clicking={clicking} className={`w-[90%] mx-auto cursor-pointer `} /> : null}
       </div>
       <p ref={mySubTitle} className="text-center font-medium ">{subTitle}</p>
-      <p ref={myText} className="absolute bottom-[34%] translate-y-1/2 w-full px-4 text-center opacity-0 invisible whitespace-pre-wrap  ">
+      <p ref={myText} className="absolute bottom-[40%] md:bottom-[34%] translate-y-1/2 w-full px-4 text-center opacity-0 invisible whitespace-pre-wrap  ">
         {`${text}`}
       </p>
     </div>
@@ -131,7 +135,7 @@ function Personality({ className, hovering, clicking, active }) {
   return (
     <svg ref={myTitleRef}
       alt='Personality logo'
-      className={className} width="163" height="179" viewBox="0 0 163 179" fill="none" xmlns="http://www.w3.org/2000/svg">
+      className={className} viewBox="0 0 163 179" fill="none" xmlns="http://www.w3.org/2000/svg">
 
       <path d="M90.7725 9.29235C90.7725 14.4244 86.6211 18.5847 81.5 18.5847C76.379 18.5847 72.2276 14.4244 72.2276 9.29235C72.2276 4.16033 76.379 0 81.5 0C86.6211 0 90.7725 4.16033 90.7725 9.29235Z" fill="#BD9159" />
       <path d="M92.2365 39.1257C92.2365 29.3443 86.8683 16.6284 81.5 16.6284C75.6437 16.6284 70.7635 29.8333 70.7635 39.1257H92.2365Z" fill="#BD9159" />
@@ -186,7 +190,7 @@ function Creativity({ className, hovering, clicking, active }) {
 
     <svg ref={myTitleRef}
       alt='Creativity logo'
-      className={`relative ${className}`} width="176" height="176" viewBox="0 0 176 176" fill="none" xmlns="http://www.w3.org/2000/svg">
+      className={`relative ${className}`} viewBox="0 0 176 176" fill="none" xmlns="http://www.w3.org/2000/svg">
 
       <path id="Vector" d="M101.807 21.267C101.807 29.1465 95.4193 35.5341 87.5398 35.5341C79.6603 35.5341 73.2727 29.1465 73.2727 21.267C73.2727 13.3876 79.6603 7 87.5398 7C95.4193 7 101.807 13.3876 101.807 21.267Z" fill="#6E4221" />
       <path id="Vector_2" d="M169 87.5398C169 95.4193 162.612 101.807 154.733 101.807C146.853 101.807 140.466 95.4193 140.466 87.5398C140.466 79.6603 146.853 73.2727 154.733 73.2727C162.612 73.2727 169 79.6603 169 87.5398Z" fill="#6E4221" />
@@ -255,7 +259,7 @@ function Detail({ className, hovering, clicking, active }) {
   return (
     <svg ref={myTitleRef}
       alt='Detail logo'
-      className={className} width="177" height="177" viewBox="0 0 177 177" fill="none" xmlns="http://www.w3.org/2000/svg">
+      className={className} viewBox="0 0 177 177" fill="none" xmlns="http://www.w3.org/2000/svg">
       <path id="DetailVector_1" d="M58.448 58.448L28.9445 50.8648C31.7628 48.0382 35.5861 46.2326 39.7124 45.8309L22.8618 28.9804L28.8718 22.9704L45.7901 39.8887C46.1524 35.6887 47.9917 31.8094 50.8648 28.9445L58.448 58.448Z" fill="#A8947F" />
       <path id="DetailVector_2" d="M46 88.5L19.7757 104C19.7699 100.008 21.1967 96.0282 23.8303 92.8264L1.05774e-05 92.8265L1.0949e-05 84.3271L23.9261 84.3271C21.2124 81.101 19.77 77.0573 19.7757 73L46 88.5Z" fill="#A8947F" />
       <path id="DetailVector_3" d="M58.448 118.552L50.8647 148.056C48.0382 145.237 46.2326 141.414 45.8309 137.288L28.9803 154.138L22.9704 148.128L39.8887 131.21C35.6886 130.848 31.8093 129.008 28.9444 126.135L58.448 118.552Z" fill="#A8947F" />
