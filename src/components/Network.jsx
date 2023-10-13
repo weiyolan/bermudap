@@ -14,6 +14,7 @@ import { gsap } from 'gsap/dist/gsap';
 import { Observer } from 'gsap/dist/Observer';
 import { ScrollTrigger } from 'gsap/dist/ScrollTrigger';
 import PictureIndicator from "./PictureIndicator";
+import { twMerge } from "tailwind-merge";
 gsap.registerPlugin(Observer, ScrollTrigger);
 
 export default function Network({ title, members }) {
@@ -75,7 +76,7 @@ export default function Network({ title, members }) {
   }, [visibleItem, animating])
 
   function initiateVisibility() {
-    let visibility = new Array(members.length * 3).fill(false)
+    let visibility = new Array(members.length).fill(false)
     visibility[0] = true
     return visibility
   }
@@ -188,8 +189,8 @@ export default function Network({ title, members }) {
           x: () => direction === 'next' ? `${xAmount}` : `-${xAmount}`,
           xPercent: () => direction === 'next' ? 70 : -170,
           scale: scaleAmount,
-  // overwrite: true,
-  // autoAlpha: 0,
+          // overwrite: true,
+          // autoAlpha: 0,
         })
         .to(`.mainPicture-${behindIndex}`,
           {
@@ -210,7 +211,7 @@ export default function Network({ title, members }) {
           ease: 'expo.out',
           // ease:'power4.out',
           duration: 0.7,
-        // overwrite: true,
+          // overwrite: true,
         }, '<')
         .to(`.mainPicture-${inFrontIndex}`, {
           x: () => direction === 'prev' ? `+=${xAmount}` : 0,
@@ -292,7 +293,7 @@ export default function Network({ title, members }) {
       <H2 className="text-center networkAnimation" text={title[locale]} />
       {/* <FadeDiv type="leftRight" className='max-w-full' amount={10} > */}
       <div className={`project-picture-container relative flex justify-between w-full h-[17rem] flex-1 select-none  `}>
-        <MyButton left className='' handleClick={prevVisibility} />
+        {members.length > 3 && <MyButton left className='' handleClick={prevVisibility} />}
         {members?.map((member, i) => (
           <Member
             index={i}
@@ -303,21 +304,20 @@ export default function Network({ title, members }) {
             func={member.func[locale]}
             text={member.text[locale]}
             url={member.img}
-            className={`mainPicture-${i} opacity-0 invisible  `}
+            className={`mainPicture-${i} opacity-0 invisible `}
             visible={visibleItem[i]}
           />
         ))}
 
-
-        <MyButton className='' handleClick={nextVisibility} />
-      </div>
-      <PictureIndicator handleVisibility={handleVisibility} visibleItem={visibleItem} />
+        {members.length > 3 && < MyButton className='' handleClick={nextVisibility} />
+        }      </div>
+      {members.length > 3 && <PictureIndicator handleVisibility={handleVisibility} visibleItem={visibleItem} />}
 
     </Section>
   );
 }
 
-function MyButton({ left, className, handleClick }) {
+function MyButton({ left, className, handleClick, ...props }) {
 
   let [hovering, setHovering] = useState(false);
   let [clicking, setClicking] = useState(false);
@@ -360,8 +360,8 @@ function MyButton({ left, className, handleClick }) {
       onClick={() => { setActive(!active); handleClick() }}
       onBlur={() => setActive(false)}
       tabIndex='0'
-
-      className={'group flex rounded-md items-center justify-center bg-[#BD915909] my-auto cursor-pointer relative w-24 h-24 lg:pt-1 z-[1]' + className}>
+      {...props}
+      className={twMerge('group flex rounded-md items-center justify-center bg-[#BD915909] my-auto cursor-pointer relative w-24 h-24 lg:pt-1 z-[1]', className)}>
       <AiFillCaretLeft className={`opacity-40 group-hover:opacity-100 fill-brown transition-opacity duration-300 w-10 h-10 ${left ? '' : 'rotate-180'} `} />
     </button>
   )
