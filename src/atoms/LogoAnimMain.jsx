@@ -128,7 +128,7 @@ export default function LogoAnimMain({ loaded, className, hovering: parentHoveri
   return (
     <div className={` ${className}`}>
 
-      <svg className={'absolute w-[1578px]  left-1/2 top-1/2 -translate-x-1/2 -translate-y-[calc(50%+2%)] md:translate-y-[calc(-50%-35px)]'} style={{}} viewBox="0 0 1578 1904" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <svg className={'absolute w-[1578px]  left-1/2 top-1/2 -translate-x-1/2 -translate-y-[calc(50%+4%)] md:translate-y-[calc(-50%-50px)]'} style={{}} viewBox="0 0 1578 1904" fill="none" xmlns="http://www.w3.org/2000/svg">
 
         {mobile ? <>
           <path className='invisible stroke-red-500' id="vectorTop" d="M884 299.5C682.5 406.5 590.5 604 768 713.5C945.5 823 970 1031 843.5 1084C717 1137 602 1072.47 611.5 964C621 855.534 747.672 808.533 807.172 927.034" stroke="#FF0000" strokeWidth="4" />
