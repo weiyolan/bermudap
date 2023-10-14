@@ -1,8 +1,10 @@
+import { twMerge } from "tailwind-merge";
+
 export default function LogoText({ color, className, textClassName }) {
   return (
     <svg
       alt="Text displaying Bermuda Events"
-      className={className}
+      className={twMerge(className, 'cursor-default')}
       viewBox="0 0 641 127"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"

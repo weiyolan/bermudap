@@ -70,7 +70,7 @@ export default function Home({
       </Head>
       <ReactLenis ref={lenisRef} autoRaf={false} root options={{wheelMultiplier: 0.9, print: false}}>
         <header>{width < 768 ? <NavigationMobile links={links} cta={cta?.[locale]} /> : <Navigation links={links} cta={cta?.[locale]} />}</header>
-        <main>
+        <main className="">
           <BackgroundLogo />
           <Hero alt={heroAlt?.[locale]} imgUrl={heroImage} />
           <Features title={valueTitle?.[locale]} values={[val1, val2, val3]} />

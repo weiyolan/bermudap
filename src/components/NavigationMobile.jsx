@@ -98,7 +98,8 @@ export default function NavigationMobile({ links, cta }) {
 
   return (
     <div id='navigationBar' key='navigationBar'
-      className={`uppercase navBar fixed w-full h-0 top-0 z-[100] text-white font-bel`}>
+      className={`uppercase navBar  fixed w-full h-0 top-0 z-[100] text-white font-bel`}>
+
       <div
         className={`navBackground bg-[#BD915966] 
           backdrop-blur-sm rounded-bl-[30px] w-screen h-screen top-0 translate-x-[calc(100%-50px)] -translate-y-[calc(100%-50px)] absolute `}
@@ -131,19 +132,14 @@ export default function NavigationMobile({ links, cta }) {
         >
           <LanguageToggle />
         </li>
-        <li>
-          <Link href="/"
-            tabIndex='0'
-            className="navButton absolute left-0 bottom-0 navLogoLink m-4 w-4/5  gap-4 flex h-fit">
-            <Logo className={"fill-white relative navLogo w-12 h-fit mr-0"} />
-            <LogoText className={"relative navLogoText w-36"} />
-
-          </Link>
-        </li>
       </ul>
 
-
-
+      <div
+        tabIndex='0'
+        className="navButton absolute opacity-5 left-0 bottom-0 navLogoLink p-10   w-full gap-4 flex h-fit">
+        <Logo className={"fill-white relative navLogo w-12 h-fit mr-0"} />
+        <LogoText className={"relative navLogoText w-36"} />
+      </div>
       <NavToggle className={`navToggle `} open={!hiding} />
     </div>
   );
@@ -187,7 +183,8 @@ function MyButton({ text, to }) {
   }, [hover, selected]);
 
   return (
-    <li className="navButton navButton${text.slice(0, 3,)} relative opacity-0 visible text-xl   text-center"><Link
+    <li className={`navButton navButton${text.slice(0, 3,)} relative opacity-0 visible text-xl   text-center`}>
+      <Link
       onMouseEnter={() => setHover(true)}
       onMouseLeave={() => {
         setHover(false);
@@ -195,16 +192,17 @@ function MyButton({ text, to }) {
       ref={myRef}
 
       href={`${to}`}
+        className={`w-fit ml-auto`}
     // onClick={() => handleClick(to)}
     // title={`Go to the ${text} page`}
     >
-      <div className={`w-fit ml-auto`}>
+        {/* <div > */}
         {text}
         <Line
           className={`mx-auto navLine${text.slice(0, 3,)} ${darkMode ? "border-primary" : "border-darkPrimary"
             } w-0`}
         />
-      </div>
+        {/* </div> */}
     </Link></li>
   );
 }

@@ -64,7 +64,7 @@ export default function Hero({ alt, imgUrl }) {
         tabIndex='0'
         className="w-[20%] h-[20%] blur-[100px] absolute border-debug bg-white/80 center-center -translate-y-[40%]" />
       <div ref={myRef}>
-        <LogoAnimMain color className={`w-36 h-36`} />
+        <LogoAnimMain loaded={loaded} color className={`w-36 h-36`} />
       </div>
       <LogoText color className={`relative mt-2 w-4/5 md:w-1/4 cursor-pointer`} textClassName={'bermudaLogoTextLetter opacity-0 '} />
     </div>

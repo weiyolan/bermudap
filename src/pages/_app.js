@@ -47,7 +47,7 @@ export default function App({ Component, pageProps }) {
       {/* ${poppins.variable} */}
       <AppWrapper
         // scrolled={scrolled}
-        className={`${belleza.variable} ${rajdhani.variable} font-pop relative h-[100dvh] w-full `}
+        className={`${belleza.variable} ${rajdhani.variable} font-pop relative h-[100dvh] w-full overflow-x-clip`}
       >
         <Component {...pageProps} />
         <Toaster />

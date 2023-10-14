@@ -4,13 +4,16 @@ import { usePageContext } from "@/utils/pageContext";
 import { gsap } from "gsap/dist/gsap";
 import React, { useEffect, useRef } from "react";
 
+let openText = { en: 'Open the menu', fr: 'Ouvrir le menu', nl: 'Open het menu' }
+let closeText = { en: 'Close the menu', fr: 'Fermer le menu', nl: 'Sluit het menu' }
+
 export default function NavToggle({ open, className }) {
   let { locale } = useAppContext();
   // const { darkMode } = usePageContext();
   let darkMode = true;
   return (
     <button
-      title={`${locale === "en" ? "Menu toggle" : "Ouvrir et fermer le menu"}`}
+      title={`${open ? openText[locale] : closeText[locale]}`}
       className={
         "flex justify-center items-center w-[50px] h-[50px] absolute top-0 right-0 " +
         className
