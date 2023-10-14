@@ -24,29 +24,49 @@ let colors = [
 export default function Features({ title, values }) {
   let { locale } = useAppContext();
 
-  let ctx = useGsap()
+  // let ctx = useGsap()
+  let mm = gsap.matchMedia()
 
   useEffect(() => {
-    ctx.add(() => {
-      // gsap.set(['.featureCard'], {
-      //   autoAlpha: 0,
-      //   // stagger:0,
-      //   y: 30,
-      // })
-      gsap.from(['.featureCard'], {
-        y: 30,
-        autoAlpha: 0,
-        stagger: { each: 0.1 },
-        ease: 'expo.out',
-        duration: 1,
-        scrollTrigger: {
-          trigger: '.featureCard',
-          start: 'top 70%',
-          // markers: true,
-          // toggleActions: 'play none none reverse',
-        }
+    mm.add({
+      isDesktop: "(min-width: 768px)",
+      isMobile: "(max-width: 767px)",
+      reduceMotion: "(prefers-reduced-motion: reduce)"
+    }, (ctx) => {
+      let { isDesktop, isMobile, reduceMotion } = ctx.conditions
+      isDesktop && ctx.add(() => {
+        gsap.from(['.featureCard'], {
+          y: 30,
+          autoAlpha: 0,
+          stagger: { each: 0.1 },
+          ease: 'expo.out',
+          duration: 1,
+          scrollTrigger: {
+            trigger: '.featureCard',
+            start: 'top 70%',
+            // markers: true,
+            // toggleActions: 'play none none reverse',
+          }
+        })
+      });
+
+      isMobile && ctx.add(() => {
+        gsap.utils.toArray(".featureCard").forEach(card => {
+          gsap.from(card, {
+            y: 30,
+            autoAlpha: 0,
+            ease: 'expo.out',
+            duration: 1,
+            scrollTrigger: {
+              trigger: card,
+              start: "top 80%",
+            }
+          })
+        })
       })
+
     })
+    return () => mm.revert()
   }, [])
 
 

@@ -114,7 +114,7 @@ export default function EmailForm() {
       method="POST"
       data-netlify="true"
       netlify-honeypot="bot-field"
-      className="form-container font-bel flex flex-col mb-2 md:mb-0 md:flex-row relative gap-1 md:gap-4 md:items-end w-full text-browndark placeholder:text-browndark text-sm"
+      className="form-container font-bel flex flex-col mb-2 md:mb-0 relative gap-1 md:gap-4  w-full md:w-4/5 text-browndark placeholder:text-browndark text-sm"
     >
       <input type="hidden" name="form-name" value="ContactForm" />
       <p className="hidden">
@@ -130,7 +130,7 @@ export default function EmailForm() {
 
       {/* EMAIL */}
         <label
-        className=" cursor-pointer whitespace-nowrap text-white  font-extralight text-base inline-flex max-w-fit mb-2 mx-auto"
+        className=" cursor-pointer whitespace-nowrap text-white  font-extralight text-base inline-flex max-w-fit  mx-auto md:w-fit md:text-left md:ml-0 md:mr-auto"
           htmlFor="email2" >
           {emailTitle[locale]}
         </label>

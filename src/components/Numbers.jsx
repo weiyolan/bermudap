@@ -4,13 +4,11 @@ import Number from "./Number";
 // import { currentLocale } from "next-i18n-router";
 import { useEffect } from "react";
 import { gsap } from "gsap/dist/gsap";
-import useGsap from "@/utils/useGsap";
 import { useAppContext } from "@/utils/appContext";
 
 export default function Numbers({ title, facts }) {
   // const locale = currentLocale();
 
-  const ctx = useGsap()
   let { locale } = useAppContext();
 
   // useEffect(() => {
@@ -27,26 +25,52 @@ export default function Numbers({ title, facts }) {
   // }, [])
 
 
-  useEffect(() => {
-    ctx.add(() => {
-      gsap.from(['.factAnimation'], {
-        y: 30,
-        autoAlpha: 0,
-        stagger: { each: 0.1 },
-        ease: 'expo.out',
-        // ease: 'back',
-        duration: 0.8,
-        scrollTrigger: {
-          trigger: '.factAnimation',
-          start: 'top 70%',
-          // markers: true,
-          // invalidateOnRefresh: true,
-          // toggleActions: 'play none none reverse',
-        }
-      })
-    })
-  }, [])
 
+  let mm = gsap.matchMedia()
+
+  useEffect(() => {
+    mm.add({
+      isDesktop: "(min-width: 768px)",
+      isMobile: "(max-width: 767px)",
+      reduceMotion: "(prefers-reduced-motion: reduce)"
+    }, (ctx) => {
+      let { isDesktop, isMobile, reduceMotion } = ctx.conditions
+      isDesktop && ctx.add(() => {
+        gsap.from(['.factAnimation'], {
+          y: 30,
+          autoAlpha: 0,
+          stagger: { each: 0.1 },
+          ease: 'expo.out',
+          // ease: 'back',
+          duration: 0.8,
+          scrollTrigger: {
+            trigger: '.factAnimation',
+            start: 'top 70%',
+            // markers: true,
+            // invalidateOnRefresh: true,
+            // toggleActions: 'play none none reverse',
+          }
+        })
+      });
+
+      isMobile && ctx.add(() => {
+        gsap.utils.toArray(".factAnimation").forEach(card => {
+          gsap.from(card, {
+            y: 30,
+            autoAlpha: 0,
+            ease: 'expo.out',
+            duration: 1,
+            scrollTrigger: {
+              trigger: card,
+              start: "top 80%",
+            }
+          })
+        })
+      })
+
+    })
+    return () => mm.revert()
+  }, [])
 
   return (
     <Section id='facts' className={""}>

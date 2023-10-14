@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-
+// import useLayoutEffect from "./useIsomorphicLayoutEffect"
 export default function useWindowSize() {
   // Initialize state with undefined width/height so server and client renders match
   // Learn more here: https://joshwcomeau.com/react/the-perils-of-rehydration/
@@ -7,7 +7,7 @@ export default function useWindowSize() {
     width: undefined,
     height: undefined,
     mobileHeight: undefined,
-  });
+  })
 
   function handleResize() {
     // Set window width/height to state
@@ -28,7 +28,7 @@ export default function useWindowSize() {
             height: window.innerHeight,
             mobileHeight: window.innerHeight,
           },
-    );
+    )
   }
 
   // useEffect(()=>{
@@ -48,14 +48,14 @@ export default function useWindowSize() {
     // Handler to call on window resize
 
     // Add event listener
-    window.addEventListener("resize", handleResize);
+    window.addEventListener("resize", handleResize)
 
     // Call handler right away so state gets updated with initial window size
-    handleResize();
+    handleResize()
 
     // Remove event listener on cleanup
-    return () => window.removeEventListener("resize", handleResize);
-  }, []); // Empty array ensures that effect is only run on mount
+    return () => window.removeEventListener("resize", handleResize)
+  }, []) // Empty array ensures that effect is only run on mount
 
-  return windowSize;
+  return windowSize
 }

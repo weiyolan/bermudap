@@ -122,7 +122,7 @@ export default function NavigationMobile({ links, cta }) {
             text={cta}
             to="contact/#form"
             className={
-              "relative navButton rounded-md bg-white fill-brown  px-4 py-2 font-bold text-brown text-xl   shadow-sm hover:shadow-md"
+              "relative navButton rounded-md bg-white fill-brown opacity-0 invisible  px-4 py-2 font-bold text-brown text-xl   shadow-sm hover:shadow-md"
             }
           />
         </li>
@@ -183,19 +183,19 @@ function MyButton({ text, to }) {
   }, [hover, selected]);
 
   return (
-    <li className={`navButton navButton${text.slice(0, 3,)} relative opacity-0 visible text-xl   text-center`}>
+    <li className={`navButton navButton${text.slice(0, 3,)} relative opacity-0 invisible text-xl   text-center`}>
       <Link
-      onMouseEnter={() => setHover(true)}
-      onMouseLeave={() => {
-        setHover(false);
-      }}
-      ref={myRef}
+        onMouseEnter={() => setHover(true)}
+        onMouseLeave={() => {
+          setHover(false);
+        }}
+        ref={myRef}
 
-      href={`${to}`}
+        href={`${to}`}
         className={`w-fit ml-auto`}
-    // onClick={() => handleClick(to)}
-    // title={`Go to the ${text} page`}
-    >
+      // onClick={() => handleClick(to)}
+      // title={`Go to the ${text} page`}
+      >
         {/* <div > */}
         {text}
         <Line
@@ -203,6 +203,7 @@ function MyButton({ text, to }) {
             } w-0`}
         />
         {/* </div> */}
-    </Link></li>
+      </Link>
+    </li>
   );
 }

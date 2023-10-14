@@ -5,12 +5,13 @@ import { gsap } from 'gsap/dist/gsap';
 // import { scrollToPlugin } from 'gsap/dist/ScrollToPlugin';
 import useGsap from '@/utils/useGsap';
 import PathGSAPStandalone from './PathGsap';
+import { useAppContext } from '@/utils/appContext';
 gsap.registerPlugin(MotionPathPlugin);
 
 export default function LogoAnimMain({ loaded, className, hovering: parentHovering, clicking: parentClicking, color }) {
   let [hovering, setHovering] = useState(parentHovering === undefined ? false : parentHovering);
   let [clicking, setClicking] = useState(false);
-  let [active, setActive] = useState(false);
+  // let [active, setActive] = useState(false);
   const myRef = useRef();
   const myBladRef0 = useRef();
   const myBladRef1 = useRef();
@@ -18,7 +19,7 @@ export default function LogoAnimMain({ loaded, className, hovering: parentHoveri
   let [style, setStyle] = useState();
   let ctx = useGsap();
   let [tl, setTl] = useState();
-
+  const { mobile } = useAppContext();
   // let style=useRef();
 
   function animateLeaf(leafRef, leafPathId, alongPathVectorId, degrees, transformPathInitial, transformPathTransit, transformPath3) {
@@ -120,33 +121,65 @@ export default function LogoAnimMain({ loaded, className, hovering: parentHoveri
     position: 0.2
   }
 
-  useLayoutEffect(() => {
+  useEffect(() => {
     setStyle({ opacity: 0 })
   }, [])
 
   return (
     <div className={` ${className}`}>
 
-      <svg className={'absolute w-[400%] md:w-full left-1/2 top-1/2 -translate-x-1/2 -translate-y-[calc(50%+2%)] md:translate-y-[calc(-50%-50px)]'} style={{}} viewBox="0 0 1578 1904" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <path className='invisible stroke-red-500' id="vectorTop" d="M616.975 94.9073C479.445 323.954 560.035 563.545 789 664C1017.97 764.455 1130 1037 940.5 1150.5C751 1264 566.5 1005 585.5 896C604.5 787 748 809 807.5 927.501" strokeWidth="4" />
-        <path className='invisible stroke-red-500' id="vectorBottom" d="M1645.72 1209.7C1503.82 983.333 1253.72 946.642 1060.44 1105.26C867.157 1263.87 573.429 1240.29 558.089 1019.93C542.749 799.573 857.23 752.421 945.796 818.738C1034.36 885.055 949.743 1003.02 817.145 1002.38" strokeWidth="4" />
-        <path className='invisible stroke-red-500' id="vectorLeft" d="M104.383 1545.65C371.369 1555.42 542.22 1369.12 519.572 1120.12C496.923 871.114 681.439 641.361 872.359 752.456C1063.28 863.551 925.628 1150.21 821.011 1186.23C716.394 1222.25 666.337 1085.97 741.352 976.632" strokeWidth="4" />
-        {/* TOP */}
-        <PathGSAPStandalone strokeColor='#BD9159' tweens={[{ id: 'speed11', ...speedTweensObj }]} transitStrokeAnimation transitPortion={0.8} id="speed11" d="M851.172 686.533C910.172 712.033 973.661 773.666 1005.67 828.533" strokeWidth="2" />
-        <PathGSAPStandalone strokeColor='#BD9159' tweens={[{ id: 'speed12', ...speedTweensObj }]} transitStrokeAnimation transitPortion={0.8} id="speed12" d="M852 719C916.828 750.467 948 788.5 984.5 854" strokeWidth="2" />
-        <PathGSAPStandalone strokeColor='#BD9159' tweens={[{ id: 'speed13', ...speedTweensObj }]} transitStrokeAnimation transitPortion={0.8} id="speed13" d="M944.881 768.533C969.258 795.146 1005.39 849.329 1013.91 873.619" strokeWidth="2" />
+      <svg className={'absolute w-[1578px]  left-1/2 top-1/2 -translate-x-1/2 -translate-y-[calc(50%+2%)] md:translate-y-[calc(-50%-35px)]'} style={{}} viewBox="0 0 1578 1904" fill="none" xmlns="http://www.w3.org/2000/svg">
 
-        <g id="vectorBottom">
-          <PathGSAPStandalone strokeColor='#6E4221' tweens={[{ id: 'speed21', ...speedTweensObj }]} transitStrokeAnimation transitPortion={0.8} id="speed21" d="M1011.62 1150.56C962.158 1191.6 878.451 1220.28 815.035 1223.97" strokeWidth="2" />
-          <PathGSAPStandalone strokeColor='#6E4221' tweens={[{ id: 'speed22', ...speedTweensObj }]} transitStrokeAnimation transitPortion={0.8} id="speed22" d="M982.3 1136.59C924.879 1180.13 876.851 1190.69 801.923 1193.56" strokeWidth="2" />
-          <PathGSAPStandalone strokeColor='#6E4221' tweens={[{ id: 'speed23', ...speedTweensObj }]} transitStrokeAnimation transitPortion={0.8} id="speed23" d="M896.065 1196.95C861.296 1206.63 796.624 1214.29 771.112 1210.88" strokeWidth="2" />
-        </g>
+        {mobile ? <>
+          <path className='invisible stroke-red-500' id="vectorTop" d="M884 299.5C682.5 406.5 590.5 604 768 713.5C945.5 823 970 1031 843.5 1084C717 1137 602 1072.47 611.5 964C621 855.534 747.672 808.533 807.172 927.034" stroke="#FF0000" strokeWidth="4" />
+          <path className='invisible stroke-red-500' id="vectorBottom" d="M1341.79 1355.15C1337.68 1127.04 1203.29 955.556 1025.26 1064.19C847.227 1172.83 650.695 1100.45 660.751 963.66C670.808 826.875 780.436 753.587 872.831 811.193C965.225 868.799 949.743 1003.02 817.145 1002.38" stroke="#FF0000" strokeWidth="4" />
+          <path className='invisible stroke-red-500' id="vectorLeft" d="M154.78 1212.5C345.806 1337.25 563.176 1322.39 573.308 1114.08C583.44 905.769 753.726 783.84 861.24 868.999C968.754 954.157 967.802 1086.02 868.241 1130.1C768.681 1174.18 666.337 1085.97 741.352 976.632" stroke="#FF0000" strokeWidth="4" />
 
-        <g id="vectorLeft">
-          <PathGSAPStandalone strokeColor='#A8947F' tweens={[{ id: 'speed31', ...speedTweensObj }]} transitStrokeAnimation transitPortion={0.8} id="speed31" d="M509.519 1054.28C503.345 990.306 526.64 904.943 559.218 850.411" strokeWidth="2" />
-          <PathGSAPStandalone strokeColor='#A8947F' tweens={[{ id: 'speed32', ...speedTweensObj }]} transitStrokeAnimation transitPortion={0.8} id="speed32" d="M537.546 1037.88C533.782 965.912 552.025 920.246 591.744 856.646" strokeWidth="2" />
-          <PathGSAPStandalone strokeColor='#A8947F' tweens={[{ id: 'speed33', ...speedTweensObj }]} transitStrokeAnimation transitPortion={0.8} id="speed33" d="M536.049 932.622C547.575 898.422 577.562 840.612 594.717 821.423" strokeWidth="2" />
-        </g>
+          {/* <g id="vectorTopgrp"> */}
+          <PathGSAPStandalone strokeColor='#BD9159' tweens={[{ id: 'speed11Mobile', ...speedTweensObj }]} transitStrokeAnimation transitPortion={0.7} id="speed11Mobile" d="M766 1117.5C701.851 1113.48 662.188 1099.72 625.481 1052.98" strokeWidth="3" strokeLinecap="round" />
+          <PathGSAPStandalone strokeColor='#BD9159' tweens={[{ id: 'speed13Mobile', ...speedTweensObj }]} transitStrokeAnimation transitPortion={0.7} id="speed13Mobile" d="M673.116 1073.34C641.169 1056.55 627.256 1032.91 618.5 1008" strokeWidth="3" strokeLinecap="round" />
+          <PathGSAPStandalone strokeColor='#BD9159' tweens={[{ id: 'speed12Mobile', ...speedTweensObj }]} transitStrokeAnimation transitPortion={0.7} id="speed12Mobile" d="M765.5 1090C712.171 1089.28 664.842 1057.1 637.5 1015" strokeWidth="3" strokeLinecap="round" />
+          {/* </g> */}
+
+          {/* <g id="vectorBottomgrp"> */}
+          <PathGSAPStandalone strokeColor='#6E4221' tweens={[{ id: 'speed22Mobile', ...speedTweensObj }]} transitStrokeAnimation transitPortion={0.7} id="speed22Mobile" d="M690.737 891.405C715.534 844.186 765.664 816.571 815.586 811.268" strokeWidth="3" strokeLinecap="round" />
+          <PathGSAPStandalone strokeColor='#6E4221' tweens={[{ id: 'speed21Mobile', ...speedTweensObj }]} transitStrokeAnimation transitPortion={0.7} id="speed21Mobile" d="M665.995 879.393C698.641 824.026 728.874 794.899 787.174 783.349" strokeWidth="3" strokeLinecap="round" />
+          <PathGSAPStandalone strokeColor='#6E4221' tweens={[{ id: 'speed23Mobile', ...speedTweensObj }]} transitStrokeAnimation transitPortion={0.7} id="speed23Mobile" d="M747.444 816.593C776.885 795.718 804.258 794.021 830.433 797.501" strokeWidth="3" strokeLinecap="round" />
+          {/* </g> */}
+
+          {/* <g id="vectorLeftgrp"> */}
+          <PathGSAPStandalone strokeColor='#A8947F' tweens={[{ id: 'speed31Mobile', ...speedTweensObj }]} transitStrokeAnimation transitPortion={0.7} id="speed31Mobile" d="M928.01 920.674C955.475 978.785 962.589 1020.16 939.395 1074.88" strokeWidth="3" strokeLinecap="round" />
+          <PathGSAPStandalone strokeColor='#A8947F' tweens={[{ id: 'speed33Mobile', ...speedTweensObj }]} transitStrokeAnimation transitPortion={0.7} id="speed33Mobile" d="M934.21 1023.34C934.941 1059.42 920.968 1083.02 903.386 1102.72" strokeWidth="3" strokeLinecap="round" />
+          <PathGSAPStandalone strokeColor='#A8947F' tweens={[{ id: 'speed32Mobile', ...speedTweensObj }]} transitStrokeAnimation transitPortion={0.7} id="speed32Mobile" d="M904.173 934.396C929.308 981.435 923.993 1038.42 900.337 1082.7" strokeWidth="3" strokeLinecap="round" />
+          {/* </g> */}
+
+
+        </> : <>
+          <path className='invisible stroke-red-500' id="vectorTop" d="M616.647 94.4404C479.117 323.487 466.035 622.545 695 723C923.965 823.455 1129.67 1036.53 940.172 1150.03C750.672 1263.53 566.172 1004.53 585.172 895.533C604.172 786.533 747.672 808.533 807.172 927.034" stroke="#FF0000" strokeWidth="4" />
+          <path className='invisible stroke-red-500' id="vectorBottom" d="M1645.72 1209.7C1503.82 983.333 1243.14 836.193 1049.86 994.809C856.577 1153.43 573.429 1240.29 558.089 1019.93C542.749 799.573 857.23 752.421 945.796 818.738C1034.36 885.055 949.743 1003.02 817.145 1002.38" stroke="#FF0000" strokeWidth="4" />
+          <path className='invisible stroke-red-500' id="vectorLeft" d="M104.383 1545.65C371.369 1555.42 639.538 1422.41 616.89 1173.41C594.241 924.405 681.439 641.361 872.359 752.456C1063.28 863.551 925.628 1150.21 821.011 1186.23C716.394 1222.25 666.337 1085.97 741.352 976.632" stroke="#FF0000" strokeWidth="4" />
+
+          {/* <g id="vectorTopgrp"> */}
+          <PathGSAPStandalone strokeColor='#BD9159' tweens={[{ id: 'speed11', ...speedTweensObj }]} transitStrokeAnimation transitPortion={0.8} id="speed11" d="M851.172 686.533C910.172 712.033 973.661 773.666 1005.67 828.533" strokeWidth="3" strokeLinecap="round" />
+          <PathGSAPStandalone strokeColor='#BD9159' tweens={[{ id: 'speed12', ...speedTweensObj }]} transitStrokeAnimation transitPortion={0.8} id="speed12" d="M852 719C916.828 750.467 948 788.5 984.5 854" strokeLinecap="round" strokeWidth="3" />
+          <PathGSAPStandalone strokeColor='#BD9159' tweens={[{ id: 'speed13', ...speedTweensObj }]} transitStrokeAnimation transitPortion={0.8} id="speed13" d="M944.881 768.533C969.258 795.146 1005.39 849.329 1013.91 873.619" strokeWidth="3" strokeLinecap="round" />
+          {/* </g> */}
+
+          {/* <g id="vectorBottomgrp"> */}
+          <PathGSAPStandalone strokeColor='#6E4221' tweens={[{ id: 'speed21', ...speedTweensObj }]} transitStrokeAnimation transitPortion={0.8} id="speed21" d="M1011.62 1150.56C962.158 1191.6 878.451 1220.28 815.035 1223.97" strokeWidth="3" strokeLinecap="round" />
+          <PathGSAPStandalone strokeColor='#6E4221' tweens={[{ id: 'speed22', ...speedTweensObj }]} transitStrokeAnimation transitPortion={0.8} id="speed22" d="M982.3 1136.59C924.879 1180.13 876.851 1190.69 801.923 1193.56" strokeWidth="3" strokeLinecap="round" />
+          <PathGSAPStandalone strokeColor='#6E4221' tweens={[{ id: 'speed23', ...speedTweensObj }]} transitStrokeAnimation transitPortion={0.8} id="speed23" d="M896.065 1196.95C861.296 1206.63 796.624 1214.29 771.112 1210.88" strokeWidth="3" strokeLinecap="round" />
+          {/* </g> */}
+
+          {/* <g id="vectorLeftgrp"> */}
+          <PathGSAPStandalone strokeColor='#A8947F' tweens={[{ id: 'speed31', ...speedTweensObj }]} transitStrokeAnimation transitPortion={0.8} id="speed31" d="M509.519 1054.28C503.345 990.306 526.64 904.943 559.218 850.411" strokeWidth="3" strokeLinecap="round" />
+          <PathGSAPStandalone strokeColor='#A8947F' tweens={[{ id: 'speed32', ...speedTweensObj }]} transitStrokeAnimation transitPortion={0.8} id="speed32" d="M537.546 1037.88C533.782 965.912 552.025 920.246 591.744 856.646" strokeWidth="3" strokeLinecap="round" />
+          <PathGSAPStandalone strokeColor='#A8947F' tweens={[{ id: 'speed33', ...speedTweensObj }]} transitStrokeAnimation transitPortion={0.8} id="speed33" d="M536.049 932.622C547.575 898.422 577.562 840.612 594.717 821.423" strokeWidth="3" strokeLinecap="round" />
+          {/* </g> */}
+        </>
+
+        }
+
 
       </svg>
 

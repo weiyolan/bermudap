@@ -37,7 +37,7 @@ export default function PathGSAPStandalone(props) {
     delete pathProps.shadowSmall
     delete pathProps['stroke-width']
     delete pathProps.initialDash
-    pathProps.strokeWidth = props?.strokeWidth || '2'
+    pathProps.strokeWidth = props?.strokeWidth || '4'
     pathProps.strokeLinejoin = "round"
     delete pathProps['stroke-linejoin']
     pathProps.strokeLinecap = "round"

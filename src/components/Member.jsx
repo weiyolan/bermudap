@@ -62,10 +62,10 @@ export default function Member({ url, name, func, text, alt, print, className, i
       }}
       onKeyDown={(e) => e.key === 'Enter' && setActive(!active)}
       tabIndex="0"
-      className={` flex flex-1  relative md:absolute cursor-pointer flex-col items-center mt-2 select-none md:left-1/2 md:top-0 md:-translate-x-1/2  ${className}`}
+      className={` flex flex-1  relative md:absolute cursor-pointer flex-col items-center mt-2 select-none md:left-1/2 md:top-0 md:-translate-x-1/2 ${className}`}
     >
 
-      <div ref={myImgContainer} className="relative mb-2 select-none w-24 h-24 md:h-48 md:w-48 overflow-hidden bg-brown rounded-full ">
+      <div ref={myImgContainer} className="relative mb-2 select-none w-32 h-32 md:h-48 md:w-48 overflow-hidden bg-brown rounded-full ">
         <Image
           ref={myImg}
           alt={alt}

@@ -17,23 +17,50 @@ export default function AboutSection({ alt, imgUrl, text, title, button }) {
   let ctx = useGsap()
 
   let { locale } = useAppContext();
+  let mm = gsap.matchMedia()
 
   useEffect(() => {
-    ctx.add(() => {
-      gsap.from(['.aboutAnimation'], {
-        y: 30,
-        autoAlpha: 0,
-        stagger: { each: 0.1 },
-        ease: 'expo.out',
-        duration: 1,
-        scrollTrigger: {
-          trigger: '.aboutAnimation',
-          start: 'top 70%',
-          // markers: true,
-          // toggleActions: 'play none none reverse',
-        }
+    mm.add(
+      {
+        isDesktop: "(min-width: 768px)",
+        isMobile: "(max-width: 767px)",
+        reduceMotion: "(prefers-reduced-motion: reduce)"
+      },
+      (ctx) => {
+        let { isDesktop, isMobile, reduceMotion } = ctx.conditions
+        isDesktop && ctx.add(() => {
+          gsap.from(['.aboutAnimation'], {
+            y: 30,
+            autoAlpha: 0,
+            stagger: { each: 0.1 },
+            ease: 'expo.out',
+            duration: 1,
+            scrollTrigger: {
+              trigger: '.aboutAnimation',
+              start: 'top 70%',
+              // markers: true,
+              // toggleActions: 'play none none reverse',
+            }
+          })
+        })
+
+        isMobile && ctx.add(() => {
+          gsap.utils.toArray(".aboutAnimation").forEach(effect => {
+            gsap.from(effect, {
+              y: 30,
+              autoAlpha: 0,
+              ease: 'expo.out',
+              duration: 1,
+              scrollTrigger: {
+                trigger: effect,
+                start: "top 80%",
+              }
+            })
+          })
+        })
+
       })
-    })
+    return () => mm.revert()
   }, [])
 
   return (

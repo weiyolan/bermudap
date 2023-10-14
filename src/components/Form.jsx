@@ -108,29 +108,50 @@ export default function Form({ title }) {
   // const { width } = useAppContext()
   // let width = window.innerWidth;
 
-  // let ctx = useRef();
-
-
-  let ctx = useGsap()
+  let mm = gsap.matchMedia()
 
   useEffect(() => {
-    document.getElementsByClassName('formAnimationTitle') !== undefined && ctx.add(() => {
-      gsap.from(['.formAnimation'], {
-        y: 30,
-        autoAlpha: 0,
-        stagger: { each: 0.1 },
-        // ease: 'back',
-        ease: 'expo.out',
-        duration: 0.8,
-        scrollTrigger: {
-          trigger: '.formAnimationTitle',
-          start: 'top 70%',
-          // invalidateOnRefresh: true,
-          // markers: true,
-          // toggleActions: 'play none none reverse',
-        }
+    mm.add({
+      isDesktop: "(min-width: 768px)",
+      isMobile: "(max-width: 767px)",
+      reduceMotion: "(prefers-reduced-motion: reduce)"
+    }, (ctx) => {
+      let { isDesktop, isMobile, reduceMotion } = ctx.conditions
+      isDesktop && ctx.add(() => {
+        gsap.from(['.formAnimation'], {
+          y: 30,
+          autoAlpha: 0,
+          stagger: { each: 0.1 },
+          // ease: 'back',
+          ease: 'expo.out',
+          duration: 0.8,
+          scrollTrigger: {
+            trigger: '.formAnimationTitle',
+            start: 'top 70%',
+            // invalidateOnRefresh: true,
+            // markers: true,
+            // toggleActions: 'play none none reverse',
+          }
+        })
+      });
+
+      isMobile && ctx.add(() => {
+        gsap.utils.toArray(".formAnimation").forEach(card => {
+          gsap.from(card, {
+            y: 30,
+            autoAlpha: 0,
+            ease: 'expo.out',
+            duration: 1,
+            scrollTrigger: {
+              trigger: card,
+              start: "top 80%",
+            }
+          })
+        })
       })
+
     })
+    return () => mm.revert()
   }, [])
 
   function encode(data) {

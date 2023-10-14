@@ -8,6 +8,7 @@ import useGsap from '@/utils/useGsap';
 // import LogoTextAnim from "@/atoms/LogoTextAnim";
 // import LogoAnim from "@/atoms/LogoAnim";
 import LogoAnimMain from "@/atoms/LogoAnimMain";
+import Logo from "@/atoms/Logo";
 // import { useLenis } from "@studio-freight/react-lenis";
 
 export default function Hero({ alt, imgUrl }) {
@@ -62,8 +63,9 @@ export default function Hero({ alt, imgUrl }) {
         onFocus={() => setActive(true)}
         onBlur={() => setActive(false)}
         tabIndex='0'
-        className="w-[20%] h-[20%] blur-[100px] absolute border-debug bg-white/80 center-center -translate-y-[40%]" />
+        className="w-2/3 h-1/4  md:w-[20%] md:h-[20%] blur-[50px] md:blur-[100px] absolute border-debug bg-white/80 center-center -translate-y-[40%]" />
       <div ref={myRef}>
+        {/* <Logo className={`w-36 h-36 fill-white absolute `} /> */}
         <LogoAnimMain loaded={loaded} color className={`w-36 h-36`} />
       </div>
       <LogoText color className={`relative mt-2 w-4/5 md:w-1/4 cursor-pointer`} textClassName={'bermudaLogoTextLetter opacity-0 '} />

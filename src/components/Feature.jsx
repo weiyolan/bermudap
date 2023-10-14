@@ -81,7 +81,7 @@ export default function Feature({ className, title, subTitle, text, myKey }) {
       onBlur={() => setActive(false)}
       tabIndex='0'
       onKeyDown={(e) => { e.key === 'Enter' && setActive(!active) }}
-      className={`relative featureCard font-raj font-medium flex flex-1 flex-col shadow-black/10 backdrop-blur-sm border shadow-md focus-within:backdrop-blur-md hover:backdrop-blur-md border-[#6E422100] items-center rounded-xl pt-4 pb-2 cursor-pointer gap-4 ${className}`}>
+      className={`relative noSelect featureCard font-raj font-medium flex flex-1 flex-col shadow-black/10 backdrop-blur-sm border shadow-md md:focus-within:backdrop-blur-md md:hover:backdrop-blur-md border-[#6E422100] items-center rounded-xl pt-4 pb-2 cursor-pointer gap-4 ${className}`}>
       <div className="relative">
         <p className="text-center relative text-xs font-semibold uppercase ">
           Get Lost In

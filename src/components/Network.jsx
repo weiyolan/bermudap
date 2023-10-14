@@ -27,6 +27,34 @@ export default function Network({ title, members }) {
     return () => ctx.revert();
   }, []);
 
+  let mm = gsap.matchMedia()
+
+  useEffect(() => {
+    mm.add(
+      {
+        isMobile: "(max-width: 767px)",
+      },
+      (ctx) => {
+        let { isMobile } = ctx.conditions
+
+        isMobile && ctx.add(() => {
+          gsap.utils.toArray(".memberAnimation").forEach(effect => {
+            gsap.from(effect, {
+              y: 30,
+              autoAlpha: 0,
+              ease: 'expo.out',
+              duration: 1,
+              scrollTrigger: {
+                trigger: effect,
+                start: "top 80%",
+              }
+            })
+          })
+        })
+
+      })
+    return () => mm.revert()
+  }, [])
 
   useEffect(() => {
     // FIRST LOAD
@@ -55,7 +83,7 @@ export default function Network({ title, members }) {
         })
       })
     }
-  }, [])
+  }, [width])
 
   // useEffect(() => {
   //   let observer = Observer.create({
@@ -289,9 +317,9 @@ export default function Network({ title, members }) {
 
   return (
     <Section id='network' className={`${members.length > 3 ? 'h-[25rem]' : 'h-fit md:h-[20rem]'}`}>
-      <H2 className="text-center networkAnimation" text={title[locale]} />
+      <H2 className="text-center networkAnimation memberAnimation" text={title[locale]} />
       {/* <FadeDiv type="leftRight" className='max-w-full' amount={10} > */}
-      <div className={`project-picture-container relative flex flex-wrap md:flex-nowrap gap-2 md:gap-0 w-full md:h-[17rem] flex-1 select-none  `}>
+      <div className={`project-picture-container relative flex flex-wrap justify-center md:flex-nowrap gap-2 md:gap-0 w-full md:h-[17rem] flex-1 select-none  `}>
         {!mobile && members.length > 3 && <MyButton left className='' handleClick={prevVisibility} />}
         {members?.map((member, i) => (
           <Member
@@ -303,7 +331,7 @@ export default function Network({ title, members }) {
             func={member.func[locale]}
             text={member.text[locale]}
             url={member.img}
-            className={`mainPicture-${i} md:opacity-0 md:invisible `}
+            className={`mainPicture-${i} md:opacity-0 md:invisible memberAnimation`}
             visible={visibleItem[i]}
           />
         ))}
