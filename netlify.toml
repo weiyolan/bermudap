@@ -10,10 +10,10 @@
   
   ## Uncomment to use this redirect for Single Page Applications like create-react-app.
   ## Not needed for static site generators.
-[[redirects]]
-  from = "/studio/*"
-  to = "/studio"
-  status = 301
+  #[[redirects]]
+  #  from = "/studio/*"
+  #  to = "/studio"
+  #  status = 301
   # status = 307 = temporary redirect
   # status = 200 is working in production, but for APIs normally
 

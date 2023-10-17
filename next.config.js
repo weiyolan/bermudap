@@ -5,7 +5,7 @@ const withPWA = require("next-pwa")({
   register: true,
   skipWaiting: true,
   disable: process.env.NODE_ENV === "development",
-});
+})
 
 const nextConfig = withPWA({
   images: {
@@ -29,9 +29,31 @@ const nextConfig = withPWA({
     locales: ["en", "nl"],
     defaultLocale: "en",
   },
+  output: "export",
+  async redirects() {
+    return [
+      {
+        source: "/:locale/studio/*",
+        destination: "/studio",
+        permanent: false,
+        locale: false,
+      },
+    ]
+  },
+  async rewrites() {
+    return {
+      beforeFiles: [
+        {
+          source: "/home",
+          destination: "/",
+          // permanent: true,
+          // locale:false,
+        },
+      ],
+    }
+  },
 
   reactStrictMode: true,
-});
+})
 
-module.exports = nextConfig;
-
+module.exports = nextConfig
