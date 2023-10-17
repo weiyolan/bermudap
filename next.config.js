@@ -33,7 +33,7 @@ const nextConfig = withPWA({
     return [
       {
         source: "/:locale/studio/*",
-        destination: "/studio",
+        destination: "/en/studio",
         permanent: false,
         locale: false,
       },
