@@ -29,6 +29,7 @@ const nextConfig = withPWA({
     locales: ["en", "nl"],
     defaultLocale: "en",
   },
+
   async redirects() {
     return [
       {
