@@ -60,8 +60,7 @@ export default function Contact({
         <title>Bermuda Events | Your event starts with great partners.</title>
         <meta
           name="description"
-          content="Dynamic & Meaningful Experiences For Your Colleagues
-          and Family."
+          content="We provide the best event experience with our young and dynamic team. We have Creativity, Transparency and Detail at the heart of everything we do."
         />
       </Head>
       <ReactLenis root options={{wheelMultiplier: 0.9, print: false}}>

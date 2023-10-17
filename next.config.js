@@ -33,10 +33,16 @@ const nextConfig = withPWA({
   async redirects() {
     return [
       {
-        source: "/studio/:slug*",
+        source: "/nl/studio/:slug*",
+        destination: "/en/studio",
+        permanent: false,
+        locale: false,
+      },
+      {
+        source: "/en/studio/:slug*",
         destination: "/studio",
         permanent: false,
-        // locale: false,
+        locale: false,
       },
     ]
   },
