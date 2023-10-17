@@ -30,22 +30,22 @@ const nextConfig = withPWA({
     defaultLocale: "en",
   },
 
-  async redirects() {
-    return [
-      {
-        source: "/nl/studio/:slug*",
-        destination: "/en/studio",
-        permanent: false,
-        locale: false,
-      },
-      {
-        source: "/en/studio/:slug*",
-        destination: "/studio",
-        permanent: false,
-        locale: false,
-      },
-    ]
-  },
+  // async redirects() {
+  //   return [
+  //     {
+  //       source: "/nl/studio/:slug*",
+  //       destination: "/en/studio",
+  //       permanent: false,
+  //       locale: false,
+  //     },
+  //     {
+  //       source: "/en/studio/:slug*",
+  //       destination: "/studio",
+  //       permanent: false,
+  //       locale: false,
+  //     },
+  //   ]
+  // },
   async rewrites() {
     return {
       beforeFiles: [
