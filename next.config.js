@@ -29,7 +29,6 @@ const nextConfig = withPWA({
     locales: ["en", "nl"],
     defaultLocale: "en",
   },
-  output: "export",
   async redirects() {
     return [
       {
@@ -52,7 +51,12 @@ const nextConfig = withPWA({
       ],
     }
   },
+  // NOT POSSIBLE WITH INTERNATIONALISATION
+  // output: "export",
 
+  // Good to know: Since Next.js 13.4, Strict Mode is true by default with app router, so the above configuration is only necessary for pages.
+  // You can still disable Strict Mode by setting reactStrictMode: false.
+  //  We strongly suggest you enable Strict Mode
   reactStrictMode: true,
 })
 
