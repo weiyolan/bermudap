@@ -33,9 +33,9 @@ export default function TrustedBy({ title, partners }) {
       //   // stagger:0,
       //   y: 30,
       // })
-      gsap.from(['.trustedAnimation'], {
-        y: 30,
-        autoAlpha: 0,
+      gsap.to(['.trustedAnimation'], {
+        y: 0,
+        autoAlpha: 1,
         stagger: { each: 0.1 },
         ease: 'expo.out',
         duration: 1,
@@ -96,11 +96,12 @@ export default function TrustedBy({ title, partners }) {
           ref={trusted}
           className="trusted-by trusted-by-div relative w-full text-center"
         >
-          <H2 className="trustedAnimation opacity-1 title mx-auto max-w-[70%]" text={title} />
+          <H2 className="trustedAnimation translate-y-[30px] invisible opacity-1 title mx-auto max-w-[70%]" text={title} />
           <div className="artist-container flex flex-wrap justify-center gap-8 md:gap-12 sm:flex-nowrap sm:gap-6 lg:gap-12">
             {partners.map((logo, i) => {
               // console.log(logo.meta);
               return (<TrustedLogo
+                className="trustedAnimation translate-y-[30px] invisible"
                 key={i}
                 link={logo.link}
                 name={logo.name}

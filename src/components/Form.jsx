@@ -118,9 +118,9 @@ export default function Form({ title }) {
     }, (ctx) => {
       let { isDesktop, isMobile, reduceMotion } = ctx.conditions
       isDesktop && ctx.add(() => {
-        gsap.from(['.formAnimation'], {
-          y: 30,
-          autoAlpha: 0,
+        gsap.to(['.formAnimation'], {
+          y: 0,
+          autoAlpha: 1,
           stagger: { each: 0.1 },
           // ease: 'back',
           ease: 'expo.out',
@@ -137,9 +137,9 @@ export default function Form({ title }) {
 
       isMobile && ctx.add(() => {
         gsap.utils.toArray(".formAnimation").forEach(card => {
-          gsap.from(card, {
-            y: 30,
-            autoAlpha: 0,
+          gsap.to(card, {
+            y: 0,
+            autoAlpha: 1,
             ease: 'expo.out',
             duration: 1,
             scrollTrigger: {
@@ -212,7 +212,7 @@ export default function Form({ title }) {
 
   return (
     <Section id='form' className={'scroll-mt-24'}>
-      <H2 text={title} className={'formAnimation formAnimationTitle'} />
+      <H2 text={title} className={'formAnimation invisible translate-y-[30px] formAnimationTitle'} />
       <form
         onSubmit={handleSubmit}
         name="ContactForm"
@@ -236,7 +236,7 @@ export default function Form({ title }) {
 
         <LayoutSplit right className={''} >
           {/* ==============MESSAGE============== */}
-          <div className="formAnimation inline-flex flex-col w-full h-full ">
+          <div className="formAnimation invisible translate-y-[30px] inline-flex flex-col w-full h-full ">
             <label
               className=" cursor-pointer whitespace-nowrap font-semibold inline-flex max-w-fit mb-2 ml-1"
               htmlFor="message"
@@ -268,7 +268,7 @@ export default function Form({ title }) {
               }`}
           >
             <div className="grid col-start-1 col-span-3 min-[500px]:col-span-2 ">
-              <div className="formAnimation inline-block relative col-start-1 col-span-1 pr-3">
+              <div className="formAnimation invisible translate-y-[30px] inline-block relative col-start-1 col-span-1 pr-3">
                 <label
                   className="cursor-pointer font-semibold whitespace-nowrap inline-flex  mb-2 ml-1"
                   htmlFor="name"
@@ -293,7 +293,7 @@ export default function Form({ title }) {
                 />
               </div>
 
-              <div className="formAnimation inline-block relative col-start-2 col-span-1 pl-3">
+              <div className="formAnimation invisible translate-y-[30px] inline-block relative col-start-2 col-span-1 pl-3">
                 <label
                   className=" cursor-pointer whitespace-nowrap font-semibold inline-flex mb-2 ml-1"
                   htmlFor="lastname"
@@ -319,7 +319,7 @@ export default function Form({ title }) {
               </div>
             </div>
             {/* EMAIL */}
-            <div className="formAnimation  inline-block relative col-start-1 col-span-3 min-[400px]:col-span-2 min-[400px]:pr-4 min-[500px]:pr-0">
+            <div className="formAnimation invisible translate-y-[30px]  inline-block relative col-start-1 col-span-3 min-[400px]:col-span-2 min-[400px]:pr-4 min-[500px]:pr-0">
               <label
                 className=" cursor-pointer whitespace-nowrap font-semibold inline-flex max-w-fit mb-2 ml-1"
                 htmlFor="email"
@@ -345,7 +345,7 @@ export default function Form({ title }) {
             </div>
 
             {/* SUBJECT */}
-            <div className="formAnimation flex flex-col relative w-full col-start-1 col-span-2 min-[400px]:col-span-1 xs:pr-0 row-start-4 min-[400px]:col-start-3 min-[400px]:row-start-2 min-h-[50px] justify-start items-start min-[400px]:justify-end">
+            <div className="formAnimation invisible translate-y-[30px] flex flex-col relative w-full col-start-1 col-span-2 min-[400px]:col-span-1 xs:pr-0 row-start-4 min-[400px]:col-start-3 min-[400px]:row-start-2 min-h-[50px] justify-start items-start min-[400px]:justify-end">
               <label
                 className=" cursor-pointer whitespace-nowrap font-semibold inline-flex max-w-fit mb-2 ml-1"
                 htmlFor="subject"
@@ -369,7 +369,7 @@ export default function Form({ title }) {
             </div>
 
             {/* BUTTON */}
-            <div className="formAnimation w-full flex items-end justify-end  col-start-3 row-start-4 min-[500px]:col-start-3 min-[500px]:row-start-1 relative ">
+            <div className="formAnimation invisible translate-y-[30px] w-full flex items-end justify-end  col-start-3 row-start-4 min-[500px]:col-start-3 min-[500px]:row-start-1 relative ">
               {/* <button
                 key="submit"
                 tabIndex={0}

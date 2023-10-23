@@ -61,7 +61,7 @@ export default function Home({
   return (
     <>
       <Head>
-        <title>Bermuda Events | The most personal event experience you can get</title>
+        <title>Bermuda Events | Get Lost In The Experience</title>
         <meta
           name="description"
           content="Dynamic & Meaningful Experiences For Your Colleagues

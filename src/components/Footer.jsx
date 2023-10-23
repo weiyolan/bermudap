@@ -53,7 +53,7 @@ export default function Footer({ style, className, lists, title }) {
         style={{ ...style }}
       >
         <div className="flex w-full flex-col md:flex-row md:justify-between pb-2">
-          <div className="flex md:w-2/5 flex-col gap-2 sm:items-start items-center text-center md:text-left relative">
+          <div className="flex md:w-2/5 flex-col gap-2 sm:items-start items-center text-center md:text-left">
             <SubTitle darkMode={true} noMargin small className="pt-2" center mainTitle={title}
             />
             <EmailForm />

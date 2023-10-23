@@ -13,6 +13,7 @@ import AccentTitle from "@/atoms/AccentTitle";
 import Section from "@/atoms/Section";
 import Image from "next/image";
 import useGsap from "@/utils/useGsap";
+import useLayoutEffect from "@/utils/useIsomorphicLayoutEffect";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -26,6 +27,22 @@ export default function ContactDetails({ title, text, alt, imgUrl, companyName, 
 
   let ctx = useGsap()
 
+  useLayoutEffect(() => {
+    // ctx.add(() => {
+    // gsap.set(['.featureCard'], {
+    //   autoAlpha: 0,
+    //   // stagger:0,
+    //   y: 30,
+    // })
+    // gsap.set(['.contactAnimation translate-y-[30px]'invisible ], {
+
+    //   y: 30,
+    //   autoAlpha: 0,
+
+    // })
+    // })
+  })
+
   useEffect(() => {
     ctx.add(() => {
       // gsap.set(['.featureCard'], {
@@ -33,9 +50,12 @@ export default function ContactDetails({ title, text, alt, imgUrl, companyName, 
       //   // stagger:0,
       //   y: 30,
       // })
-      gsap.from(['.contactAnimation'], {
-        y: 30,
-        autoAlpha: 0,
+
+      gsap.to(['.contactAnimation'], {
+        y: 0,
+        // y: 30,
+        autoAlpha: 1,
+      // autoAlpha: 0,
         stagger: { each: 0.1 },
         ease: 'expo.out',
         duration: 1,
@@ -55,7 +75,7 @@ export default function ContactDetails({ title, text, alt, imgUrl, companyName, 
   // useLayoutEffect(() => {
   //   ctx.current = gsap.context(() => {
   //     tl.current = gsap.timeline()
-  //       .from('.contactAnimation', { opacity: 0, duration: 1, ease: 'bounce', stagger: 0.1 })
+  //       .from('.contactAnimation translate-y-[30px]'invisible , { opacity: 0, duration: 1, ease: 'bounce', stagger: 0.1 })
   //   }, '.contact-parent')
   //   return () => ctx.current.revert()
   // }, [])
@@ -64,19 +84,19 @@ export default function ContactDetails({ title, text, alt, imgUrl, companyName, 
   return (
     <Section>
       <LayoutSplit right className={`md:mt-36 items-center flex-col-reverse`}>
-        {/* <SanityImage move style={{ objectPosition: 'top' }} containerClass='w-[46vw] -mt-6 xs:mt-0 xs:w-2/5 min-h-[40vh] xs:min-h-0 xs:h-56 bottom-0 xs:top-14 right-0 xs:right-4 sm:top-0 sm:right-0 sm:relative sm:h-full sm:w-full contact-image0 opacity-0'
+        {/* <SanityImage move style={{ objectPosition: 'top' }} containerClass='w-[46vw] -mt-6 xs:mt-0 xs:w-2/5 min-h-[40vh] xs:min-h-0 xs:h-56 bottom-0 xs:top-14 right-0 xs:right-4 sm:top-0 sm:right-0 sm:relative sm:h-full sm:w-full contact-image0 hidden'
         priority absolute={false} fill image={contactDetails.image.image.asset} alt={contactDetails.image.alt[locale]} /> */}
 
-        <div className="h-48 md:h-96 w-full my-auto overflow-hidden rounded-xl shadow-lg relative contactAnimation">
+        <div className="h-48 md:h-96 w-full my-auto overflow-hidden rounded-xl shadow-lg relative contactAnimation translate-y-[30px] invisible" >
           <Image priority src={imgUrl} alt={alt} fill sizes="45vw" className="object-cover" />
         </div>
         <div
           id="contactSection"
           className="contact-parent relative flex w-full flex-col md:py-6 lg:py-12"
         >
-          <H2 text={title} left className={'contactAnimation contactAnimationTitle'} />
+          <H2 text={title} left className={'contactAnimation translate-y-[30px] invisible contactAnimationTitle'} />
           {/* <H2 child='contact' mainTitle={contactDetails.title[locale]} SubTitle='' left /> */}
-          <p className="contactAnimation text-justify font-raj text-sm font-medium first-letter:font-bel first-letter:text-3xl mobm:text-base max-w-prose sm:w-auto">
+          <p className="contactAnimation translate-y-[30px] invisible text-justify font-raj text-sm font-medium first-letter:font-bel first-letter:text-3xl mobm:text-base max-w-prose sm:w-auto">
             {/* {contactDetails.text[locale]} */}
             {text}
           </p>
@@ -85,9 +105,9 @@ export default function ContactDetails({ title, text, alt, imgUrl, companyName, 
             <div className="flex-1 flex-col ">
               <AccentTitle
                 text="Address"
-                className={"contactAnimation mb-0 mt-0"}
+                className={"contactAnimation translate-y-[30px] invisible mb-0 mt-0"}
               />
-              <p className="contactAnimation whitespace-pre">
+              <p className="contactAnimation translate-y-[30px] invisible whitespace-pre">
                 {`${companyName}\n${address1}\n${address2}\n${country}`}
                 {/* {`miloweiler.com
                 Hof Savelkoul 40
@@ -98,13 +118,13 @@ export default function ContactDetails({ title, text, alt, imgUrl, companyName, 
             <div className="flex-1 flex-col ">
               <AccentTitle
                 text="Details"
-                className={"contactAnimation mb-0 mt-0"}
+                className={"contactAnimation translate-y-[30px] invisible mb-0 mt-0"}
               />
-              <p className="font-pop contactAnimation w-fit">
+              <p className="font-pop contactAnimation translate-y-[30px] invisible w-fit">
                 {`TVA: ${vat}`}
               </p>
               <ArrowLink
-                className={"contactAnimation"}
+                className={"contactAnimation translate-y-[30px] invisible"}
                 inText
                 text={email}
                 to={`mailto:${email}${mailLinkEnd}`}
@@ -112,13 +132,13 @@ export default function ContactDetails({ title, text, alt, imgUrl, companyName, 
                 tabIndex="0"
               />
               <ArrowLink
-                className={"contactAnimation"}
+                className={"contactAnimation translate-y-[30px] invisible "}
                 inText
                 text={phone}
                 to={`tel:${phone}`}
                 tabIndex="0"
               />
-              <ContactB phone={phone} email={email} className={"contactAnimation mt-4 sm:mt-2"} />
+              <ContactB phone={phone} email={email} className={"contactAnimation translate-y-[30px] invisible mt-4 sm:mt-2"} />
             </div>
           </div>
         </div>

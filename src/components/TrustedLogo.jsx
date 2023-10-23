@@ -7,6 +7,7 @@ import { useAppContext } from "@/utils/appContext";
 
 export default function TrustedLogo({
   dataSpeed,
+  className,
   dataDirection,
   imgUrl,
   name,
@@ -36,7 +37,7 @@ export default function TrustedLogo({
 
   return (
     <Link
-      className="trustedAnimation h-fit w-fit cursor-pointer"
+      className={" h-fit w-fit cursor-pointer " + className}
       href={link}
       title={`Go to ${name}'s website`}
       target="_blank"

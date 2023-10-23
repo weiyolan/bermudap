@@ -57,11 +57,8 @@ export default function Contact({
   return (
     <>
       <Head>
-        <title>Bermuda Events | Your event starts with great partners.</title>
-        <meta
-          name="description"
-          content="We provide the best event experience with our young and dynamic team. We have Creativity, Transparency and Detail at the heart of everything we do."
-        />
+        <title>Bermuda Events | The Most Personal Event Experience You Can Get</title>
+        <meta name="description" content="Creativity, transparency and detail are at the heart of the Bermuda Network and everything we do." />
       </Head>
       <ReactLenis root options={{wheelMultiplier: 0.9, print: false}}>
         <header>{width < 768 ? <NavigationMobile links={links} cta={cta?.[locale]} /> : <Navigation links={links} cta={cta?.[locale]} />}</header>
