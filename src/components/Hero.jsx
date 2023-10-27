@@ -40,7 +40,7 @@ export default function Hero({ alt, imgUrl }) {
   }, [hovering, clicking, active, loaded]);
 
   return (
-    <div className="relative w-full select-none h-screen flex flex-col justify-center items-center">
+    <div className="relative w-full overflow-hidden select-none h-screen flex flex-col justify-center items-center">
       <div className="w-full h-screen absolute bg-lightbrown">
         <Image
           src={imgUrl}
@@ -51,7 +51,6 @@ export default function Hero({ alt, imgUrl }) {
           onLoadingComplete={() => { setLoaded(true) }}
         />
       </div>
-
       <div
         onMouseEnter={() => setHovering(true)}
         onMouseLeave={() => {

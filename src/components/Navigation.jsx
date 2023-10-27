@@ -118,7 +118,7 @@ export default function Navigation({ links, cta }) {
         // y: '0%',
         yPercent: () => (hiding ? -100 : 0),
         duration: 0.5,
-        padding: big ? '8 16' : "0 16 0 0",
+        padding: big ? '4 16' : "0 16 0 0",
         transformOrigin: "50% 50%",
         ease: "expo.out",
         // backgroundColor: big?'#BD9159':'#BD9159AA',
@@ -173,7 +173,7 @@ export default function Navigation({ links, cta }) {
     // <FadeDiv className='w-full relative'>
     // <FadeDiv style={{ transform: "translate3d(0, 0, 0)" }} className={`fixed w-full top-0 justify-center flex navBar  `} type={'leftRight'} amount={30}>
     <div id='navigationBar' key='navigationBar'
-      className={`navBar shadow-lg fixed top-0 z-[100] -translate-y-full md:translate-y-0 px-4 py-2 flex w-full justify-between uppercase text-lg bg-brown `}
+      className={`navBar shadow-lg fixed top-0 z-[100] -translate-y-full md:translate-y-0 px-4 py-1 flex w-full justify-between items-center  uppercase text-lg bg-brown `}
     >
       <Link href="/"
         ref={myRef}
@@ -187,9 +187,9 @@ export default function Navigation({ links, cta }) {
         // onFocus={() => setActive(true)}
         // onBlur={() => setActive(false)}
         tabIndex='0'
-        className="relative navLogoLink flex w-fit gap-6 h-fit">
-        <LogoAnim hovering={hovering} className={"fill-white relative navLogo w-20 h-fit"} />
-        <LogoText className={"relative navLogoText w-36"} />
+        className="relative navLogoLink cursor-pointer flex w-fit gap-6 h-fit">
+        <LogoAnim hovering={hovering} className={"fill-white relative navLogo w-16 h-16"} />
+        <LogoText className={"relative navLogoText w-36 h-fit my-auto"} />
       </Link>
 
       <ul
@@ -208,7 +208,7 @@ export default function Navigation({ links, cta }) {
             text={cta}
             to="contact/#form"
             className={
-              "relative rounded-md bg-white fill-brown  px-4 py-2 font-bold text-brown shadow-sm hover:shadow-md"
+              "relative rounded-md bg-white fill-brown  px-4 py-1 font-bold text-brown shadow-sm hover:shadow-md"
             }
           />
         </li>
