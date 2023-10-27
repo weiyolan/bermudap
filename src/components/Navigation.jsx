@@ -187,8 +187,8 @@ export default function Navigation({ links, cta }) {
         // onFocus={() => setActive(true)}
         // onBlur={() => setActive(false)}
         tabIndex='0'
-        className="relative navLogoLink cursor-pointer flex w-fit gap-6 h-fit">
-        <LogoAnim hovering={hovering} className={"fill-white relative navLogo w-16 h-16"} />
+        className="relative navLogoLink cursor-pointer flex w-fit gap-6 h-16">
+        <LogoAnim hovering={hovering} className={"fill-white relative my-auto navLogo w-16 h-16"} />
         <LogoText className={"relative navLogoText w-36 h-fit my-auto"} />
       </Link>
 
