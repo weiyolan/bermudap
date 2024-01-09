@@ -9,6 +9,8 @@ import Button from "@/atoms/Button";
 import LogoText from "@/atoms/LogoText";
 import LogoAnim from "@/atoms/LogoAnim";
 import { useAppContext } from "@/utils/appContext";
+import LanguageToggleDesk from "@/atoms/LanguageToggleDesk";
+import ButtonComp from "@/atoms/ButtonComp";
 
 
 
@@ -203,6 +205,14 @@ export default function Navigation({ links, cta }) {
             ext={button.ext}
           />
         ))}
+        <li
+          className={` `}
+        >
+          <ButtonComp>
+            <LanguageToggleDesk />
+          </ButtonComp>
+        </li>
+
         <li className="list-none">
           <Button
             text={cta}
@@ -257,18 +267,19 @@ function MyButton({ text, to, className, ext }) {
   }, [hover, pathname]);
 
   return (
-    <Link
-      onMouseEnter={() => setHover(true)}
-      onMouseLeave={() => { setHover(false); }}
-      className={`relative navButton${text.slice(0, 3,)} text-center  font-bel text-white `}
-      href={`${to}`}
-    // onClick={() => handleClick(to)}
-    // title={`Go to the ${text} page`}
-    >
-      <li className={`mx-auto list-none w-fit ${className && className}`}>
+    <li className={`mx-auto list-none w-fit ${className && className}`}>
+      <Link
+        onMouseEnter={() => setHover(true)}
+        onMouseLeave={() => { setHover(false); }}
+        className={`relative navButton${text.slice(0, 3,)} text-center  font-bel text-white `}
+        href={`${to}`}
+      // onClick={() => handleClick(to)}
+      // title={`Go to the ${text} page`}
+
+      >
         {text}
         <Line className={`mx-auto navLine${text.slice(0, 3,)} w-0 border-transparent`} />
-      </li>
-    </Link>
+      </Link>
+    </li>
   );
 }

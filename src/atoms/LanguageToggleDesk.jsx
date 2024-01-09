@@ -5,7 +5,7 @@ import { TfiWorld } from 'react-icons/tfi'
 import { gsap } from 'gsap/dist/gsap'
 // import { useAppContext } from '@/utils/appContext'
 
-export default function LanguageToggle({ }) {
+export default function LanguageToggleDesk({ }) {
   const router = useRouter()
   const { locales, locale: activeLocale } = router
 
@@ -48,9 +48,9 @@ export default function LanguageToggle({ }) {
 
   return (
     <div
-      className={`absolute md:fixed navButton top-0 right-0 text-darkPrimary text-xl xs:text-xl sm:text-base text-center flex justify-center items-center font-lora  
-    font-black  border border-transparent 
-    focus-within:outline-darkGrey cursor-pointer select-none m-2 md:m-4 lg:m-5 `}>
+      className={` navButton  text-white text-xl xs:text-xl sm:text-base text-center flex justify-center items-center font-lora  
+    font-black border border-transparent 
+    focus-within:outline-darkGrey cursor-pointer select-none  `}>
 
       <div className='font-bel font-normal languageText'>
         {otherLocales.map((locale) => {
