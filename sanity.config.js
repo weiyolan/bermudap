@@ -27,7 +27,7 @@ const config = defineConfig({
             {
               title: "bermuda-events.be",
               apiId: "8f42a3e4-8645-4b7b-90f6-90b18e3c4a1e",
-              buildHookId: "6502f1fde3184c55a08f76f1",
+              buildHookId: "659d17b45cac66940393e3a1",
               name: "bermuda-events",
             },
           ],
@@ -41,6 +41,6 @@ const config = defineConfig({
   schema: {
     types: schemaTypes,
   },
-});
+})
 
 export default config;
