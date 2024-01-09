@@ -4,9 +4,9 @@ import { useAppContext } from "@/utils/appContext";
 import EmailForm from "./EmailForm";
 
 const signature = {
-  en: ["2023 Bermuda Events, Inc. All rights reserved."],
-  fr: ["2023 Bermuda Events, Inc. Tous droits réservés."],
-  nl: ["2023 Bermuda Events, Inc. Alle rechten voorbehouden."],
+  en: ["2024 Bermuda Events, Inc. All rights reserved."],
+  fr: ["2024 Bermuda Events, Inc. Tous droits réservés."],
+  nl: ["2024 Bermuda Events, Inc. Alle rechten voorbehouden."],
 };
 
 export default function Footer({ style, className, lists, title }) {
