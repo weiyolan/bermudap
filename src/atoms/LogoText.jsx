@@ -4,7 +4,7 @@ export default function LogoText({ color, className, textClassName }) {
   return (
     <svg
       alt="Text displaying Bermuda Events"
-      className={twMerge(className, 'cursor-default')}
+      className={twMerge(className, '')}
       viewBox="0 0 641 127"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"

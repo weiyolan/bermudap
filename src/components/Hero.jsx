@@ -35,6 +35,7 @@ export default function Hero({ alt, imgUrl }) {
           autoAlpha: 1,
           stagger: 0.05,
           ease: 'ease.out',
+          delay: 1.2,
         });
       });
   }, [hovering, clicking, active, loaded]);
@@ -46,7 +47,7 @@ export default function Hero({ alt, imgUrl }) {
           src={imgUrl}
           priority
           className="object-cover object-top"
-          fill
+          fill  
           alt={alt}
           onLoad={() => { setLoaded(true) }}
         />
