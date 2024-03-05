@@ -48,7 +48,7 @@ export default function Hero({ alt, imgUrl }) {
           className="object-cover object-top"
           fill
           alt={alt}
-          onLoadingComplete={() => { setLoaded(true) }}
+          onLoad={() => { setLoaded(true) }}
         />
       </div>
       <div
