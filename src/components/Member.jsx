@@ -77,12 +77,12 @@ export default function Member({ url, name, func, text, alt, print, className, i
           sizes="25vw"
         />
       </div>
-      <p ref={myText} className="absolute italic opacity-0 top-1/3 select-text -translate-y-1/2 text-sm md:text-inherit w-full text-center font-raj font-medium" >
+      <p ref={myText} className="absolute italic opacity-0 top-1/3 select-text -translate-y-1/2 text-sm  w-full text-center font-raj font-light" >
         {'"'}{text}{'"'}
       </p>
 
       <h3 className="font-bel text-xl font-semibold">{name}</h3>
-      <h4 className="font-raj text-lg font-medium">{func}</h4>
+      <h4 className="font-raj text-base font-normal">{func}</h4>
     </div>
   );
 }

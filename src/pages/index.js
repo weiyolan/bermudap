@@ -6,7 +6,7 @@ import Footer from "@/components/Footer"
 // import Footer from "@/components/Footer";
 // import UpButton from "@/components/UpButton";
 
-import {getFooter, getNav, getAboutContent, getCTA, getHero, getMembers, getNetwork, getValues} from "@/sanity/sanity-utils"
+import {getFooter, getNav, getAboutContent, getCTA, getHero, getMembers, getNetwork, getValues, getTrusted} from "@/sanity/sanity-utils"
 import UpButton from "@/components/UpButton"
 import BackgroundLogo from "@/atoms/BackgroundLogo"
 import Hero from "@/components/Hero"
@@ -19,6 +19,7 @@ import {ReactLenis} from "@studio-freight/react-lenis"
 import {gsap} from "gsap/dist/gsap"
 import {useEffect, useRef} from "react"
 import NavigationMobile from "@/components/NavigationMobile"
+import TrustedBy from "@/components/TrustedBy"
 
 export default function Home({
   links,
@@ -42,6 +43,9 @@ export default function Home({
   val1,
   val2,
   val3,
+  enabled,
+  trustedTitle,
+  partners,
 }) {
   let {locale, width} = useAppContext()
   const lenisRef = useRef()
@@ -73,6 +77,7 @@ export default function Home({
         <main className="">
           <BackgroundLogo />
           <Hero alt={heroAlt?.[locale]} imgUrl={heroImage} />
+          {enabled && <TrustedBy className={"sm:mt-12"} title={trustedTitle?.[locale]} partners={partners} />}
           <Features title={valueTitle?.[locale]} values={[val1, val2, val3]} />
           <CTA text={CTAText?.[locale]} />
           <AboutSection alt={aboutAlt?.[locale]} imgUrl={aboutImage} title={aboutTitle?.[locale]} text={aboutText?.[locale]} button={aboutButton} />
@@ -96,6 +101,7 @@ export async function getStaticProps() {
   const {imgUrl: heroImage, alt: heroAlt} = await getHero()
   const {title: CTAText} = await getCTA()
   const {title: valueTitle, val1, val2, val3} = await getValues()
+  const {enabled, title: trustedTitle, partners} = await getTrusted()
 
   // const projects = await client.fetch(`*[_type == "project"][cat == "bts" || cat == "docu" || cat == "art"]|order(date desc){title, cat, otherImages[]{_key,_type, asset->{url,metadata{dimensions}}, ...asset{_ref}}, mainImage{alt,image{asset->{url}, ...asset{_ref}}}, slug}`);
   // const sectionInfo = await client.fetch(`*[_type == "mainPageXXX" || _type == "mainPageYYY"]`);
@@ -123,6 +129,9 @@ export async function getStaticProps() {
       val1,
       val2,
       val3,
+      enabled,
+      trustedTitle,
+      partners,
     },
   }
 }

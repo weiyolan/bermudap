@@ -7,12 +7,13 @@ import {AppWrapper} from "@utils/appContext"
 // import Script from 'next/script';
 import {Toaster} from "react-hot-toast"
 
-import {Belleza, Rajdhani} from "next/font/google"
+import {Belleza, Rajdhani, Inter} from "next/font/google"
 
 import {gsap} from "gsap/dist/gsap"
 import {ScrollTrigger} from "gsap/dist/ScrollTrigger"
 import {MotionPathPlugin} from "gsap/dist/MotionPathPlugin"
 import {ScrollToPlugin} from "gsap/dist/ScrollToPlugin"
+import {GoogleTagManager} from "@next/third-parties/google"
 
 gsap.registerPlugin(ScrollTrigger, MotionPathPlugin, ScrollToPlugin)
 
@@ -22,6 +23,9 @@ const belleza = Belleza({
   variable: "--font-bel",
   display: "auto",
 })
+
+const inter = Inter({subsets: ["latin"], variable: "--font-raj"})
+
 const rajdhani = Rajdhani({
   subsets: ["latin"],
   weight: ["400", "500"],
@@ -42,10 +46,11 @@ export default function App({Component, pageProps}) {
         <meta name="msapplication-TileColor" content="#e3e1d9" />
         <meta name="theme-color" content="#e3e1d9" />
       </Head>
-      <AppWrapper className={`${belleza.variable} ${rajdhani.variable} font-pop relative h-[100dvh] w-full overflow-x-clip`}>
+      <AppWrapper className={`${belleza.variable} ${inter.variable} font-pop relative h-[100dvh] w-full overflow-x-clip`}>
         <Component {...pageProps} />
         <Toaster />
       </AppWrapper>
+      <GoogleTagManager gtmId="GTM-THKV3L73" />
     </>
   )
 }

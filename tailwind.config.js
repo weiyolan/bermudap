@@ -1,12 +1,7 @@
 const { fontFamily } = require("tailwindcss/defaultTheme");
 /** @type {import('tailwindcss').Config} */
 module.exports = {
-  content: [
-    "./src/pages/**/*.{js,ts,jsx,tsx,mdx}",
-    "./src/atoms/**/*.{js,ts,jsx,tsx,mdx}",
-    "./src/components/**/*.{js,ts,jsx,tsx,mdx}",
-    "./src/app/**/*.{js,ts,jsx,tsx,mdx}",
-  ],
+  content: ["./src/pages/**/*.{js,ts,jsx,tsx,mdx}", "./src/atoms/**/*.{js,ts,jsx,tsx,mdx}", "./src/components/**/*.{js,ts,jsx,tsx,mdx}", "./src/app/**/*.{js,ts,jsx,tsx,mdx}"],
   theme: {
     extend: {
       fontFamily: {
@@ -27,6 +22,7 @@ module.exports = {
       colors: {
         white: "#FFFFFF",
         white2: "#FFF9F2",
+        // brown: "#926F3D",
         brown: "#BD9159",
         browndark: "#6E4221",
         brownlight: "#A8947F",
@@ -42,26 +38,24 @@ module.exports = {
       backgroundImage: {
         blackWhite: "linear-gradient(to right, black 50%, #FFF5EA 50%)",
         "gradient-radial": "radial-gradient(var(--tw-gradient-stops))",
-        "gradient-conic":
-          "conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))",
+        "gradient-conic": "conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))",
       },
       boxShadow: {
-        "top-xl":
-          "0 -20px 25px -5px rgb(0 0 0 / 0.1), 0 -8px 10px -6px rgb(0 0 0 / 0.1)",
+        "top-xl": "0 -20px 25px -5px rgb(0 0 0 / 0.1), 0 -8px 10px -6px rgb(0 0 0 / 0.1)",
         "top-2xl": "0 -25px 50px -12px rgb(0 0 0 / 0.25)",
         "3xl": "0 35px 60px -15px rgba(0, 0, 0, 0.3)",
         "inner-3xl": "inset 0 0px 50px 10px rgba(0, 0, 0, 0.3)",
       },
       keyframes: {
         wiggle: {
-          "0%, 100%": { transform: "rotate(-3deg)" },
-          "50%": { transform: "rotate(3deg)" },
+          "0%, 100%": {transform: "rotate(-3deg)"},
+          "50%": {transform: "rotate(3deg)"},
         },
         outlinePulse: {
-          "50%": { "outline-color": "rgba(255,255,255,0.05)" },
+          "50%": {"outline-color": "rgba(255,255,255,0.05)"},
         },
         borderPulse: {
-          "50%": { "border-color": "rgba(255,255,255,0.05)" },
+          "50%": {"border-color": "rgba(255,255,255,0.05)"},
         },
       },
     },
@@ -75,4 +69,4 @@ module.exports = {
     },
   },
   plugins: [require("@tailwindcss/typography")],
-};
+}

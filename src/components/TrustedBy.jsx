@@ -19,7 +19,7 @@ import useGsap from "@/utils/useGsap";
 
 gsap.registerPlugin(ScrollTrigger);
 
-export default function TrustedBy({ title, partners }) {
+export default function TrustedBy({ title, partners, className }) {
   // const { ctx, tl } = usePageContext()
   let tl = useRef(null);
   let trusted = useRef();
@@ -90,7 +90,7 @@ export default function TrustedBy({ title, partners }) {
   // }
 
   return (
-    <Section>
+    <Section className={className}>
       <LayoutSplit center>
         <div
           ref={trusted}

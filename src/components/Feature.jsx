@@ -81,9 +81,9 @@ export default function Feature({ className, title, subTitle, text, myKey }) {
       onBlur={() => setActive(false)}
       tabIndex='0'
       onKeyDown={(e) => { e.key === 'Enter' && setActive(!active) }}
-      className={`relative noSelect featureCard font-raj font-medium flex flex-1 flex-col shadow-black/10 backdrop-blur-sm border shadow-md md:focus-within:backdrop-blur-md md:hover:backdrop-blur-md border-[#6E422100] items-center rounded-xl pt-4 pb-2 cursor-pointer gap-4 ${className}`}>
+      className={`relative noSelect featureCard font-raj  flex flex-1 flex-col shadow-black/10 backdrop-blur-sm border shadow-md md:focus-within:backdrop-blur-md md:hover:backdrop-blur-md border-[#6E422100] items-center rounded-xl pt-4 pb-2 cursor-pointer gap-4 ${className}`}>
       <div className="relative">
-        <p className="text-center relative text-xs font-semibold uppercase ">
+        <p className="text-center relative text-xs font-medium uppercase ">
           Get Lost In
         </p>
         <h3 ref={myTitleRef} className="relative font-bel text-3xl  ">{title}</h3>
@@ -93,8 +93,8 @@ export default function Feature({ className, title, subTitle, text, myKey }) {
         {myKey === 1 ? <Detail hovering={hovering} active={active} clicking={clicking} className={`w-[90%] mx-auto cursor-pointer  `} /> : null}
         {myKey === 2 ? <Personality hovering={hovering} active={active} clicking={clicking} className={`w-[90%] mx-auto cursor-pointer `} /> : null}
       </div>
-      <p ref={mySubTitle} className="text-center font-medium ">{subTitle}</p>
-      <p ref={myText} className="absolute bottom-[40%] md:bottom-[34%] translate-y-1/2 w-full px-4 text-center opacity-0 invisible whitespace-pre-wrap  ">
+      <p ref={mySubTitle} className="text-center px-8 ">{subTitle}</p>
+      <p ref={myText} className="absolute bottom-[40%] md:bottom-[34%] translate-y-1/2 w-full px-4 text-center opacity-0 invisible whitespace-pre-wrap ">
         {`${text}`}
       </p>
     </div>

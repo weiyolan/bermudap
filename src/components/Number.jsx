@@ -15,7 +15,7 @@ export default function Number({ n, title, text, link, unit, className }) {
         <span className="text-2xl sm:text-3xl ">{unit}</span>
       </p>
       <p className={`font-raj text-lg font-medium uppercase`}>{title}</p>
-      <p className={`max-w-[90%] font-raj font-medium `}>{text}</p>
+      <p className={`max-w-[90%] font-raj font-normal `}>{text}</p>
       <ArrowLink className={'font-bel'}
         title={"Visit the fact's source"}
         text="Source"

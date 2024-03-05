@@ -72,7 +72,7 @@ export default function AboutSection({ alt, imgUrl, text, title, button }) {
         </div>
         <div className="flex h-full w-fit flex-col justify-center gap-4 sm:gap-8">
           {/* <H2 text={title} className={"mb-0 sm:mb-0 text-left "} /> */}
-          <p className="max-w-prose font-raj font-medium text first-letter:text-3xl aboutAnimation">
+          <p className="max-w-prose font-raj font-normal  first-letter:text-3xl aboutAnimation">
             {text}
           </p>
           <Button

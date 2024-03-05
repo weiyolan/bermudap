@@ -175,8 +175,9 @@ export default function Navigation({ links, cta }) {
     // <FadeDiv className='w-full relative'>
     // <FadeDiv style={{ transform: "translate3d(0, 0, 0)" }} className={`fixed w-full top-0 justify-center flex navBar  `} type={'leftRight'} amount={30}>
     <div id='navigationBar' key='navigationBar'
-      className={`navBar shadow-lg fixed top-0 z-[100] -translate-y-full md:translate-y-0 px-4 py-1 flex w-full justify-between items-center  uppercase text-lg bg-brown `}
+      className={`navBar shadow-lg fixed top-0 z-[100] -translate-y-full md:translate-y-0 px-4 py-1 w-full bg-brown `}
     >
+      <div className="max-w-[1600px] flex w-full justify-between items-center text-lg mx-auto">
       <Link href="/"
         ref={myRef}
         onMouseEnter={() => setHovering(true)}
@@ -223,6 +224,7 @@ export default function Navigation({ links, cta }) {
           />
         </li>
       </ul>
+    </div>
     </div>
     // {/* // </FadeDiv> */ }
   );
@@ -271,7 +273,7 @@ function MyButton({ text, to, className, ext }) {
       <Link
         onMouseEnter={() => setHover(true)}
         onMouseLeave={() => { setHover(false); }}
-        className={`relative navButton${text.slice(0, 3,)} text-center  font-bel text-white `}
+        className={`relative navButton${text.slice(0, 3,)} text-center font-light text-xl font-bel text-white `}
         href={`${to}`}
       // onClick={() => handleClick(to)}
       // title={`Go to the ${text} page`}

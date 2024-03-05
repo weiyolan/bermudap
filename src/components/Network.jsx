@@ -183,87 +183,87 @@ export default function Network({ title, members }) {
     })
   }
 
-  function handleVisibilityJump(newIndex) {
-    let xAmount = 30;
-    let scaleAmount = 0.95;
+  // function handleVisibilityJump(newIndex) {
+  //   let xAmount = 30;
+  //   let scaleAmount = 0.95;
 
-    let currentIndex = visibleItem.indexOf(true);
-    let inFrontIndex = currentIndex === visibleItem.length - 1 ? 0 : currentIndex + 1
-    let behindIndex = currentIndex === 0 ? visibleItem.length - 1 : currentIndex - 1
-    let nextIndex = newIndex
+  //   let currentIndex = visibleItem.indexOf(true);
+  //   let inFrontIndex = currentIndex === visibleItem.length - 1 ? 0 : currentIndex + 1
+  //   let behindIndex = currentIndex === 0 ? visibleItem.length - 1 : currentIndex - 1
+  //   let nextIndex = newIndex
 
-    let jump = newIndex - currentIndex
-    let direction;
+  //   let jump = newIndex - currentIndex
+  //   let direction;
 
-    let newVisibility = new Array(visibleItem.length).fill(false);
-    newVisibility[nextIndex] = true;
-    setVisibleItem(newVisibility)
+  //   let newVisibility = new Array(visibleItem.length).fill(false);
+  //   newVisibility[nextIndex] = true;
+  //   setVisibleItem(newVisibility)
 
-    switch (jump) {
-      case 1:
-        direction = 'next';
-        break;
-      case -1:
-        direction = "prev";
-        break;
-      case 2:
-        direction
-    }
+  //   switch (jump) {
+  //     case 1:
+  //       direction = 'next';
+  //       break;
+  //     case -1:
+  //       direction = "prev";
+  //       break;
+  //     case 2:
+  //       direction
+  //   }
 
-    ctx.add(() => {
-      let tl = gsap.timeline({ autoRemoveChildren: true, onComplete: () => setAnimating(false) })
-        .set(`.mainPicture-${nextIndex}`, {
-          x: () => direction === 'next' ? `${xAmount}` : `-${xAmount}`,
-          xPercent: () => direction === 'next' ? 70 : -170,
-          scale: scaleAmount,
-          // overwrite: true,
-          // autoAlpha: 0,
-        })
-        .to(`.mainPicture-${behindIndex}`,
-          {
-            x: () => direction === 'next' ? `-=${xAmount}` : 0,
-            xPercent: () => direction === 'next' ? -170 : -50,
-            scale: () => direction === 'next' ? scaleAmount : 1,
-            autoAlpha: () => direction === 'next' ? 0 : 1,
-            ease: 'expo.out',
-            // ease:'power4.out',
-            duration: 0.7,
-            // overwrite: true,
-          }, '>+=0.1')
-        .to(`.mainPicture-${currentIndex}`, {
-          x: 0,
-          xPercent: () => direction === 'next' ? -170 : 70,
-          scale: 1,
-          autoAlpha: 1,
-          ease: 'expo.out',
-          // ease:'power4.out',
-          duration: 0.7,
-          // overwrite: true,
-        }, '<')
-        .to(`.mainPicture-${inFrontIndex}`, {
-          x: () => direction === 'prev' ? `+=${xAmount}` : 0,
-          xPercent: () => direction === 'prev' ? 70 : -50,
-          scale: () => direction === 'prev' ? scaleAmount : 1,
-          autoAlpha: () => direction === 'prev' ? 0 : 1,
-          ease: 'expo.out',
-          // ease:'power4.out',
-          duration: 0.7,
-          // overwrite: true,
-        }, '<')
-        .to(`.mainPicture-${nextIndex}`, {
-          x: 0,
-          xPercent: () => direction === 'next' ? 70 : -170,
-          scale: 1,
-          autoAlpha: 1,
-          ease: 'expo.out',
-          // ease:'power4.out',
-          duration: 0.7,
-          // overwrite: true,
-        }, '<')
-    })
+  //   ctx.add(() => {
+  //     let tl = gsap.timeline({ autoRemoveChildren: true, onComplete: () => setAnimating(false) })
+  //       .set(`.mainPicture-${nextIndex}`, {
+  //         x: () => direction === 'next' ? `${xAmount}` : `-${xAmount}`,
+  //         xPercent: () => direction === 'next' ? 70 : -170,
+  //         scale: scaleAmount,
+  //         // overwrite: true,
+  //         // autoAlpha: 0,
+  //       })
+  //       .to(`.mainPicture-${behindIndex}`,
+  //         {
+  //           x: () => direction === 'next' ? `-=${xAmount}` : 0,
+  //           xPercent: () => direction === 'next' ? -170 : -50,
+  //           scale: () => direction === 'next' ? scaleAmount : 1,
+  //           autoAlpha: () => direction === 'next' ? 0 : 1,
+  //           ease: 'expo.out',
+  //           // ease:'power4.out',
+  //           duration: 0.7,
+  //           // overwrite: true,
+  //         }, '>+=0.1')
+  //       .to(`.mainPicture-${currentIndex}`, {
+  //         x: 0,
+  //         xPercent: () => direction === 'next' ? -170 : 70,
+  //         scale: 1,
+  //         autoAlpha: 1,
+  //         ease: 'expo.out',
+  //         // ease:'power4.out',
+  //         duration: 0.7,
+  //         // overwrite: true,
+  //       }, '<')
+  //       .to(`.mainPicture-${inFrontIndex}`, {
+  //         x: () => direction === 'prev' ? `+=${xAmount}` : 0,
+  //         xPercent: () => direction === 'prev' ? 70 : -50,
+  //         scale: () => direction === 'prev' ? scaleAmount : 1,
+  //         autoAlpha: () => direction === 'prev' ? 0 : 1,
+  //         ease: 'expo.out',
+  //         // ease:'power4.out',
+  //         duration: 0.7,
+  //         // overwrite: true,
+  //       }, '<')
+  //       .to(`.mainPicture-${nextIndex}`, {
+  //         x: 0,
+  //         xPercent: () => direction === 'next' ? 70 : -170,
+  //         scale: 1,
+  //         autoAlpha: 1,
+  //         ease: 'expo.out',
+  //         // ease:'power4.out',
+  //         duration: 0.7,
+  //         // overwrite: true,
+  //       }, '<')
+  //   })
 
 
-  }
+  // }
 
   function handleVisibility(direction) {
     if (typeof direction === 'string') {
