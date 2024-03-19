@@ -1,0 +1,59 @@
+
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" 
+xmlns:xhtml="http://www.w3.org/1999/xhtml"
+xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
+    <url>
+        <loc>https://bermuda-events.be/</loc>
+        <xhtml:link
+            rel='alternate'
+            hreflang='en'
+            href='https://bermuda-events.be/'/>
+        <xhtml:link
+            rel='alternate'
+            hreflang='nl'
+            href='https://bermuda-events.be/nl'/>
+        <lastmod>2023-10-17T17:34:10+00:00</lastmod>
+        <priority>1.00</priority>
+    </url>
+    <url>
+       <loc>https://bermuda-events.be/nl</loc>
+        <xhtml:link
+            rel='alternate'
+            hreflang='en'
+            href='https://bermuda-events.be/'/>
+        <xhtml:link
+            rel='alternate'
+            hreflang='nl'
+            href='https://bermuda-events.be/nl'/>
+        <lastmod>2023-10-17T17:34:10+00:00</lastmod>
+        <priority>0.80</priority>
+    </url>
+      <url>
+       <loc>https://bermuda-events.be/contact</loc>
+        <xhtml:link
+            rel='alternate'
+            hreflang='en'
+            href='https://bermuda-events.be/contact'/>
+        <xhtml:link
+            rel='alternate'
+            hreflang='nl'
+            href='https://bermuda-events.be/nl/contact'/>
+        <lastmod>2023-10-17T17:34:10+00:00</lastmod>
+        <priority>0.80</priority>
+    </url>
+    <url>
+       <loc>https://bermuda-events.be/nl/contact</loc>
+        <xhtml:link
+            rel='alternate'
+            hreflang='en'
+            href='https://bermuda-events.be/contact'/>
+        <xhtml:link
+            rel='alternate'
+            hreflang='nl'
+            href='https://bermuda-events.be/nl/contact'/>
+        <lastmod>2023-10-17T17:34:10+00:00</lastmod>
+        <priority>0.80</priority>
+    </url>
+</urlset>

@@ -1,21 +1,23 @@
 import { defineConfig } from "sanity";
-import { deskTool } from "sanity/desk";
-import { dashboardTool } from "@sanity/dashboard";
-import { netlifyWidget } from "sanity-plugin-dashboard-widget-netlify";
-import { myStructure } from "./sanity.structure";
-import { visionTool } from "@sanity/vision";
-import { schemaTypes } from "@/sanity/schemas";
+import {structureTool} from "sanity/structure"
+import {dashboardTool} from "@sanity/dashboard"
+import {netlifyWidget} from "sanity-plugin-dashboard-widget-netlify"
+import {myStructure} from "./sanity.structure"
+import {visionTool} from "@sanity/vision"
+import {schemaTypes} from "./src/sanity/schemas"
+import myLogo from "@/sanity/logo"
 // import {Love} from './actions'
 
 const config = defineConfig({
   name: "default",
-  title: "🏝️ Bermuda Events Studio",
+  title: "Bermuda Events Studio",
   projectId: "nj2v8ioh",
   dataset: "production",
   apiVersion: "2023-09-15",
+  icon: myLogo,
   basePath: "/studio",
   plugins: [
-    deskTool({
+    structureTool({
       structure: myStructure,
     }),
     visionTool(),
