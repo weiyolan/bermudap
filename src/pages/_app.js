@@ -1,7 +1,7 @@
 import "../styles/globals.css"
 import "../styles/lenis.css"
 import "../styles/scrollbar.css"
-import React, {useState} from "react"
+import React, {useEffect, useState} from "react"
 import Head from "next/head"
 import {AppWrapper} from "@utils/appContext"
 // import Script from 'next/script';
@@ -14,6 +14,8 @@ import {ScrollTrigger} from "gsap/dist/ScrollTrigger"
 import {MotionPathPlugin} from "gsap/dist/MotionPathPlugin"
 import {ScrollToPlugin} from "gsap/dist/ScrollToPlugin"
 import {GoogleTagManager} from "@next/third-parties/google"
+// import {useRouter} from "next/router"
+import SplashScreen from "@/components/SplashScreen"
 
 gsap.registerPlugin(ScrollTrigger, MotionPathPlugin, ScrollToPlugin)
 
@@ -34,7 +36,28 @@ const rajdhani = Rajdhani({
 })
 
 export default function App({Component, pageProps}) {
-  // const [loaded, setLoaded] = useState(false)
+  const [loaded, setLoaded] = useState(false)
+  // const router = useRouter()
+
+  // useEffect(() => {
+  //   const handleRouteChange = (url) => {
+  //     setLoaded(false)
+  //     console.log(false)
+  //   }
+
+  //   const handleRouteChangeComplete = () => {
+  //     setLoaded(true)
+  //     console.log(true)
+  //   }
+  //   router.events.on("routeChangeStart", handleRouteChange)
+  //   router.events.on("routeChangeComplete", handleRouteChangeComplete)
+
+  //   return () => {
+  //     router.events.off("routeChangeStart", handleRouteChange)
+  //     router.events.off("routeChangeComplete", handleRouteChangeComplete)
+  //   }
+  // }, [router])
+
   return (
     <>
       <Head>
@@ -48,13 +71,18 @@ export default function App({Component, pageProps}) {
         <meta name="theme-color" content="#e3e1d9" />
       </Head>
       <AppWrapper className={`${belleza.variable} ${inter.variable} font-pop relative h-[100dvh] w-full overflow-x-clip`}>
+        {/* {!loaded ? (
+          <SplashScreen />
+        ) : ( */}
         <Component
-          // loaded={loaded}
-          // onLoad={() => {
-          //   setLoaded(true)
-          // }}
+          loaded={loaded}
+          onLoad={() => {
+            setLoaded(true)
+          }}
           {...pageProps}
         />
+        {/* )} */}
+
         <Toaster />
       </AppWrapper>
       <GoogleTagManager gtmId="GTM-THKV3L73" />

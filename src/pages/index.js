@@ -24,6 +24,7 @@ import {useState} from "react"
 import Logo from "@/atoms/Logo"
 import LogoAnim from "@/atoms/LogoAnim"
 import useGsap from "@/utils/useGsap"
+import SplashScreen from "@/components/SplashScreen"
 
 export default function Home({
   links,
@@ -50,13 +51,13 @@ export default function Home({
   enabled,
   trustedTitle,
   partners,
-  // loaded,
-  // onLoad,
+  loaded,
+  onLoad,
 }) {
   let {locale, width} = useAppContext()
   const lenisRef = useRef()
   let ctx = useGsap()
-  const [loaded, setLoaded] = useState(false)
+  // const [loaded2, setLoaded] = useState(false)
 
   useEffect(() => {
     function update(time) {
@@ -92,14 +93,22 @@ export default function Home({
         />
       </Head>
       <ReactLenis ref={lenisRef} autoRaf={false} root options={{wheelMultiplier: 0.9, print: false}}>
-        <header>{width < 768 ? <NavigationMobile links={links} cta={cta?.[locale]} /> : <Navigation links={links} cta={cta?.[locale]} />}</header>
+        <header>{width < 768 ? <NavigationMobile links={links} cta={cta?.[locale]} /> : <Navigation controlledUnhide={!loaded} links={links} cta={cta?.[locale]} />}</header>
         {/* {!loaded && ( */}
 
         {/* )} */}
 
         <main className={`${loaded ? "" : "h-screen overflow-hidden"}`}>
           <BackgroundLogo />
-          <Hero alt={heroAlt?.[locale]} imgUrl={heroImage} onLoad={() => setLoaded(true)} loaded={loaded} />
+          <Hero
+            alt={heroAlt?.[locale]}
+            imgUrl={heroImage}
+            onLoad={
+              onLoad
+              // () => setLoaded(true)
+            }
+            loaded={loaded}
+          />
           {enabled && <TrustedBy className={"sm:mt-12"} title={trustedTitle?.[locale]} partners={partners} />}
           <Features title={valueTitle?.[locale]} values={[val1, val2, val3]} />
           <CTA text={CTAText?.[locale]} />
@@ -111,13 +120,8 @@ export default function Home({
           <Footer title={title?.[locale]} lists={[list1, list2, list3, list4]} />
         </footer>
 
-        <div className="loadingScreen fixed top-0 z-[99] flex h-screen  w-screen items-center justify-center bg-white">
-          <div className="animate-rotation">
-            <Logo color className={" h-18 w-18 relative "}></Logo>
-          </div>
-        </div>
-
         <UpButton />
+        <SplashScreen />
       </ReactLenis>
     </>
   )

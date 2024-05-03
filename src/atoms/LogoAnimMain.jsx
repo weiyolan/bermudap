@@ -87,20 +87,20 @@ export default function LogoAnimMain({ loaded, className, hovering: parentHoveri
   useEffect(() => {
     ctx.add(() => {
 
-      let newTl = animateLogo().paused(true);
+      let newTl = animateLogo().paused(loaded ? false : true);
       setTl(newTl)
 
     })
     // loaded.current=true;
-  }, [])
-
-
-
-  useEffect(() => {
-    tl && ctx.add(() => {
-      loaded && tl.paused(false)
-    })
   }, [loaded])
+
+
+
+  // useEffect(() => {
+  //   tl && ctx.add(() => {
+  //     loaded && tl.paused(false)
+  //   })
+  // }, [loaded])
 
   // useEffect(() => {
   // myRef?.current !== undefined &&

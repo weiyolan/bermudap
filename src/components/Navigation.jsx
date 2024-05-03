@@ -18,7 +18,7 @@ gsap.registerPlugin(Observer);
 
 
 
-export default function Navigation({ links, cta }) {
+export default function Navigation({ links, cta, controlledUnhide }) {
   let { locale } = useAppContext();
   // let { darkMode } = usePageContext()
   let [hiding, setHiding] = useState(false); //removed bar onLoad and then animate in.
@@ -33,11 +33,21 @@ export default function Navigation({ links, cta }) {
 
 
   useEffect(() => {
-    setHiding(false);
+    setHiding(controlledUnhide ? controlledUnhide : false)
     return () => {
       ctx.current.revert();
     };
   }, []);
+
+  // useEffect(() => {
+  //   setHiding(controlledHide ? controlledHide : false);
+
+  // }, [controlledHide])
+
+  // useEffect(() => {
+  //   setHiding(controlledHide);
+
+  // }, [controlledHide]);
 
   function hideBar() {
     if (!hiding) {
