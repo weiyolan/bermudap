@@ -3,9 +3,10 @@ import { useEffect, useRef, useState } from 'react';
 import useGsap from '@/utils/useGsap';
 import { ScrollTrigger } from 'gsap/dist/ScrollTrigger';
 import { useAppContext } from '@/utils/appContext';
+import PortableText from './PortableText';
 gsap.registerPlugin(ScrollTrigger);
 
-export default function Feature({ className, title, subTitle, text, myKey }) {
+export default function Feature({ className, locale, title, subTitle, text, myKey }) {
   let [hovering, setHovering] = useState(false);
   let [clicking, setClicking] = useState(false);
   let [active, setActive] = useState(false);
@@ -94,9 +95,12 @@ export default function Feature({ className, title, subTitle, text, myKey }) {
         {myKey === 2 ? <Personality hovering={hovering} active={active} clicking={clicking} className={`w-[90%] mx-auto cursor-pointer `} /> : null}
       </div>
       <p ref={mySubTitle} className="text-center px-8 ">{subTitle}</p>
-      <p ref={myText} className="absolute bottom-[40%] md:bottom-[34%] translate-y-1/2 w-full px-4 text-center opacity-0 invisible whitespace-pre-wrap ">
+      {/* <p ref={myText} className="absolute bottom-[40%] md:bottom-[34%] translate-y-1/2 w-full px-4 text-center opacity-0 invisible whitespace-pre-wrap ">
         {`${text}`}
-      </p>
+      </p> */}
+      <div ref={myText} className="absolute bottom-[40%] md:bottom-[34%] translate-y-1/2 w-full px-4 text-center opacity-0 invisible whitespace-pre-wrap ">
+        <PortableText value={text} locale={locale} />
+      </div>
     </div>
   );
 }

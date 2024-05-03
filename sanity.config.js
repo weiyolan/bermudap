@@ -1,4 +1,4 @@
-import { defineConfig } from "sanity";
+import {defineConfig} from "sanity"
 import {structureTool} from "sanity/structure"
 import {dashboardTool} from "@sanity/dashboard"
 import {netlifyWidget} from "sanity-plugin-dashboard-widget-netlify"
@@ -16,27 +16,54 @@ const config = defineConfig({
   apiVersion: "2023-09-15",
   icon: myLogo,
   basePath: "/studio",
-  plugins: [
-    structureTool({
-      structure: myStructure,
-    }),
-    visionTool(),
-    dashboardTool({
-      widgets: [
-        netlifyWidget({
-          title: "Netlify deploy",
-          sites: [
-            {
-              title: "bermuda-events.be",
-              apiId: "8f42a3e4-8645-4b7b-90f6-90b18e3c4a1e",
-              buildHookId: "659d17b45cac66940393e3a1",
-              name: "bermuda-events",
-            },
-          ],
-        }),
-      ],
-    }),
-  ],
+  document: {
+    unstable_comments: {
+      enabled: false,
+    },
+  },
+  plugins:
+    process.env.NODE_ENV === "development" //isDev
+      ? [
+          structureTool({
+            structure: myStructure,
+          }),
+          visionTool(),
+          dashboardTool({
+            widgets: [
+              netlifyWidget({
+                title: "Netlify deploy",
+                sites: [
+                  {
+                    title: "bermuda-events.be",
+                    apiId: "8f42a3e4-8645-4b7b-90f6-90b18e3c4a1e",
+                    buildHookId: "659d17b45cac66940393e3a1",
+                    name: "bermuda-events",
+                  },
+                ],
+              }),
+            ],
+          }),
+        ]
+      : [
+          structureTool({
+            structure: myStructure,
+          }),
+          dashboardTool({
+            widgets: [
+              netlifyWidget({
+                title: "Netlify deploy",
+                sites: [
+                  {
+                    title: "bermuda-events.be",
+                    apiId: "8f42a3e4-8645-4b7b-90f6-90b18e3c4a1e",
+                    buildHookId: "659d17b45cac66940393e3a1",
+                    name: "bermuda-events",
+                  },
+                ],
+              }),
+            ],
+          }),
+        ],
   document: {
     // actions: [Love],
   },
@@ -45,4 +72,4 @@ const config = defineConfig({
   },
 })
 
-export default config;
+export default config

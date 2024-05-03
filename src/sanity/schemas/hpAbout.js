@@ -19,7 +19,7 @@ export default defineType({
     defineField({
       name: "text",
       title: "Text",
-      type: "localeText",
+      type: "localeBlockContent",
       validation: (Rule) => Rule.required(),
     }),
     defineField({
@@ -38,7 +38,7 @@ export default defineType({
   preview: {
     prepare() {
       // const {date, completion} = selection
-      return { title: "About Us" };
+      return {title: "About Us"}
     },
   },
-});
+})

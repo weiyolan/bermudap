@@ -82,6 +82,7 @@ export default function Features({ title, values }) {
               subTitle={val.subTitle?.[locale]}
               key={i}
               myKey={i}
+              locale={locale}
               className={colors[i]}
             />
           ))}

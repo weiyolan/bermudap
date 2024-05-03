@@ -23,7 +23,6 @@ export default function Navigation({ links, cta, controlledUnhide }) {
   // let { darkMode } = usePageContext()
   let [hiding, setHiding] = useState(false); //removed bar onLoad and then animate in.
   let [big, setBig] = useState(true);
-
   let [hovering, setHovering] = useState(false);
   let [clicking, setClicking] = useState(false);
   const myRef = useRef();
@@ -33,11 +32,16 @@ export default function Navigation({ links, cta, controlledUnhide }) {
 
 
   useEffect(() => {
-    setHiding(controlledUnhide ? controlledUnhide : false)
+    // setHiding(controlledUnhide ? controlledUnhide : false)
     return () => {
       ctx.current.revert();
     };
   }, []);
+
+  useEffect(() => {
+    setHiding(controlledUnhide ? controlledUnhide : false)
+
+  }, [controlledUnhide]);
 
   // useEffect(() => {
   //   setHiding(controlledHide ? controlledHide : false);

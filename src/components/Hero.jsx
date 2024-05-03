@@ -16,6 +16,8 @@ export default function Hero({ alt, imgUrl, loaded, onLoad }) {
   let [clicking, setClicking] = useState(false);
   let [active, setActive] = useState(false);
 
+  // let [single, setSingle] = useState(false);
+
   const myRef = useRef();
   let ctx = useGsap();
 

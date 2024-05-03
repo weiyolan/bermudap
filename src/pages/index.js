@@ -56,7 +56,6 @@ export default function Home({
 }) {
   let {locale, width} = useAppContext()
   const lenisRef = useRef()
-  let ctx = useGsap()
   // const [loaded2, setLoaded] = useState(false)
 
   useEffect(() => {
@@ -70,17 +69,6 @@ export default function Home({
       gsap.ticker.remove(update)
     }
   })
-
-  useEffect(() => {
-    ctx.add(() => {
-      loaded &&
-        gsap.to([".loadingScreen"], {
-          duration: 0.7,
-          autoAlpha: 0,
-          ease: "ease.out",
-        })
-    })
-  }, [loaded])
 
   return (
     <>
@@ -121,7 +109,7 @@ export default function Home({
         </footer>
 
         <UpButton />
-        <SplashScreen />
+        <SplashScreen loaded={loaded} />
       </ReactLenis>
     </>
   )
@@ -137,7 +125,6 @@ export async function getStaticProps() {
   const {title: CTAText} = await getCTA()
   const {title: valueTitle, val1, val2, val3} = await getValues()
   const {enabled, title: trustedTitle, partners} = await getTrusted()
-
   // const projects = await client.fetch(`*[_type == "project"][cat == "bts" || cat == "docu" || cat == "art"]|order(date desc){title, cat, otherImages[]{_key,_type, asset->{url,metadata{dimensions}}, ...asset{_ref}}, mainImage{alt,image{asset->{url}, ...asset{_ref}}}, slug}`);
   // const sectionInfo = await client.fetch(`*[_type == "mainPageXXX" || _type == "mainPageYYY"]`);
   // const sectionInfoMilo = await client.fetch(`*[]`)

@@ -1,7 +1,7 @@
 import "../styles/globals.css"
 import "../styles/lenis.css"
 import "../styles/scrollbar.css"
-import React, {useEffect, useState} from "react"
+import React, {use, useEffect, useState} from "react"
 import Head from "next/head"
 import {AppWrapper} from "@utils/appContext"
 // import Script from 'next/script';
@@ -16,6 +16,8 @@ import {ScrollToPlugin} from "gsap/dist/ScrollToPlugin"
 import {GoogleTagManager} from "@next/third-parties/google"
 // import {useRouter} from "next/router"
 import SplashScreen from "@/components/SplashScreen"
+import {useRouter} from "next/router"
+import useGsap from "@/utils/useGsap"
 
 gsap.registerPlugin(ScrollTrigger, MotionPathPlugin, ScrollToPlugin)
 
@@ -37,26 +39,42 @@ const rajdhani = Rajdhani({
 
 export default function App({Component, pageProps}) {
   const [loaded, setLoaded] = useState(false)
-  // const router = useRouter()
+  const router = useRouter()
+  const ctx = useGsap()
+
+  useEffect(() => {
+    const handleRouteChange = (url) => {
+      // setLoaded(false)
+      console.log(url)
+    }
+
+    // const handleRouteChangeComplete = () => {
+    //   // setLoaded(true)
+    //   console.log(true)
+    // }
+    router.events.on("routeChangeStart", handleRouteChange)
+    // router.events.on("routeChangeComplete", handleRouteChangeComplete)
+
+    return () => {
+      router.events.off("routeChangeStart", handleRouteChange)
+      // router.events.off("routeChangeComplete", handleRouteChangeComplete)
+    }
+  }, [router])
+
+  useEffect(() => {
+    console.log("loaded", loaded)
+  }, [loaded])
 
   // useEffect(() => {
-  //   const handleRouteChange = (url) => {
-  //     setLoaded(false)
-  //     console.log(false)
-  //   }
-
-  //   const handleRouteChangeComplete = () => {
-  //     setLoaded(true)
-  //     console.log(true)
-  //   }
-  //   router.events.on("routeChangeStart", handleRouteChange)
-  //   router.events.on("routeChangeComplete", handleRouteChangeComplete)
-
-  //   return () => {
-  //     router.events.off("routeChangeStart", handleRouteChange)
-  //     router.events.off("routeChangeComplete", handleRouteChangeComplete)
-  //   }
-  // }, [router])
+  //   loaded &&
+  //     ctx.add(() => {
+  //       gsap.to([".loadingScreen"], {
+  //         duration: 0.7,
+  //         autoAlpha: 0,
+  //         ease: "ease.out",
+  //       })
+  //     })
+  // }, [loaded])
 
   return (
     <>
