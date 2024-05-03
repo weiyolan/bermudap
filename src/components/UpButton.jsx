@@ -1,8 +1,10 @@
+import { useAppContext } from "@/utils/appContext";
 import useGsap from "@/utils/useGsap";
 import { gsap } from "gsap/dist/gsap";
 // import { ScrollTrigger } from 'gsap/dist/ScrollTrigger';
 import { Observer } from "gsap/dist/Observer";
 import { ScrollToPlugin } from "gsap/dist/ScrollToPlugin";
+import Link from "next/link";
 import { useEffect, useState } from "react";
 
 gsap.registerPlugin(Observer, ScrollToPlugin);
@@ -12,7 +14,7 @@ export default function UpButton() {
   let [hiding, setHiding] = useState(true); //removed arrow onLoad and then animate after scroll.
   let [hovering, setHovering] = useState(false);
   let [clicking, setClicking] = useState(false);
-
+  const { locale } = useAppContext()
 
   function hideArrow() {
     if (!hiding) {
@@ -70,6 +72,7 @@ export default function UpButton() {
         x: hiding ? "0" : "0",
         xPercent: hiding ? 150 : -50,
         yPercent: hovering ? -5 : 0,
+        rotate: hovering ? '90deg' : 0,
         duration: 1,
         scale: hovering ? (clicking ? 0.95 : 1.1) : 1,
 
@@ -111,9 +114,10 @@ export default function UpButton() {
   }, [hiding, hovering, clicking]);
 
   return (
-    <div
-      title="To the top of the page."
+    <Link
+      title={locale === 'en' ? "Contact us" : "Contacteer ons"}
       tabIndex={0}
+      href='/contact#form'
       onMouseEnter={() => setHovering(true)}
       onMouseLeave={() => {
         setHovering(false);
@@ -121,11 +125,11 @@ export default function UpButton() {
       }}
       onMouseDown={() => setClicking(true)}
       onMouseUp={() => setClicking(false)}
-      onClick={() =>
-        ctx.add(() => {
-          gsap.to(window, { scrollTo: 0, ease: "ease.out" });
-        })
-      }
+      // onClick={() =>
+      //   ctx.add(() => {
+      //     gsap.to(window, { scrollTo: 0, ease: "ease.out" });
+      //   })
+      // }
       className="upButton active::drop-shadow-sm fixed bottom-[15%] md:bottom-1/4 right-0 flex w-10 h-10 md:h-12 md:w-12 translate-x-full cursor-pointer items-center justify-center drop-shadow-lg transition-shadow"
     >
       <div className="absolute h-full w-full rounded-full bg-green" />
@@ -152,7 +156,7 @@ export default function UpButton() {
           fill="white"
         />
       </svg>
-    </div>
+    </Link>
   );
 }
 

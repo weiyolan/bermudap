@@ -86,7 +86,7 @@ export default function Home({
 
         {/* )} */}
 
-        <main className={`${loaded ? "" : "h-screen overflow-hidden"}`}>
+        <main className={`${loaded ? "h-auto " : "h-screen overflow-hidden"}`}>
           <BackgroundLogo />
           <Hero
             alt={heroAlt?.[locale]}
