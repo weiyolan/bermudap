@@ -1,4 +1,4 @@
-const { fontFamily } = require("tailwindcss/defaultTheme");
+const {fontFamily} = require("tailwindcss/defaultTheme")
 /** @type {import('tailwindcss').Config} */
 module.exports = {
   content: ["./src/pages/**/*.{js,ts,jsx,tsx,mdx}", "./src/atoms/**/*.{js,ts,jsx,tsx,mdx}", "./src/components/**/*.{js,ts,jsx,tsx,mdx}", "./src/app/**/*.{js,ts,jsx,tsx,mdx}"],
@@ -57,16 +57,55 @@ module.exports = {
         borderPulse: {
           "50%": {"border-color": "rgba(255,255,255,0.05)"},
         },
+        pulse: {
+          "0%, 100%": {opacity: 1},
+          "50%": {opacity: 0.5},
+        },
+
+        rotation: {
+          "0%": {
+            transform: "rotate(0deg)",
+            "animation-timing-function": "cubic-bezier(0.8, 0, 1, 1)",
+          },
+          "50%": {
+            transform: "rotate(180deg)",
+            "animation-timing-function": "cubic-bezier(0, 0, 0.2, 1)",
+          },
+          "100%": {
+            transform: "rotate(360deg)",
+            "animation-timing-function": "cubic-bezier(0.8, 0, 1, 1)",
+          },
+        },
+        bounce: {
+          "0%, 100%": {
+            transform: "translateY(-25%)",
+            "animation-timing-function": "cubic-bezier(0.8, 0, 1, 1)",
+          },
+          "50%": {
+            transform: "translateY(0)",
+            "animation-timing-function": "cubic-bezier(0, 0, 0.2, 1)",
+          },
+        },
+        ping: {
+          "75%, 100%": {
+            transform: "scale(1.5)",
+            opacity: 0,
+          },
+        },
+      },
+      animation: {
+        wiggle: "wiggle 1s ease infinite",
+        outlinePulse: "outlinePulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite",
+        borderPulse: "borderPulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite",
+        pulse: "pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite",
+        ping: "ping 1s cubic-bezier(0, 0, 0.2, 1) infinite",
+        rotation: "rotation 1s infinite",
+        bounce: "bounce 1s infinite",
+      },
+      variants: {
+        animation: ["motion-safe"],
       },
     },
-    animation: {
-      wiggle: "wiggle 1s ease infinite",
-      outlinePulse: "outlinePulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite",
-      borderPulse: "borderPulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite",
-    },
-    variants: {
-      animation: ["motion-safe"],
-    },
+    plugins: [require("@tailwindcss/typography")],
   },
-  plugins: [require("@tailwindcss/typography")],
 }

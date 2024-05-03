@@ -11,11 +11,10 @@ import LogoAnimMain from "@/atoms/LogoAnimMain";
 import Logo from "@/atoms/Logo";
 // import { useLenis } from "@studio-freight/react-lenis";
 
-export default function Hero({ alt, imgUrl }) {
+export default function Hero({ alt, imgUrl, loaded, onLoad }) {
   let [hovering, setHovering] = useState(false);
   let [clicking, setClicking] = useState(false);
   let [active, setActive] = useState(false);
-  const [loaded, setLoaded] = useState(false);
 
   const myRef = useRef();
   let ctx = useGsap();
@@ -35,10 +34,18 @@ export default function Hero({ alt, imgUrl }) {
           autoAlpha: 1,
           stagger: 0.05,
           ease: 'ease.out',
-          delay: 1.2,
+          delay: 1.3,
         });
+        // loaded && gsap.to(['.mainHeroImage'], {
+        //   // duration: 1,
+        //   autoAlpha: 1,
+        //   // stagger: 0.05,
+        //   ease: 'ease.out',
+        //   delay: 0.3,
+        // });
       });
   }, [hovering, clicking, active, loaded]);
+
 
   return (
     <div className="relative w-full overflow-hidden select-none h-screen flex flex-col justify-center items-center">
@@ -46,10 +53,11 @@ export default function Hero({ alt, imgUrl }) {
         <Image
           src={imgUrl}
           priority
-          className="object-cover object-top"
+          className="object-cover object-top mainHeroImage"
           fill  
           alt={alt}
-          onLoad={() => { setLoaded(true) }}
+          onLoad={onLoad}
+          sizes='100vw'
         />
       </div>
       <div

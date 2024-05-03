@@ -46,7 +46,7 @@ export default function LogoAnimMain({ loaded, className, hovering: parentHoveri
       }, 0)
       .to(leafPathId, {
         attr: { d: transformPathInitial },
-        duration: 0.7,
+        duration: 0.7, //0.7
         ease: 'power1.out',
       }, 0.3)
       .to(leafRef.current, {
@@ -67,19 +67,19 @@ export default function LogoAnimMain({ loaded, className, hovering: parentHoveri
         document.getElementById('myBladRef0VectorInitial').attributes.d.value,
         document.getElementById('myBladRef0Vector1transit').attributes.d.value,
         document.getElementById('myBladRef0Vector2shape').attributes.d.value,
-      ), 0)
+      ), 0.3)
 
       .add(animateLeaf(myBladRef1, '#myBladRef1Vector0', '#vectorLeft', -120 + 180,
         document.getElementById('myBladRef1VectorInitial').attributes.d.value,
         document.getElementById('myBladRef1Vector1transit').attributes.d.value,
         document.getElementById('myBladRef1Vector2shape').attributes.d.value,
-      ), 0)
+      ), 0.3)
 
       .add(animateLeaf(myBladRef2, '#myBladRef2Vector0', '#vectorBottom', 0 + 180,
         document.getElementById('myBladRef2VectorInitial').attributes.d.value,
         document.getElementById('myBladRef2Vector1transit').attributes.d.value,
         document.getElementById('myBladRef2Vector2shape').attributes.d.value,
-      ), 0)
+      ), 0.3)
 
     return tl
   }
@@ -114,11 +114,11 @@ export default function LogoAnimMain({ loaded, className, hovering: parentHoveri
     timeline: tl,
     ratio: 1,
     attr: {
-      duration: 1,
+      duration: 1, //1
       ease: 'power3.out',
       // onStart:()=>{console.log('start One')} 
     },
-    position: 0.2
+    position: 0.5 //0.2
   }
 
 

@@ -42,7 +42,7 @@ export default function TrustedBy({ title, partners, className }) {
         scrollTrigger: {
           trigger: '.trustedAnimation',
           start: 'top 80%',
-          // markers: true,
+          markers: false,
           // toggleActions: 'play none none reverse',
         }
       })

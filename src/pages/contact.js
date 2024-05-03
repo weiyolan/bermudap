@@ -52,6 +52,8 @@ export default function Contact({
   email,
   vat,
   phone,
+  loaded,
+  onLoad,
 }) {
   let {locale, width} = useAppContext()
   return (

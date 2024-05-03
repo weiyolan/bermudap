@@ -20,6 +20,10 @@ import {gsap} from "gsap/dist/gsap"
 import {useEffect, useRef} from "react"
 import NavigationMobile from "@/components/NavigationMobile"
 import TrustedBy from "@/components/TrustedBy"
+import {useState} from "react"
+import Logo from "@/atoms/Logo"
+import LogoAnim from "@/atoms/LogoAnim"
+import useGsap from "@/utils/useGsap"
 
 export default function Home({
   links,
@@ -46,9 +50,13 @@ export default function Home({
   enabled,
   trustedTitle,
   partners,
+  // loaded,
+  // onLoad,
 }) {
   let {locale, width} = useAppContext()
   const lenisRef = useRef()
+  let ctx = useGsap()
+  const [loaded, setLoaded] = useState(false)
 
   useEffect(() => {
     function update(time) {
@@ -62,6 +70,17 @@ export default function Home({
     }
   })
 
+  useEffect(() => {
+    ctx.add(() => {
+      loaded &&
+        gsap.to([".loadingScreen"], {
+          duration: 0.7,
+          autoAlpha: 0,
+          ease: "ease.out",
+        })
+    })
+  }, [loaded])
+
   return (
     <>
       <Head>
@@ -74,18 +93,30 @@ export default function Home({
       </Head>
       <ReactLenis ref={lenisRef} autoRaf={false} root options={{wheelMultiplier: 0.9, print: false}}>
         <header>{width < 768 ? <NavigationMobile links={links} cta={cta?.[locale]} /> : <Navigation links={links} cta={cta?.[locale]} />}</header>
-        <main className="">
+        {/* {!loaded && ( */}
+
+        {/* )} */}
+
+        <main className={`${loaded ? "" : "h-screen overflow-hidden"}`}>
           <BackgroundLogo />
-          <Hero alt={heroAlt?.[locale]} imgUrl={heroImage} />
+          <Hero alt={heroAlt?.[locale]} imgUrl={heroImage} onLoad={() => setLoaded(true)} loaded={loaded} />
           {enabled && <TrustedBy className={"sm:mt-12"} title={trustedTitle?.[locale]} partners={partners} />}
           <Features title={valueTitle?.[locale]} values={[val1, val2, val3]} />
           <CTA text={CTAText?.[locale]} />
           <AboutSection alt={aboutAlt?.[locale]} imgUrl={aboutImage} title={aboutTitle?.[locale]} text={aboutText?.[locale]} button={aboutButton} />
           <Network title={networkTitle} members={members} />
         </main>
+
         <footer>
           <Footer title={title?.[locale]} lists={[list1, list2, list3, list4]} />
         </footer>
+
+        <div className="loadingScreen fixed top-0 z-[99] flex h-screen  w-screen items-center justify-center bg-white">
+          <div className="animate-rotation">
+            <Logo color className={" h-18 w-18 relative "}></Logo>
+          </div>
+        </div>
+
         <UpButton />
       </ReactLenis>
     </>

@@ -1,7 +1,7 @@
 import "../styles/globals.css"
 import "../styles/lenis.css"
 import "../styles/scrollbar.css"
-import React from "react"
+import React, {useState} from "react"
 import Head from "next/head"
 import {AppWrapper} from "@utils/appContext"
 // import Script from 'next/script';
@@ -34,6 +34,7 @@ const rajdhani = Rajdhani({
 })
 
 export default function App({Component, pageProps}) {
+  // const [loaded, setLoaded] = useState(false)
   return (
     <>
       <Head>
@@ -47,7 +48,13 @@ export default function App({Component, pageProps}) {
         <meta name="theme-color" content="#e3e1d9" />
       </Head>
       <AppWrapper className={`${belleza.variable} ${inter.variable} font-pop relative h-[100dvh] w-full overflow-x-clip`}>
-        <Component {...pageProps} />
+        <Component
+          // loaded={loaded}
+          // onLoad={() => {
+          //   setLoaded(true)
+          // }}
+          {...pageProps}
+        />
         <Toaster />
       </AppWrapper>
       <GoogleTagManager gtmId="GTM-THKV3L73" />
