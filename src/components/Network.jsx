@@ -316,7 +316,7 @@ export default function Network({ title, members }) {
   // }, [])
 
   return (
-    <Section id='network' className={`${members.length > 3 ? 'h-[25rem]' : 'h-fit md:h-[20rem]'}`}>
+    <Section id='network' className={`${members.length > 3 ? 'h-fit md:h-[25rem]' : 'h-fit md:h-[20rem]'}`}>
       <H2 className="text-center networkAnimation memberAnimation" text={title[locale]} />
       {/* <FadeDiv type="leftRight" className='max-w-full' amount={10} > */}
       <div className={`project-picture-container relative flex flex-wrap justify-center md:flex-nowrap gap-2 md:gap-0 w-full md:h-[17rem] flex-1 select-none  `}>
@@ -339,7 +339,7 @@ export default function Network({ title, members }) {
         {!mobile && members.length > 3 && < MyButton className='' handleClick={nextVisibility} />
         }
       </div>
-      {members.length > 3 && <PictureIndicator handleVisibility={handleVisibility} visibleItem={visibleItem} />}
+      {<PictureIndicator handleVisibility={handleVisibility} visibleItem={visibleItem} />}
 
     </Section>
   );
@@ -389,7 +389,7 @@ function MyButton({ left, className, handleClick, ...props }) {
       onBlur={() => setActive(false)}
       tabIndex='0'
       {...props}
-      className={twMerge('group flex rounded-md items-center justify-center bg-[#BD915909] my-auto cursor-pointer relative w-24 h-24 lg:pt-1 z-[1]', className)}>
+      className={twMerge('group flex rounded-md items-center justify-center bg-[#BD915909] my-auto cursor-pointer absolute w-24 h-24 lg:pt-1 z-[1] top-1/2 -translate-y-1/2', `${left ? 'left-0' : 'right-0'}`, className)}>
       <AiFillCaretLeft className={`opacity-40 group-hover:opacity-100 fill-brown transition-opacity duration-300 w-10 h-10 ${left ? '' : 'rotate-180'} `} />
     </button>
   )

@@ -17,17 +17,17 @@ export default function PictureIndicator({ handleVisibility, visibleItem }) {
     return () => setLoaded(false)
   }, [])
 
-  useEffect(() => {
-    ctx.current.add(() => {
-      gsap.to(indicatorRef.current, {
-        autoAlpha: loaded ? 1 : 0
-      })
-    })
-  }, [loaded])
+  // useEffect(() => {
+  //   ctx.current.add(() => {
+  //     gsap.to(indicatorRef.current, {
+  //       autoAlpha: loaded ? 1 : 0
+  //     })
+  //   })
+  // }, [loaded])
 
   return (
     // <div className='picture-indicator absolute left-1/2 -translate-x-1/2 flex justify-center items-center gap-2 h-6 top-full -translate-y-[150%] md:-translate-y-2/4 '>
-    <div ref={indicatorRef} className='picture-indicator w-fit relative flex opacity-0 invisible mx-auto justify-center items-center gap-2 my-4 mobl:my-8 lg:my-6'>
+    <div ref={indicatorRef} className='picture-indicator w-fit relative flex  invisible md:visible mx-auto justify-center items-center gap-2 my-4 mobl:my-8 lg:my-6'>
       {visibleItem.map((item, i) => {
         return <Bol handleClick={() => { handleVisibility(i) }} ctx={ctx} visible={item} key={i} />
       })}
