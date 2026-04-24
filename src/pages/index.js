@@ -26,6 +26,21 @@ import LogoAnim from "@/atoms/LogoAnim"
 import useGsap from "@/utils/useGsap"
 import SplashScreen from "@/components/SplashScreen"
 
+const SITE_URL = "https://bermuda-events.be"
+
+const homeMeta = {
+  en: {
+    title: "Bermuda Events | Get Lost In The Experience",
+    description: "Dynamic & Meaningful Experiences For Your Colleagues and Family.",
+    h1: "Bermuda Events — Get Lost In The Experience",
+  },
+  nl: {
+    title: "Bermuda Events | Verlies Jezelf In De Beleving",
+    description: "Dynamische en betekenisvolle belevenissen voor je collega's en familie.",
+    h1: "Bermuda Events — Verlies Jezelf In De Beleving",
+  },
+}
+
 export default function Home({
   links,
   cta,
@@ -70,15 +85,22 @@ export default function Home({
     }
   })
 
+  const meta = homeMeta[locale] || homeMeta.en
+  const ogImage = heroImage ? `${heroImage}?w=1200&h=630&fit=crop&auto=format` : `${SITE_URL}/apple-touch-icon.png`
+  const pageUrl = `${SITE_URL}${locale === "nl" ? "/nl" : ""}`
+
   return (
     <>
       <Head>
-        <title>Bermuda Events | Get Lost In The Experience</title>
-        <meta
-          name="description"
-          content="Dynamic & Meaningful Experiences For Your Colleagues
-          and Family."
-        />
+        <title>{meta.title}</title>
+        <meta name="description" content={meta.description} />
+        <meta property="og:title" content={meta.title} />
+        <meta property="og:description" content={meta.description} />
+        <meta property="og:url" content={pageUrl} />
+        <meta property="og:image" content={ogImage} />
+        <meta name="twitter:title" content={meta.title} />
+        <meta name="twitter:description" content={meta.description} />
+        <meta name="twitter:image" content={ogImage} />
       </Head>
       <ReactLenis ref={lenisRef} autoRaf={false} root options={{wheelMultiplier: 0.9, print: false}}>
         <header>{width < 768 ? <NavigationMobile links={links} cta={cta?.[locale]} /> : <Navigation controlledUnhide={!loaded} links={links} cta={cta?.[locale]} />}</header>
@@ -87,6 +109,7 @@ export default function Home({
         {/* )} */}
 
         <main className={`${loaded ? "h-auto " : "h-screen overflow-hidden"}`}>
+          <h1 className="sr-only">{meta.h1}</h1>
           <BackgroundLogo />
           <Hero
             alt={heroAlt?.[locale]}

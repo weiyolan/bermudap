@@ -25,10 +25,10 @@ const belleza = Belleza({
   subsets: ["latin"],
   weight: ["400"],
   variable: "--font-bel",
-  display: "auto",
+  display: "swap",
 })
 
-const inter = Inter({subsets: ["latin"], variable: "--font-raj"})
+const inter = Inter({subsets: ["latin"], variable: "--font-raj", preload: false})
 
 const rajdhani = Rajdhani({
   subsets: ["latin"],
@@ -36,6 +36,8 @@ const rajdhani = Rajdhani({
   variable: "--font-raj",
   display: "swap",
 })
+
+const SITE_URL = "https://bermuda-events.be"
 
 export default function App({Component, pageProps}) {
   const [loaded, setLoaded] = useState(false)
@@ -76,6 +78,11 @@ export default function App({Component, pageProps}) {
   //     })
   // }, [loaded])
 
+  const canonicalPath = router.asPath.split("?")[0].split("#")[0]
+  const pathSegment = canonicalPath === "/" ? "" : canonicalPath
+  const localePrefix = router.locale && router.locale !== router.defaultLocale ? `/${router.locale}` : ""
+  const canonicalUrl = `${SITE_URL}${localePrefix}${pathSegment}`
+
   return (
     <>
       <Head>
@@ -87,6 +94,14 @@ export default function App({Component, pageProps}) {
         <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#bd8f57" />
         <meta name="msapplication-TileColor" content="#e3e1d9" />
         <meta name="theme-color" content="#e3e1d9" />
+        <link rel="canonical" href={canonicalUrl} />
+        <link rel="alternate" hrefLang="en" href={`${SITE_URL}${pathSegment}`} />
+        <link rel="alternate" hrefLang="nl" href={`${SITE_URL}/nl${pathSegment}`} />
+        <link rel="alternate" hrefLang="x-default" href={`${SITE_URL}${pathSegment}`} />
+        <meta property="og:site_name" content="Bermuda Events" />
+        <meta property="og:type" content="website" />
+        <meta property="og:locale" content={router.locale === "nl" ? "nl_BE" : "en_US"} />
+        <meta name="twitter:card" content="summary_large_image" />
       </Head>
       <AppWrapper className={`${belleza.variable} ${inter.variable} font-pop relative h-[100dvh] w-full overflow-x-clip`}>
         {/* {!loaded ? (

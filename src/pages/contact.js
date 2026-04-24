@@ -25,6 +25,21 @@ import {useAppContext} from '@/utils/appContext'
 import {Lenis as ReactLenis} from '@studio-freight/react-lenis'
 import NavigationMobile from "@/components/NavigationMobile"
 
+const SITE_URL = "https://bermuda-events.be"
+
+const contactMeta = {
+  en: {
+    title: "Bermuda Events | The Most Personal Event Experience You Can Get",
+    description: "Creativity, transparency and detail are at the heart of the Bermuda Network and everything we do.",
+    h1: "Contact Bermuda Events — Ask for an offer",
+  },
+  nl: {
+    title: "Bermuda Events | De Meest Persoonlijke Event Ervaring",
+    description: "Creativiteit, transparantie en oog voor detail staan centraal bij Bermuda Events en alles wat we doen.",
+    h1: "Contacteer Bermuda Events — Vraag een offerte",
+  },
+}
+
 export default function Contact({
   links,
   cta,
@@ -56,15 +71,27 @@ export default function Contact({
   onLoad,
 }) {
   let {locale, width} = useAppContext()
+  const meta = contactMeta[locale] || contactMeta.en
+  const ogImage = imgUrl ? `${imgUrl}?w=1200&h=630&fit=crop&auto=format` : `${SITE_URL}/apple-touch-icon.png`
+  const pageUrl = `${SITE_URL}${locale === "nl" ? "/nl" : ""}/contact`
+
   return (
     <>
       <Head>
-        <title>Bermuda Events | The Most Personal Event Experience You Can Get</title>
-        <meta name="description" content="Creativity, transparency and detail are at the heart of the Bermuda Network and everything we do." />
+        <title>{meta.title}</title>
+        <meta name="description" content={meta.description} />
+        <meta property="og:title" content={meta.title} />
+        <meta property="og:description" content={meta.description} />
+        <meta property="og:url" content={pageUrl} />
+        <meta property="og:image" content={ogImage} />
+        <meta name="twitter:title" content={meta.title} />
+        <meta name="twitter:description" content={meta.description} />
+        <meta name="twitter:image" content={ogImage} />
       </Head>
       <ReactLenis root options={{wheelMultiplier: 0.9, print: false}}>
         <header>{width < 768 ? <NavigationMobile links={links} cta={cta?.[locale]} /> : <Navigation links={links} cta={cta?.[locale]} />}</header>
         <main>
+          <h1 className="sr-only">{meta.h1}</h1>
           <BackgroundLogo />
           <ContactDetails
             {...{companyName, address1, address2, country, email, vat, phone}}

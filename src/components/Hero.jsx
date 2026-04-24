@@ -19,7 +19,13 @@ export default function Hero({ alt, imgUrl, loaded, onLoad }) {
   // let [single, setSingle] = useState(false);
 
   const myRef = useRef();
+  const imgRef = useRef();
   let ctx = useGsap();
+
+  useEffect(() => {
+    const img = imgRef.current ?? document.querySelector('.mainHeroImage');
+    if (img?.complete && img.naturalHeight > 0) onLoad?.();
+  }, []);
 
   useEffect(() => {
     myRef?.current !== undefined &&
@@ -53,10 +59,11 @@ export default function Hero({ alt, imgUrl, loaded, onLoad }) {
     <div className="relative w-full overflow-hidden select-none h-screen flex flex-col justify-center items-center">
       <div className="w-full h-screen absolute bg-lightbrown">
         <Image
+          ref={imgRef}
           src={imgUrl}
           priority
           className="object-cover object-top mainHeroImage"
-          fill  
+          fill
           alt={alt}
           onLoad={onLoad}
           sizes='100vw'
